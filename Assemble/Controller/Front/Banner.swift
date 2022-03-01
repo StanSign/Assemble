@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FaceAware
 
 class Banner: UICollectionViewCell {
     

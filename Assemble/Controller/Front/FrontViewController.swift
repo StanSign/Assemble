@@ -106,7 +106,7 @@ extension FrontViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath {
         case IndexPath(row: 0, section: 0):
-            return tableView.frame.width * 1.3
+            return tableView.frame.width * 1.2
         case IndexPath(row: 0, section: 1):
             return 400
         default:
@@ -137,7 +137,7 @@ extension FrontViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func updateHeader(with offset: CGFloat) {
-//        updateBackgroundView(offset)
+        updateBackgroundView(offset)
         updateHeaderHeight(offset)
         updateSeperator(offset)
     }

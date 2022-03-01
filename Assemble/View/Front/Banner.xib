@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,14 +19,35 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcs-zi-85Z" userLabel="Banner View">
                         <rect key="frame" x="16" y="8" width="344" height="472"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dr" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ft9-fF-nD0">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ft9-fF-nD0">
                                 <rect key="frame" x="0.0" y="0.0" width="344" height="352"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="focusOnFaces" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32F-S6-NAn">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32F-S6-NAn" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="352" width="344" height="120"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="더 배트맨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VW-fK-aAE">
+                                        <rect key="frame" x="24" y="38" width="114" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="31"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm Vengeance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJw-le-l30">
+                                        <rect key="frame" x="24" y="79" width="95.5" height="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="AJw-le-l30" secondAttribute="bottom" constant="24" id="ABW-gj-yZX"/>
                                     <constraint firstAttribute="height" constant="120" id="DJW-9i-ggT"/>
+                                    <constraint firstItem="0VW-fK-aAE" firstAttribute="leading" secondItem="32F-S6-NAn" secondAttribute="leading" constant="24" id="NNe-kJ-dTF"/>
+                                    <constraint firstItem="AJw-le-l30" firstAttribute="leading" secondItem="32F-S6-NAn" secondAttribute="leading" constant="24" id="UgG-uo-4Ec"/>
+                                    <constraint firstItem="AJw-le-l30" firstAttribute="top" secondItem="0VW-fK-aAE" secondAttribute="bottom" constant="4" id="nXZ-dC-1CU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -54,15 +74,12 @@
             <size key="customSize" width="295" height="141"/>
             <connections>
                 <outlet property="bannerImage" destination="Ft9-fF-nD0" id="8tr-Qh-PXJ"/>
-                <outlet property="bannerView" destination="wcs-zi-85Z" id="p2s-Kh-jFK"/>
+                <outlet property="bannerView" destination="wcs-zi-85Z" id="PSU-G3-WTJ"/>
             </connections>
             <point key="canvasLocation" x="308.69565217391306" y="162.05357142857142"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="dr" width="770" height="1100"/>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="bt" width="1000" height="1427"/>
     </resources>
 </document>

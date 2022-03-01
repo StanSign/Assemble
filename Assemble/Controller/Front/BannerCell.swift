@@ -6,15 +6,20 @@
 //
 
 import UIKit
+import CHIPageControl
+import SnapKit
 
 class BannerCell: UITableViewCell {
     
     //MARK: - Variables
     var currentPage: Int = 0
+    var isTimerActive: Bool = true
     public var bannerTimer = Timer()
     
     //MARK: - IBOutlets
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageControl: CHIPageControlJaloro!
     
     //MARK: - Life Cycle
     
@@ -26,6 +31,11 @@ class BannerCell: UITableViewCell {
         registerXib()
         
         autoScroll()
+        bgView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        bgView.layer.shadowOpacity = 0.2
+        bgView.layer.shadowRadius = 16.0
+        
+        pageControl.elementWidth = (collectionView.bounds.width / 3) - 20
     }
     
     //MARK: - Setup
@@ -46,10 +56,15 @@ class BannerCell: UITableViewCell {
     }
     
     private func autoScroll() {
+        if isTimerActive {
+            bannerTimer.invalidate()
+            fireTimer()
+        }
+    }
+    
+    private func fireTimer() {
         let totalCount = collectionView.numberOfItems(inSection: 0)
-        
-        bannerTimer.invalidate()
-        bannerTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (Timer) in
+        bannerTimer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: true) { (Timer) in
             
             if self.currentPage >= totalCount - 1 {
                 // Last Page
@@ -58,6 +73,7 @@ class BannerCell: UITableViewCell {
                 self.currentPage += 1
             }
             self.collectionView.scrollToItem(at: IndexPath(item: self.currentPage, section: 0), at: .right, animated: true)
+            self.pageControl.set(progress: self.currentPage, animated: true)
         }
     }
 }
@@ -94,10 +110,15 @@ extension BannerCell: UICollectionViewDelegateFlowLayout {
 //MARK: - Scroll View Delegate
 
 extension BannerCell: UIScrollViewDelegate {
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        bannerTimer.invalidate()
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
         let w = scrollView.bounds.size.width
         currentPage = Int(ceil(x / w))
-//        print(currentPage)
+        pageControl.set(progress: currentPage, animated: true)
+        fireTimer()
     }
 }
