@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E57A03527CE0EBF0090764B /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E57A03427CE0EBF0090764B /* APICalls.swift */; };
+		2E5A9A7F27CE1D31004B1093 /* ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5A9A7E27CE1D31004B1093 /* ObjectMapper.swift */; };
 		2E99236527CCE5760082B5F9 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236427CCE5760082B5F9 /* MenuBar.swift */; };
 		2E99236727CCE5B30082B5F9 /* MenuBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236627CCE5B30082B5F9 /* MenuBarButton.swift */; };
 		2E99236927CCE5C40082B5F9 /* MenuBarButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236827CCE5C40082B5F9 /* MenuBarButtonContainer.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E57A03427CE0EBF0090764B /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
+		2E5A9A7E27CE1D31004B1093 /* ObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapper.swift; sourceTree = "<group>"; };
 		2E99236427CCE5760082B5F9 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		2E99236627CCE5B30082B5F9 /* MenuBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButton.swift; sourceTree = "<group>"; };
 		2E99236827CCE5C40082B5F9 /* MenuBarButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButtonContainer.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				2EB96A3027CCE6FC00623AB0 /* Colors.swift */,
 				2EB96A3227CCE70800623AB0 /* UIColor.swift */,
 				2EB96A3427CCE71200623AB0 /* UIImage.swift */,
+				2E57A03427CE0EBF0090764B /* APICalls.swift */,
+				2E5A9A7E27CE1D31004B1093 /* ObjectMapper.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 			files = (
 				2EB96A2F27CCE6E900623AB0 /* DetailViewController.swift in Sources */,
 				2E99236927CCE5C40082B5F9 /* MenuBarButtonContainer.swift in Sources */,
+				2E57A03527CE0EBF0090764B /* APICalls.swift in Sources */,
 				2EB96A2827CCE6A500623AB0 /* BannerCell.swift in Sources */,
 				2EB96A3127CCE6FC00623AB0 /* Colors.swift in Sources */,
 				2EB96A3327CCE70800623AB0 /* UIColor.swift in Sources */,
@@ -338,6 +345,7 @@
 				2E99236727CCE5B30082B5F9 /* MenuBarButton.swift in Sources */,
 				2EC4591B27CCE4E000EBE36B /* SceneDelegate.swift in Sources */,
 				2EB96A2B27CCE6BC00623AB0 /* FrontViewController.swift in Sources */,
+				2E5A9A7F27CE1D31004B1093 /* ObjectMapper.swift in Sources */,
 				2EB96A2127CCE65D00623AB0 /* RootViewController.swift in Sources */,
 				2E99236B27CCE5D30082B5F9 /* MenuBarLayout.swift in Sources */,
 				2EB96A2D27CCE6D500623AB0 /* BoardViewController.swift in Sources */,

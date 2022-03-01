@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hYj-JM-ti7">
-                        <rect key="frame" x="4" y="4" width="368" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="376" height="488"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="GhA-S3-Aa8">
                             <size key="itemSize" width="128" height="128"/>
@@ -28,7 +28,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Md3-Mr-A1K" customClass="CHIPageControlJaloro" customModule="CHIPageControl">
-                        <rect key="frame" x="16" y="343" width="344" height="5"/>
+                        <rect key="frame" x="16" y="459" width="344" height="5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="systemFillColor"/>
                         <constraints>
@@ -68,13 +68,13 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Md3-Mr-A1K" secondAttribute="bottom" constant="140" id="4xX-lh-O7G"/>
                     <constraint firstAttribute="trailing" secondItem="Md3-Mr-A1K" secondAttribute="trailing" constant="16" id="9jm-oK-7F8"/>
-                    <constraint firstItem="hYj-JM-ti7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="SvO-yw-h6m"/>
-                    <constraint firstAttribute="bottom" secondItem="hYj-JM-ti7" secondAttribute="bottom" constant="4" id="TUI-6m-V4n"/>
+                    <constraint firstAttribute="bottom" secondItem="Md3-Mr-A1K" secondAttribute="bottom" constant="24" id="FXr-wn-Ogg"/>
+                    <constraint firstItem="hYj-JM-ti7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SvO-yw-h6m"/>
+                    <constraint firstAttribute="bottom" secondItem="hYj-JM-ti7" secondAttribute="bottom" id="TUI-6m-V4n"/>
                     <constraint firstItem="Md3-Mr-A1K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="aeY-zd-jQh"/>
-                    <constraint firstItem="hYj-JM-ti7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="jLr-Q0-16Y"/>
-                    <constraint firstAttribute="trailing" secondItem="hYj-JM-ti7" secondAttribute="trailing" constant="4" id="oIx-bf-Hd8"/>
+                    <constraint firstItem="hYj-JM-ti7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jLr-Q0-16Y"/>
+                    <constraint firstAttribute="trailing" secondItem="hYj-JM-ti7" secondAttribute="trailing" id="oIx-bf-Hd8"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

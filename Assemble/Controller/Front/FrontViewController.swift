@@ -148,7 +148,7 @@ extension FrontViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func updateBackgroundView(_ offset: CGFloat) {
         let percentage: CGFloat = 1 - (offset / upperLimit)
-        backgroundView.alpha = 1 * percentage
+//        backgroundView.alpha = 1 * percentage
         logoStack.alpha = 1 * percentage
         buttonStack.alpha = 1 * percentage
         searchbarBackgroundView.alpha = 1 * (1 - percentage)

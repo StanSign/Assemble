@@ -8,8 +8,12 @@
 import UIKit
 import CHIPageControl
 import SnapKit
+import Alamofire
 
 class BannerCell: UITableViewCell {
+    
+    //MARK: - Constants
+    let APICall = APICalls()
     
     //MARK: - Variables
     var currentPage: Int = 0
@@ -93,6 +97,7 @@ extension BannerCell: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
             return UICollectionViewCell()
         }
+        APICall.getFilmData()
         
         return cell
     }

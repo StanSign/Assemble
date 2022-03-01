@@ -23,7 +23,7 @@ class MenuBar {
         
         // Wrap in Navigation Bar
         let navigationBar = bar.systemBar()
-        navigationBar.backgroundStyle = .flat(color: .systemBackground)
+        navigationBar.backgroundStyle = .flat(color: .black)
         return navigationBar
     }
 }
