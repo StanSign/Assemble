@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E57A03527CE0EBF0090764B /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E57A03427CE0EBF0090764B /* APICalls.swift */; };
-		2E5A9A7F27CE1D31004B1093 /* ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5A9A7E27CE1D31004B1093 /* ObjectMapper.swift */; };
+		2E57E60227D008F5002C0EEE /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E57E60127D008F5002C0EEE /* Upcoming.swift */; };
+		2E5A9A8127CE3C31004B1093 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5A9A8027CE3C31004B1093 /* Network.swift */; };
+		2E81E47327D3D5B10006BC43 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81E47227D3D5B10006BC43 /* UIView.swift */; };
+		2E81E47527D3E8770006BC43 /* GradientFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81E47427D3E8770006BC43 /* GradientFilter.swift */; };
+		2E93726F27D0CE0B0075077F /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E93726E27D0CE0B0075077F /* DateTime.swift */; };
+		2E93727327D206750075077F /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E93727227D206750075077F /* CustomLabel.swift */; };
+		2E95659127CFBD5500268C5D /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E95659027CFBD5500268C5D /* SetupViewController.swift */; };
+		2E95659627CFCBDF00268C5D /* Loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E95659527CFCBDF00268C5D /* Loader.json */; };
 		2E99236527CCE5760082B5F9 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236427CCE5760082B5F9 /* MenuBar.swift */; };
 		2E99236727CCE5B30082B5F9 /* MenuBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236627CCE5B30082B5F9 /* MenuBarButton.swift */; };
 		2E99236927CCE5C40082B5F9 /* MenuBarButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236827CCE5C40082B5F9 /* MenuBarButtonContainer.swift */; };
@@ -36,8 +42,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2E57A03427CE0EBF0090764B /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
-		2E5A9A7E27CE1D31004B1093 /* ObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapper.swift; sourceTree = "<group>"; };
+		2E57E60127D008F5002C0EEE /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
+		2E5A9A8027CE3C31004B1093 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		2E81E47227D3D5B10006BC43 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		2E81E47427D3E8770006BC43 /* GradientFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientFilter.swift; sourceTree = "<group>"; };
+		2E93726E27D0CE0B0075077F /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
+		2E93727227D206750075077F /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		2E95659027CFBD5500268C5D /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		2E95659527CFCBDF00268C5D /* Loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader.json; sourceTree = "<group>"; };
 		2E99236427CCE5760082B5F9 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		2E99236627CCE5B30082B5F9 /* MenuBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButton.swift; sourceTree = "<group>"; };
 		2E99236827CCE5C40082B5F9 /* MenuBarButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButtonContainer.swift; sourceTree = "<group>"; };
@@ -92,9 +104,9 @@
 		2E052DE327CCE6070055027D /* Front */ = {
 			isa = PBXGroup;
 			children = (
-				2EB96A2227CCE68300623AB0 /* Banner.swift */,
-				2EB96A2627CCE6A500623AB0 /* BannerCell.swift */,
 				2EB96A2A27CCE6BC00623AB0 /* FrontViewController.swift */,
+				2EB96A2627CCE6A500623AB0 /* BannerCell.swift */,
+				2EB96A2227CCE68300623AB0 /* Banner.swift */,
 			);
 			path = Front;
 			sourceTree = "<group>";
@@ -125,14 +137,35 @@
 			path = Front;
 			sourceTree = "<group>";
 		};
+		2E57E60027D008E9002C0EEE /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				2E57E60127D008F5002C0EEE /* Upcoming.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		2E95659227CFC42000268C5D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				2EC4592127CCE4E000EBE36B /* Assets.xcassets */,
+				2E95659527CFCBDF00268C5D /* Loader.json */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		2E99236027CCE5530082B5F9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2E57E60027D008E9002C0EEE /* Realm */,
 				2EB96A3027CCE6FC00623AB0 /* Colors.swift */,
 				2EB96A3227CCE70800623AB0 /* UIColor.swift */,
 				2EB96A3427CCE71200623AB0 /* UIImage.swift */,
-				2E57A03427CE0EBF0090764B /* APICalls.swift */,
-				2E5A9A7E27CE1D31004B1093 /* ObjectMapper.swift */,
+				2E81E47227D3D5B10006BC43 /* UIView.swift */,
+				2E93727227D206750075077F /* CustomLabel.swift */,
+				2E5A9A8027CE3C31004B1093 /* Network.swift */,
+				2E93726E27D0CE0B0075077F /* DateTime.swift */,
+				2E81E47427D3E8770006BC43 /* GradientFilter.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -140,6 +173,7 @@
 		2E99236127CCE5590082B5F9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2E95659027CFBD5500268C5D /* SetupViewController.swift */,
 				2EB96A2027CCE65D00623AB0 /* RootViewController.swift */,
 				2E052DE327CCE6070055027D /* Front */,
 				2E052DE527CCE6190055027D /* Detail */,
@@ -197,7 +231,7 @@
 				2E99236227CCE55F0082B5F9 /* View */,
 				2EC4591827CCE4E000EBE36B /* AppDelegate.swift */,
 				2EC4591A27CCE4E000EBE36B /* SceneDelegate.swift */,
-				2EC4592127CCE4E000EBE36B /* Assets.xcassets */,
+				2E95659227CFC42000268C5D /* Assets */,
 				2EC4592327CCE4E000EBE36B /* LaunchScreen.storyboard */,
 				2EC4592627CCE4E000EBE36B /* Info.plist */,
 			);
@@ -272,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E95659627CFCBDF00268C5D /* Loader.json in Resources */,
 				2EC4592527CCE4E000EBE36B /* LaunchScreen.storyboard in Resources */,
 				2EE0F07127CCE8E1008BA4B2 /* BannerCell.xib in Resources */,
 				2EB96A2527CCE68300623AB0 /* Banner.xib in Resources */,
@@ -334,20 +369,25 @@
 			files = (
 				2EB96A2F27CCE6E900623AB0 /* DetailViewController.swift in Sources */,
 				2E99236927CCE5C40082B5F9 /* MenuBarButtonContainer.swift in Sources */,
-				2E57A03527CE0EBF0090764B /* APICalls.swift in Sources */,
 				2EB96A2827CCE6A500623AB0 /* BannerCell.swift in Sources */,
 				2EB96A3127CCE6FC00623AB0 /* Colors.swift in Sources */,
 				2EB96A3327CCE70800623AB0 /* UIColor.swift in Sources */,
+				2E57E60227D008F5002C0EEE /* Upcoming.swift in Sources */,
 				2EB96A2427CCE68300623AB0 /* Banner.swift in Sources */,
 				2EC4591927CCE4E000EBE36B /* AppDelegate.swift in Sources */,
 				2E99236527CCE5760082B5F9 /* MenuBar.swift in Sources */,
+				2E81E47527D3E8770006BC43 /* GradientFilter.swift in Sources */,
 				2EB96A3527CCE71200623AB0 /* UIImage.swift in Sources */,
+				2E81E47327D3D5B10006BC43 /* UIView.swift in Sources */,
 				2E99236727CCE5B30082B5F9 /* MenuBarButton.swift in Sources */,
+				2E93727327D206750075077F /* CustomLabel.swift in Sources */,
 				2EC4591B27CCE4E000EBE36B /* SceneDelegate.swift in Sources */,
+				2E93726F27D0CE0B0075077F /* DateTime.swift in Sources */,
 				2EB96A2B27CCE6BC00623AB0 /* FrontViewController.swift in Sources */,
-				2E5A9A7F27CE1D31004B1093 /* ObjectMapper.swift in Sources */,
+				2E5A9A8127CE3C31004B1093 /* Network.swift in Sources */,
 				2EB96A2127CCE65D00623AB0 /* RootViewController.swift in Sources */,
 				2E99236B27CCE5D30082B5F9 /* MenuBarLayout.swift in Sources */,
+				2E95659127CFBD5500268C5D /* SetupViewController.swift in Sources */,
 				2EB96A2D27CCE6D500623AB0 /* BoardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
