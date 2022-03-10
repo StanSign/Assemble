@@ -21,8 +21,9 @@ class BannerView: UIView {
     
     //MARK: - Variables
     var currentPage: Int = 0
-    var isTimerActive: Bool = true
     var upcomingCount: Int = 1
+    var actualPageCount: Int?
+    var isTimerActive: Bool = true
     public var bannerTimer = Timer()
     
     //MARK: - IBOutlets
@@ -39,8 +40,6 @@ class BannerView: UIView {
         setCollectionView()
         setPageControl()
         registerXib()
-        
-//        autoScroll()
     }
     
     //MARK: - Setup
@@ -58,6 +57,7 @@ class BannerView: UIView {
         collectionView.decelerationRate = .fast
         collectionView.isPagingEnabled = true
         upcomingCount = realm.objects(Upcoming.self).count
+        actualPageCount = upcomingCount * 3
     }
     
     private func registerXib() {
@@ -77,31 +77,9 @@ class BannerView: UIView {
         pageControl.padding = 8
         pageControl.tintColor = .systemGray
         pageControl.snp.makeConstraints { make in
-            make.width.equalTo(8 + (4 * 2 * upcomingCount))
+            make.width.equalTo(8 + (4 * 2 * actualPageCount!))
             make.trailing.equalToSuperview().inset(32)
             make.bottom.equalToSuperview().inset(16)
-        }
-    }
-    
-    private func autoScroll() {
-        if isTimerActive {
-            bannerTimer.invalidate()
-            fireTimer()
-        }
-    }
-    
-    private func fireTimer() {
-        let totalCount = collectionView.numberOfItems(inSection: 0)
-        bannerTimer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: true) { (Timer) in
-            
-            if self.currentPage >= totalCount - 1 {
-                // Last Page
-                self.currentPage = 0
-            } else {
-                self.currentPage += 1
-            }
-            self.collectionView.scrollToItem(at: IndexPath(item: self.currentPage, section: 0), at: .right, animated: true)
-            self.pageControl.set(progress: self.currentPage, animated: true)
         }
     }
 }
@@ -114,14 +92,14 @@ extension BannerView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return upcomingCount
+        return actualPageCount!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
             return UICollectionViewCell()
         }
-        network.loadImageToBanner(atIndex: indexPath.row, to: cell)
+        network.loadImageToBanner(atIndex: indexPath.row % 2, to: cell)
         return cell
     }
     
@@ -153,7 +131,9 @@ extension BannerView: UIScrollViewDelegate {
         let x = scrollView.contentOffset.x
         let w = scrollView.bounds.size.width
         currentPage = Int(ceil(x / w))
-        pageControl.set(progress: currentPage, animated: true)
-//        fireTimer()
+        
+        collectionView.reloadData()
+        pageControl.set(progress: currentPage % 2, animated: true)
+        collectionView.scrollToItem(at: IndexPath(item: (currentPage % 2) + upcomingCount, section: 0), at: .centeredHorizontally, animated: false)
     }
 }

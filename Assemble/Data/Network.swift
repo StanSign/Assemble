@@ -11,7 +11,6 @@ import Alamofire
 import AlamofireObjectMapper
 import Kingfisher
 import RealmSwift
-import EZYGradientView
 
 class Network {
     
@@ -70,7 +69,6 @@ class Network {
         let imgIndicator = CustomIndicator()
         cell.bannerImage.kf.indicatorType = .custom(indicator: imgIndicator)
         cell.bannerImage.kf.setImage(with: imgURL, options: [
-            .transition(.fade(1)),
             .processor(DownsamplingImageProcessor(size: cell.bannerImage.bounds.size)),
             .scaleFactor(UIScreen.main.scale),
             .cacheOriginalImage
@@ -82,16 +80,6 @@ class Network {
                 print(error)
             }
         }
-        
-//        let maskView: EZYGradientView = EZYGradientView()
-//        maskView.firstColor = .clear
-//        maskView.secondColor = .black
-//        maskView.colorRatio = 0.7
-//        maskView.fadeIntensity = 1
-//        cell.bannerImage.addSubview(maskView)
-//        maskView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
         
         let split_fNM = fNM.components(separatedBy: [":"])
         // Title
