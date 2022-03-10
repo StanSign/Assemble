@@ -82,15 +82,17 @@ class Network {
                 print(error)
             }
         }
-        let maskView: EZYGradientView = EZYGradientView()
-        maskView.firstColor = .clear
-        maskView.secondColor = .black
-        maskView.colorRatio = 0.7
-        maskView.fadeIntensity = 1
-        cell.bannerImage.addSubview(maskView)
-        maskView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        
+//        let maskView: EZYGradientView = EZYGradientView()
+//        maskView.firstColor = .clear
+//        maskView.secondColor = .black
+//        maskView.colorRatio = 0.7
+//        maskView.fadeIntensity = 1
+//        cell.bannerImage.addSubview(maskView)
+//        maskView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
+        
         let split_fNM = fNM.components(separatedBy: [":"])
         // Title
         cell.titleLabel.text = split_fNM.first

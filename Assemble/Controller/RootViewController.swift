@@ -28,6 +28,10 @@ class RootViewController: TabmanViewController {
         // Create Bar
         addBar(MenuBar.make(), dataSource: self, at: .bottom)
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 extension RootViewController: PageboyViewControllerDataSource, TMBarDataSource {

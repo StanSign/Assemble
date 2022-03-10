@@ -14,6 +14,8 @@ class Banner: UICollectionViewCell {
     
     @IBOutlet weak var bannerView: UIView!
     @IBOutlet weak var bannerImage: UIImageView!
+    @IBOutlet weak var gradientContainerView: UIView!
+    @IBOutlet weak var labelStack: UIStackView!
     @IBOutlet weak var D_DayLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subLabel: UILabel!
@@ -23,6 +25,7 @@ class Banner: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         setupGestures()
+        setupGradientLayer()
     }
     
     private func setupGestures() {
@@ -32,5 +35,19 @@ class Banner: UICollectionViewCell {
     
     @objc private func titleTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         print("\(bannerView.tag)")
+    }
+    
+    private func setupGradientLayer() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor, UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0, 0.25, 0.5, 1]
+        
+        gradientContainerView.isUserInteractionEnabled = false
+        gradientContainerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        gradientContainerView.layer.addSublayer(gradientLayer)
+        
+        gradientLayer.frame = self.bounds
     }
 }

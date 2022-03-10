@@ -21,13 +21,11 @@ class SetupViewController: UIViewController {
     private var animationView: AnimationView?
 
     //MARK: - IBOutlets
-    @IBOutlet weak var searchBarView: UIView!
+        //
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupSearchBar()
         loadingSpinner()
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -42,9 +40,6 @@ class SetupViewController: UIViewController {
     }
     
     //MARK: - Setup
-    private func setupSearchBar() {
-        searchBarView.layer.cornerRadius = 20.0
-    }
     
     private func loadingSpinner() {
         animationView = .init(name: "Loader")

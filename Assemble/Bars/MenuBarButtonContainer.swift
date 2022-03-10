@@ -32,7 +32,6 @@ class MenuBarButtonContainer: UIView {
     }
     
     private func initialize(with button: TMBarButton) {
-        
         xAnchor = button.centerXAnchor.constraint(equalTo: centerXAnchor)
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false

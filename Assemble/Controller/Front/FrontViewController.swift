@@ -11,18 +11,17 @@ import Lottie
 class FrontViewController: UIViewController {
     
     //MARK: - Constants
-    private let closedHeaderHeight: CGFloat = 0
-    private let openHeaderHeight: CGFloat = 65
-    private let lowerLimit: CGFloat = 0
-    private let upperLimit: CGFloat = 65 // openHeaderHeight - closedHeaderHeight
+    private let reuseIdentifier = "TestCell"
+    private let headerIdentifier = "Header"
     
     //MARK: - Variables
-    private var isHeaderOpen = true
+    var headerView: HeaderView?
+    private var headerHeight: CGFloat?
 
     //MARK: - IBOutlets
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var headerHeight: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var topMenuView: UIView!
     @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var searchIcon: UIImageView!
     @IBOutlet weak var notifyIcon: UIImageView!
@@ -30,27 +29,26 @@ class FrontViewController: UIViewController {
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentInsetAdjustmentBehavior = .never
+        headerHeight = view.frame.width * 1.3
+        setupCollectionView()
         setDelegates()
         setupGestures()
-        registerXib()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        openHeaderView()
-        tableView.separatorColor = .clear
     }
     
     //MARK: - Setup
     private func setDelegates() {
-        tableView.delegate = self
-        tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
-    private func registerXib() {
-        let nibName = UINib(nibName: "BannerCell", bundle: nil)
-        tableView.register(nibName, forCellReuseIdentifier: "BannerCell")
+    private func setupCollectionView() {
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
     }
     
     private func setupGestures() {
@@ -70,80 +68,66 @@ class FrontViewController: UIViewController {
     }
 }
 
-//MARK: - TableView
+//MARK: - CollectionView
 
-extension FrontViewController: UITableViewDelegate, UITableViewDataSource {
+extension FrontViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 180
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as? HeaderView
+        return headerView!
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath {
-        case IndexPath(row: 0, section: 0):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BannerCell") as? BannerCell else {
-                return UITableViewCell()
-            }
-            return cell
-        default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Placeholder Cell") else {
-                return UITableViewCell()
-            }
-            return cell
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: headerHeight!)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath {
-        case IndexPath(row: 0, section: 0):
-            return tableView.frame.width * 1.4
-        case IndexPath(row: 0, section: 1):
-            return 400
-        default:
-            return 100
-        }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        cell.backgroundColor = .clear
+        return cell
     }
     
     //MARK: - DidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
+        let contentOffsetY = scrollView.contentOffset.y
         
-        updateHeader(with: offset)
-    }
-    
-    private func updateHeader(with offset: CGFloat) {
-        updateBackgroundView(offset)
-    }
-    
-    private func updateBackgroundView(_ offset: CGFloat) {
-        let percentage: CGFloat = 1 - (offset / upperLimit)
-//        backgroundView.alpha = 1 * percentage
-        buttonStack.alpha = 1 * percentage
-    }
-    
-    private func openHeaderView() {
-        UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            guard let self = self else { return }
-            self.tableView.setContentOffset(.zero, animated: false)
-            self.updateHeader(with: self.lowerLimit)
-        })
-    }
-    
-    private func closeHeaderView(_ offset: CGFloat) {
-        if offset > upperLimit {
-            UIView.animate(withDuration: 0.2, animations: { [weak self] in
-                guard let self = self else { return }
-                self.updateHeader(with: self.upperLimit)
-            })
-        } else {
-            tableView.setContentOffset(CGPoint(x: 0, y: upperLimit), animated: true)
+        if contentOffsetY < 0 {
+            return
         }
-        isHeaderOpen = false
+        
+        updateHeader(contentOffsetY)
     }
     
+    private func updateHeader(_ contentOffsetY: CGFloat) {
+        let percentage: CGFloat = 1 - (contentOffsetY / headerHeight!)
+        
+        updateHeaderIcon(percentage)
+    }
+    
+    private func updateHeaderIcon(_ percentage: CGFloat) {
+        switch percentage {
+        case ..<0:
+            topMenuView.alpha = 0
+        case 0...0.25:
+            topMenuView.alpha = 1 * (percentage / 0.25)
+        case 0.25...:
+            topMenuView.alpha = 1
+        default:
+            return
+        }
+    }
+}
+
+//MARK: - Collection View Delegate Flow Layout
+
+extension FrontViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width, height: 50)
+    }
 }

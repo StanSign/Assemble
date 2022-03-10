@@ -12,12 +12,12 @@ import Kingfisher
 import RealmSwift
 import UIGradient
 
-class BannerCell: UITableViewCell {
+class BannerView: UIView {
     
     //MARK: - Constants
     let network = Network()
     let realm = try! Realm()
-    let pageControl = CHIPageControlJaloro(frame: CGRect(x: 0, y: 0, width: 100, height: 4))
+    let pageControl = CHIPageControlChimayo(frame: CGRect(x: 0, y: 0, width: 100, height: 4))
     
     //MARK: - Variables
     var currentPage: Int = 0
@@ -26,7 +26,7 @@ class BannerCell: UITableViewCell {
     public var bannerTimer = Timer()
     
     //MARK: - IBOutlets
-    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var pageControlContainer: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK: - Life Cycle
@@ -34,12 +34,13 @@ class BannerCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.translatesAutoresizingMaskIntoConstraints = false
         setDelegates()
         setCollectionView()
         setPageControl()
         registerXib()
         
-        autoScroll()
+//        autoScroll()
     }
     
     //MARK: - Setup
@@ -51,6 +52,9 @@ class BannerCell: UITableViewCell {
     }
     
     private func setCollectionView() {
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         collectionView.decelerationRate = .fast
         collectionView.isPagingEnabled = true
         upcomingCount = realm.objects(Upcoming.self).count
@@ -62,22 +66,20 @@ class BannerCell: UITableViewCell {
     }
     
     private func setPageControl() {
-        bgView.addSubview(pageControl)
+        pageControlContainer.addSubview(pageControl)
         pageControl.numberOfPages = upcomingCount
         pageControl.enableTouchEvents = false
         pageControl.hidesForSinglePage = true
         pageControl.padding = 0
-        pageControl.radius = 1
-        pageControl.currentPageTintColor = UIColor(named: "color1")
-        pageControl.inactiveTransparency = 0.1
+        pageControl.radius = 4
+        pageControl.currentPageTintColor = .white.withAlphaComponent(0.75)
+        pageControl.inactiveTransparency = 0.75
+        pageControl.padding = 8
         pageControl.tintColor = .systemGray
-        let leadingTrailingConstraint: CGFloat = 32.0
-        pageControl.elementHeight = 3
-        pageControl.elementWidth = (bgView.bounds.width / CGFloat(upcomingCount))
         pageControl.snp.makeConstraints { make in
-            make.height.equalTo(3)
-            make.centerX.equalTo(collectionView)
-            make.bottom.equalToSuperview()
+            make.width.equalTo(8 + (4 * 2 * upcomingCount))
+            make.trailing.equalToSuperview().inset(32)
+            make.bottom.equalToSuperview().inset(16)
         }
     }
     
@@ -106,7 +108,7 @@ class BannerCell: UITableViewCell {
 
 //MARK: - Collection View
 
-extension BannerCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension BannerView: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -116,39 +118,25 @@ extension BannerCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
-                return UICollectionViewCell()
-            }
-            network.loadImageToBanner(atIndex: indexPath.row, to: cell)
-            return cell
-        case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
-                return UICollectionViewCell()
-            }
-            network.loadImageToBanner(atIndex: indexPath.row, to: cell)
-            return cell
-        default:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
-                return UICollectionViewCell()
-            }
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
+            return UICollectionViewCell()
         }
+        network.loadImageToBanner(atIndex: indexPath.row, to: cell)
+        return cell
     }
     
 }
 
 //MARK: - Collection View Delegate Flow Layout
 
-extension BannerCell: UICollectionViewDelegateFlowLayout {
+extension BannerView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.height)
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
 }
 
 //MARK: - Collection View Prefetching
-extension BannerCell: UICollectionViewDataSourcePrefetching {
+extension BannerView: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         network.imagePrefetch()
     }
@@ -156,7 +144,7 @@ extension BannerCell: UICollectionViewDataSourcePrefetching {
 
 //MARK: - Scroll View Delegate
 
-extension BannerCell: UIScrollViewDelegate {
+extension BannerView: UIScrollViewDelegate {
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         bannerTimer.invalidate()
     }
@@ -166,6 +154,6 @@ extension BannerCell: UIScrollViewDelegate {
         let w = scrollView.bounds.size.width
         currentPage = Int(ceil(x / w))
         pageControl.set(progress: currentPage, animated: true)
-        fireTimer()
+//        fireTimer()
     }
 }
