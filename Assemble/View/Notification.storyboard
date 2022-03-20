@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="NotificationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="NotificationViewController" customModule="Assemble" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggi-FE-Uav" userLabel="Top Menu View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="65"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SRy-m7-ZSR">
+                                        <rect key="frame" x="16" y="23" width="24" height="19"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Pqo-Lp-7be"/>
+                                            <constraint firstAttribute="width" secondItem="SRy-m7-ZSR" secondAttribute="height" multiplier="1:1" id="prI-vn-Urp"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SRy-m7-ZSR" firstAttribute="centerY" secondItem="ggi-FE-Uav" secondAttribute="centerY" id="22X-gp-r39"/>
+                                    <constraint firstItem="SRy-m7-ZSR" firstAttribute="leading" secondItem="ggi-FE-Uav" secondAttribute="leading" constant="16" id="VyG-0D-kmj"/>
+                                    <constraint firstAttribute="height" constant="65" id="oBX-Gz-kE3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ggi-FE-Uav" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="FDf-vY-UCq"/>
+                            <constraint firstItem="ggi-FE-Uav" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="G9f-AO-b5z"/>
+                            <constraint firstItem="ggi-FE-Uav" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xwC-tN-MCu"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fKz-2o-zeo" appends="YES" id="FZa-39-d6x"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="backIcon" destination="SRy-m7-ZSR" id="1m6-gO-o21"/>
+                        <outlet property="screenEdgePanRecognizer" destination="fKz-2o-zeo" id="unM-b0-RTH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="fKz-2o-zeo">
+                    <connections>
+                        <action selector="screenEdgePanned:" destination="Y6W-OH-hqX" id="PKR-I7-ka4"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="45" y="115"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+    </resources>
+</document>

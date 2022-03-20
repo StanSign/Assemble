@@ -7,7 +7,6 @@
 
 import UIKit
 import FaceAware
-import UIGradient
 import SnapKit
 
 class Banner: UICollectionViewCell {

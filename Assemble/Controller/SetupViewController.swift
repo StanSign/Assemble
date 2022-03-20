@@ -14,7 +14,6 @@ import RealmSwift
 class SetupViewController: UIViewController {
     
     //MARK: - Constants
-    let network = Network()
     let realm = try! Realm()
     
     //MARK: - Variables
@@ -34,9 +33,13 @@ class SetupViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        network.getUpcomingData {
-            self.openRootVC()
-        }
+        openRootVC()
+//        network.getNews {
+//            
+//        }
+//        network.getUpcomingData {
+//            self.openRootVC()
+//        }
     }
     
     //MARK: - Setup
@@ -59,6 +62,6 @@ class SetupViewController: UIViewController {
         rootVC.modalPresentationStyle = .fullScreen
         rootVC.hero.isEnabled = true
         rootVC.hero.modalAnimationType = .fade
-        self.present(rootVC, animated: true)
+        self.navigationController?.pushViewController(rootVC, animated: true)
     }
 }

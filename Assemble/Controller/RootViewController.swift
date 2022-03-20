@@ -22,6 +22,8 @@ class RootViewController: TabmanViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = true
+        
         dataSource = self
         isScrollEnabled = false
         

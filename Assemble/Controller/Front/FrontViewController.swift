@@ -6,13 +6,16 @@
 //
 
 import UIKit
-import Lottie
+import Hero
 
 class FrontViewController: UIViewController {
     
     //MARK: - Constants
     private let reuseIdentifier = "TestCell"
     private let headerIdentifier = "Header"
+    
+    private let numberOfCell = 4
+    private let defaultHeight = 400.0
     
     //MARK: - Variables
     var headerView: HeaderView?
@@ -43,12 +46,26 @@ class FrontViewController: UIViewController {
     private func setDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        registerXib()
     }
     
     private func setupCollectionView() {
         collectionView.contentInsetAdjustmentBehavior = .never
+        registerXib()
+    }
+    
+    private func registerXib() {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
+        let heroCellNib = UINib(nibName: "HeroCell", bundle: nil)
+        collectionView.register(heroCellNib, forCellWithReuseIdentifier: "HeroCell")
+        
+        let newsCellNib = UINib(nibName: "NewsCell", bundle: nil)
+        collectionView.register(newsCellNib, forCellWithReuseIdentifier: "NewsCell")
+        
+        let placeholderCellNib = UINib(nibName: "PlaceHolderCell", bundle: nil)
+        collectionView.register(placeholderCellNib, forCellWithReuseIdentifier: "PlaceHolderCell")
     }
     
     private func setupGestures() {
@@ -60,11 +77,23 @@ class FrontViewController: UIViewController {
     
     //MARK: - Gesture Actions
     @objc private func searchIconTapped(_ gestureRecognizer: UITapGestureRecognizer) {
-        print("Search Icon Tapped")
+        searchIcon.hero.id = "searchIcon"
+        let navController = self.parent?.parent?.navigationController
+        
+        let storyboard = UIStoryboard(name: "Search", bundle: nil)
+        let searchVC = storyboard.instantiateViewController(withIdentifier: "SearchVC")
+        searchVC.modalPresentationStyle = .fullScreen
+        navController?.pushViewController(searchVC, animated: true)
     }
     
     @objc private func notifyIconTapped(_ gestureRecognizer: UITapGestureRecognizer) {
-        print("Notify Icon Tapped")
+        notifyIcon.hero.id = "notifyIcon"
+        let navController = self.parent?.parent?.navigationController
+        
+        let storyboard = UIStoryboard(name: "Notification", bundle: nil)
+        let notifyVC = storyboard.instantiateViewController(withIdentifier: "NotificationVC")
+        notifyVC.modalPresentationStyle = .fullScreen
+        navController?.pushViewController(notifyVC, animated: true)
     }
 }
 
@@ -73,7 +102,7 @@ class FrontViewController: UIViewController {
 extension FrontViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 180
+        return numberOfCell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -86,8 +115,19 @@ extension FrontViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .clear
+        let identifierArray = FrontComposition.frontComposition.map { $0.typeOfCell }
+        let defaultIdentifierArray: [FrontCell.CellType] = Array(repeating: FrontCell.CellType.PlaceHolderCell, count: numberOfCell - identifierArray.count)
+        let identifierForIndexPath = (identifierArray + defaultIdentifierArray)[indexPath.row]
+        
+        var cell = UICollectionViewCell()
+        switch identifierForIndexPath {
+        case .HeroCell:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifierForIndexPath.rawValue, for: indexPath) as! HeroCell
+        case .NewsCell:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifierForIndexPath.rawValue, for: indexPath) as! NewsCell
+        default:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifierForIndexPath.rawValue, for: indexPath) as! PlaceHolderCell
+        }
         return cell
     }
     
@@ -95,7 +135,6 @@ extension FrontViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffsetY = scrollView.contentOffset.y
-        
         if contentOffsetY < 0 {
             return
         }
@@ -128,6 +167,8 @@ extension FrontViewController: UICollectionViewDelegate, UICollectionViewDataSou
 extension FrontViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 50)
+        let heightArray = FrontComposition.frontComposition.map { $0.height }
+        let defaultHeightArray: [CGFloat] = Array(repeating: defaultHeight, count: numberOfCell - heightArray.count)
+        return .init(width: view.frame.width, height: (heightArray + defaultHeightArray)[indexPath.row])
     }
 }

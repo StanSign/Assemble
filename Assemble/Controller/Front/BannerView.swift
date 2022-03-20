@@ -10,12 +10,10 @@ import CHIPageControl
 import SnapKit
 import Kingfisher
 import RealmSwift
-import UIGradient
 
 class BannerView: UIView {
     
     //MARK: - Constants
-    let network = Network()
     let realm = try! Realm()
     let pageControl = CHIPageControlChimayo(frame: CGRect(x: 0, y: 0, width: 100, height: 4))
     
@@ -35,7 +33,6 @@ class BannerView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.translatesAutoresizingMaskIntoConstraints = false
         setDelegates()
         setCollectionView()
         setPageControl()
@@ -56,7 +53,7 @@ class BannerView: UIView {
         }
         collectionView.decelerationRate = .fast
         collectionView.isPagingEnabled = true
-        upcomingCount = realm.objects(Upcoming.self).count
+//        upcomingCount = realm.objects(Upcoming.self).count
         actualPageCount = upcomingCount * 3
     }
     
@@ -99,7 +96,7 @@ extension BannerView: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
             return UICollectionViewCell()
         }
-        network.loadImageToBanner(atIndex: indexPath.row % 2, to: cell)
+//        network.loadImageToBanner(atIndex: indexPath.row % 2, to: cell)
         return cell
     }
     
@@ -116,7 +113,7 @@ extension BannerView: UICollectionViewDelegateFlowLayout {
 //MARK: - Collection View Prefetching
 extension BannerView: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        network.imagePrefetch()
+//        network.imagePrefetch()
     }
 }
 
