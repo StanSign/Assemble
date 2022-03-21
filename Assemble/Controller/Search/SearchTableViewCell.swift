@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 
 class SearchTableViewCell: UITableViewCell {
+    
+    var disposeBag = DisposeBag()
 
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

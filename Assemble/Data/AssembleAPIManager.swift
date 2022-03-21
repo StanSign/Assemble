@@ -8,6 +8,7 @@
 import RxSwift
 import Alamofire
 import RxAlamofire
+import Kingfisher
 
 class AssembleAPIManager {
     
@@ -30,8 +31,8 @@ class AssembleAPIManager {
             .map { $1 }
             .map { response -> [Search] in
                 let data = try JSONSerialization.data(withJSONObject: response, options: .prettyPrinted)
-                let searchResultListData = try JSONDecoder().decode(SearchResult.self, from: data)
-                return searchResultListData.results
+                let searchResultList = try JSONDecoder().decode(SearchResult.self, from: data)
+                return searchResultList.results
             }
             .subscribe(onNext: { [weak self] searchList in
                 self?.searchResultList.onNext(searchList)
@@ -39,15 +40,44 @@ class AssembleAPIManager {
             .disposed(by: disposeBag)
     }
     
+    func requestDetailInfo(_ id: Int?, _ type: contentType?, completion: @escaping (Data) -> ()) {
+        let method = "\(type!)/\(id!)"
+        AF.request(baseURL + method, method: .get).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                    completion(data)
+                } catch { }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func requestAndSetImage(to imageView: UIImageView, with source: String?) {
+        let dummyURL = "https://dummyimage.com/128x128/000000/ffffff&text=no+image"
+        let imageURL = URL(string: source ?? dummyURL)
+        imageView.kf.indicatorType = .custom(indicator: Loader())
+        imageView.kf.setImage(with: imageURL, placeholder: nil, options: [
+            .scaleFactor(UIScreen.main.scale),
+            .transition(.fade(0.5)),
+            .cacheOriginalImage,
+            .retryStrategy(DelayRetryStrategy(maxRetryCount: 3, retryInterval: .seconds(3)))
+        ])
+    }
+    
     func convertType(_ type: String) -> String? {
         switch type {
-        case "person":
+        case "actors":
+            fallthrough
+        case "casts":
             return "인물"
-        case "film":
+        case "films":
             return "영화"
-        case "character":
+        case "characters":
             return "캐릭터"
-        case "tv":
+        case "tvSeries":
             return "드라마"
         default:
             return nil

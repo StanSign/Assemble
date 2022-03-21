@@ -36,6 +36,7 @@ class SearchViewController: UIViewController {
         setupEdgePanGesture()
         setupGestures()
         setupSearchBar()
+        setupTableView()
         
         self.hero.isEnabled = true
         searchIcon.hero.id = "searchIcon"
@@ -65,6 +66,16 @@ class SearchViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    private func setupTableView() {
+        tableView.rx.didEndDisplayingCell
+            .subscribe { event in
+                let cell = event.element?.cell as? SearchTableViewCell
+                cell?.disposeBag = DisposeBag()
+                cell?.cellImage.kf.cancelDownloadTask()
+            }
+            .disposed(by: disposeBag)
+    }
+    
     private func RxSearch() {
         AssembleAPIManager.shared.searchResultList = self.searchResultList
         searchTextField.rx.text
@@ -82,8 +93,8 @@ class SearchViewController: UIViewController {
         if searchText == "" {
             tableView.isHidden = true
         } else {
-            tableView.delegate = nil
             tableView.dataSource = nil
+            tableView.delegate = nil
             tableView.isHidden = false
             searchResultList
                 .bind(to: self.tableView.rx.items(cellIdentifier: "SearchResultCell", cellType: SearchTableViewCell.self)) { (index, model, cell) in
@@ -97,14 +108,7 @@ class SearchViewController: UIViewController {
         cell.backgroundColor = .clear
         
         let url = model.image
-        if url != nil {
-            cell.cellImage.kf.setImage(with: URL(string: url!), options: [
-                .processor(DownsamplingImageProcessor(size: cell.cellImage.bounds.size)),
-                .scaleFactor(UIScreen.main.scale)
-            ])
-        } else {
-            cell.cellImage.image = UIImage(named: "no_image")
-        }
+        AssembleAPIManager.shared.requestAndSetImage(to: cell.cellImage, with: url)
         
         cell.typeLabel.text = AssembleAPIManager.shared.convertType(model.type)
         
@@ -123,6 +127,7 @@ class SearchViewController: UIViewController {
                 let storyboard = UIStoryboard(name: "Information", bundle: nil)
                 let infoVC = storyboard.instantiateViewController(withIdentifier: "InformationVC") as! InformationViewController
                 infoVC.id = model.id
+                infoVC.type = AssembleAPIManager.contentType(rawValue: model.type)
                 infoVC.modalPresentationStyle = .fullScreen
                 navController?.pushViewController(infoVC, animated: true)
             })
