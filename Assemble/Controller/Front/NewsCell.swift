@@ -24,6 +24,7 @@ class NewsCell: UICollectionViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK: - Life Cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,11 +36,6 @@ class NewsCell: UICollectionViewCell {
     private func setDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.prefetchDataSource = self
-    }
-    
-    private func setCollectionView() {
-//        newsCount = realm.objects(RecentNews.self).count
     }
     
     private func registerXib() {
@@ -62,7 +58,9 @@ extension NewsCell: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "News", for: indexPath) as? News else {
             return UICollectionViewCell()
         }
-//        network.setNewsCell(atIndex: indexPath.row, to: cell)
+        AssembleAPIManager.shared.requestNews { newsResults in
+            self.setNewsCell(atIndex: indexPath.row, with: newsResults, to: cell)
+        }
         return cell
     }
 }
@@ -96,17 +94,33 @@ extension NewsCell: UIScrollViewDelegate {
     }
 }
 
-//MARK: - Collection View Prefetching
-extension NewsCell: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-//        network.imagePrefetch()
-    }
-}
-
 //MARK: - Collection View Delegate Flow Layout
 extension NewsCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width - 40
         return .init(width: width, height: 160)
+    }
+}
+
+//MARK: - Network
+
+extension NewsCell {
+    func setNewsCell(atIndex index: Int, with newsResults: [AssembleAPIManager.News], to cell: News) {
+        let title = newsResults[index].title
+        let type = newsResults[index].type
+        let imgURL = URL(string: newsResults[index].thumbnail)
+        let ytURL = newsResults[index].url
+        
+        if type == "youtube" {
+            cell.videoIcon.isHidden = false
+            cell.typeLabel.text = "YouTube"
+        }
+        cell.ytIDLabel.text = ytURL
+        cell.titleLabel.text = title
+        cell.image.kf.setImage(with: imgURL, options: [
+            .processor(DownsamplingImageProcessor(size: cell.image.bounds.size)),
+            .scaleFactor(UIScreen.main.scale),
+            .forceRefresh
+        ])
     }
 }

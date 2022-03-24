@@ -33,7 +33,13 @@ class Banner: UICollectionViewCell {
     }
     
     @objc private func titleTapped(_ gestureRecognizer: UITapGestureRecognizer) {
-        print("\(bannerView.tag)")
+        let navController = self.window?.rootViewController as! UINavigationController
+        let storyboard = UIStoryboard(name: "Information", bundle: nil)
+        let infoVC = storyboard.instantiateViewController(withIdentifier: "InformationVC") as! InformationViewController
+        infoVC.id = bannerView.tag
+        infoVC.type = .films
+        infoVC.modalPresentationStyle = .fullScreen
+        navController.pushViewController(infoVC, animated: true)
     }
     
     private func setupGradientLayer() {

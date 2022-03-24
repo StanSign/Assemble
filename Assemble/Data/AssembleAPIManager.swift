@@ -40,6 +40,38 @@ class AssembleAPIManager {
             .disposed(by: disposeBag)
     }
     
+    func requestBanner(completion: @escaping ([AssembleAPIManager.Film]) -> ()) {
+        let url = "films/upcoming"
+        AF.request(baseURL + url).responseJSON { resopnse in
+            switch resopnse.result {
+            case .success(let value):
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                    let upcomingList = try JSONDecoder().decode(FilmResult.self, from: data)
+                    completion(upcomingList.results)
+                } catch { }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func requestNews(completion: @escaping ([AssembleAPIManager.News]) -> ()) {
+        let url = "news"
+        AF.request(baseURL + url).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                    let newsList = try JSONDecoder().decode(NewsResult.self, from: data)
+                    completion(newsList.results)
+                } catch { }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func requestDetailInfo(_ id: Int?, _ type: contentType?, completion: @escaping (Data) -> ()) {
         let method = "\(type!)/\(id!)"
         AF.request(baseURL + method, method: .get).responseJSON { response in
@@ -81,6 +113,28 @@ class AssembleAPIManager {
             return "드라마"
         default:
             return nil
+        }
+    }
+}
+
+//MARK: - Custom Indicator
+
+import NVActivityIndicatorView
+
+struct CustomIndicator: Indicator {
+    let view: UIView = UIView()
+    var subView: NVActivityIndicatorView
+    
+    func startAnimatingView() { view.isHidden = false }
+    func stopAnimatingView() { view.isHidden = true }
+    
+    init() {
+        subView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 32, height: 32), type: .ballBeat, color: .white, padding: nil)
+        subView.startAnimating()
+        view.addSubview(subView)
+        
+        subView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
 }

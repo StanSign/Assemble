@@ -7,6 +7,23 @@
 
 extension AssembleAPIManager {
     
+    struct NewsResult: Codable {
+        var statusCode: Int
+        var count: Int
+        var title: String
+        var results: [News]
+        var description: String?
+    }
+    
+    struct News: Codable {
+        var nID: Int
+        var type: String
+        var url: String?
+        var title: String?
+        var body: String?
+        var thumbnail: String
+    }
+    
     enum contentType: String {
         case films
         case tvSeries

@@ -23,7 +23,7 @@ class DateTime {
     public func string2Date(string: String) -> Date? {
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyyMMdd"
         
         return dateFormatter.date(from: string)
     }
@@ -31,7 +31,7 @@ class DateTime {
     public func getNowDate() -> String {
         let now = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyyMMdd"
         dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
         
         return dateFormatter.string(from: now)
@@ -39,7 +39,7 @@ class DateTime {
     
     public func calculateDday(fromDate: String) -> Int {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyyMMdd"
         dateFormatter.locale = Locale(identifier: "ko")
         
         let targetDate = dateFormatter.date(from: fromDate)!

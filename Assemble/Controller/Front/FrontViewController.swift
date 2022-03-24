@@ -7,6 +7,7 @@
 
 import UIKit
 import Hero
+import Kingfisher
 
 class FrontViewController: UIViewController {
     

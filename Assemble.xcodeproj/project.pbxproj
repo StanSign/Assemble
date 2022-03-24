@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2E024AE927E5B33300C116F1 /* AssembleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E024AE827E5B33300C116F1 /* AssembleAPIManager.swift */; };
 		2E1C8F2427D4887000085124 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1C8F2327D4887000085124 /* BannerView.xib */; };
+		2E7E2CAB27E8E889009813F5 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7E2CA927E8E889009813F5 /* HeaderCell.swift */; };
+		2E7E2CAC27E8E889009813F5 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7E2CAA27E8E889009813F5 /* HeaderCell.xib */; };
 		2E8A7EE827D79EB700091065 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A7EE727D79EB700091065 /* HeaderView.swift */; };
 		2E8A7EEC27D8889D00091065 /* CustomBannerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A7EEB27D8889D00091065 /* CustomBannerLayout.swift */; };
 		2E93726F27D0CE0B0075077F /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E93726E27D0CE0B0075077F /* DateTime.swift */; };
@@ -19,6 +21,11 @@
 		2E99236727CCE5B30082B5F9 /* MenuBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236627CCE5B30082B5F9 /* MenuBarButton.swift */; };
 		2E99236927CCE5C40082B5F9 /* MenuBarButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236827CCE5C40082B5F9 /* MenuBarButtonContainer.swift */; };
 		2E99236B27CCE5D30082B5F9 /* MenuBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99236A27CCE5D30082B5F9 /* MenuBarLayout.swift */; };
+		2E9CFAF827E9E29C001ED7CE /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CFAF727E9E29C001ED7CE /* CellData.swift */; };
+		2E9CFAFD27EB6C35001ED7CE /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CFAFB27EB6C35001ED7CE /* DetailCell.swift */; };
+		2E9CFAFE27EB6C35001ED7CE /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E9CFAFC27EB6C35001ED7CE /* DetailCell.xib */; };
+		2E9CFB0127EC59E7001ED7CE /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9CFAFF27EC59E7001ED7CE /* MenuCell.swift */; };
+		2E9CFB0227EC59E7001ED7CE /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E9CFB0027EC59E7001ED7CE /* MenuCell.xib */; };
 		2E9E1A5127DA0C11009AAEFE /* FrontComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E1A5027DA0C11009AAEFE /* FrontComposition.swift */; };
 		2E9E1A5827DCF184009AAEFE /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E1A5627DCF184009AAEFE /* HeroCell.swift */; };
 		2E9E1A5927DCF184009AAEFE /* HeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E9E1A5727DCF184009AAEFE /* HeroCell.xib */; };
@@ -61,6 +68,8 @@
 /* Begin PBXFileReference section */
 		2E024AE827E5B33300C116F1 /* AssembleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssembleAPIManager.swift; sourceTree = "<group>"; };
 		2E1C8F2327D4887000085124 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
+		2E7E2CA927E8E889009813F5 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		2E7E2CAA27E8E889009813F5 /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
 		2E8A7EE727D79EB700091065 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2E8A7EEB27D8889D00091065 /* CustomBannerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBannerLayout.swift; sourceTree = "<group>"; };
 		2E93726E27D0CE0B0075077F /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
@@ -71,6 +80,11 @@
 		2E99236627CCE5B30082B5F9 /* MenuBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButton.swift; sourceTree = "<group>"; };
 		2E99236827CCE5C40082B5F9 /* MenuBarButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarButtonContainer.swift; sourceTree = "<group>"; };
 		2E99236A27CCE5D30082B5F9 /* MenuBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarLayout.swift; sourceTree = "<group>"; };
+		2E9CFAF727E9E29C001ED7CE /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		2E9CFAFB27EB6C35001ED7CE /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		2E9CFAFC27EB6C35001ED7CE /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
+		2E9CFAFF27EC59E7001ED7CE /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		2E9CFB0027EC59E7001ED7CE /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
 		2E9E1A5027DA0C11009AAEFE /* FrontComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontComposition.swift; sourceTree = "<group>"; };
 		2E9E1A5627DCF184009AAEFE /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
 		2E9E1A5727DCF184009AAEFE /* HeroCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroCell.xib; sourceTree = "<group>"; };
@@ -204,6 +218,9 @@
 			isa = PBXGroup;
 			children = (
 				2EEC609C27E779980054AB6C /* Information.storyboard */,
+				2E7E2CAA27E8E889009813F5 /* HeaderCell.xib */,
+				2E9CFB0027EC59E7001ED7CE /* MenuCell.xib */,
+				2E9CFAFC27EB6C35001ED7CE /* DetailCell.xib */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -212,6 +229,10 @@
 			isa = PBXGroup;
 			children = (
 				2EEC609E27E779C20054AB6C /* InformationViewController.swift */,
+				2E7E2CA927E8E889009813F5 /* HeaderCell.swift */,
+				2E9CFAFF27EC59E7001ED7CE /* MenuCell.swift */,
+				2E9CFAFB27EB6C35001ED7CE /* DetailCell.swift */,
+				2E9CFAF727E9E29C001ED7CE /* CellData.swift */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -383,6 +404,7 @@
 			files = (
 				2E95659627CFCBDF00268C5D /* Loader.json in Resources */,
 				2EC4592527CCE4E000EBE36B /* LaunchScreen.storyboard in Resources */,
+				2E9CFB0227EC59E7001ED7CE /* MenuCell.xib in Resources */,
 				2EB96A2527CCE68300623AB0 /* Banner.xib in Resources */,
 				2EB96A3727CCE74400623AB0 /* Front.storyboard in Resources */,
 				2ECB7EA227E321FD00736FEA /* Search.storyboard in Resources */,
@@ -391,9 +413,11 @@
 				2EE0F07327CCEA08008BA4B2 /* Detail.storyboard in Resources */,
 				2EC4592227CCE4E000EBE36B /* Assets.xcassets in Resources */,
 				2EC4592027CCE4E000EBE36B /* Main.storyboard in Resources */,
+				2E9CFAFE27EB6C35001ED7CE /* DetailCell.xib in Resources */,
 				2E9E1A6727DDF108009AAEFE /* Hero.xib in Resources */,
 				2EEC609D27E779980054AB6C /* Information.storyboard in Resources */,
 				2EE0F07527CCEA12008BA4B2 /* Board.storyboard in Resources */,
+				2E7E2CAC27E8E889009813F5 /* HeaderCell.xib in Resources */,
 				2EBB716727E0E48300A61755 /* NewsCell.xib in Resources */,
 				2E1C8F2427D4887000085124 /* BannerView.xib in Resources */,
 				2E9E1A5927DCF184009AAEFE /* HeroCell.xib in Resources */,
@@ -453,6 +477,7 @@
 				2ECB7EA427E3242700736FEA /* SearchViewController.swift in Sources */,
 				2EB96A2F27CCE6E900623AB0 /* DetailViewController.swift in Sources */,
 				2E024AE927E5B33300C116F1 /* AssembleAPIManager.swift in Sources */,
+				2E9CFAF827E9E29C001ED7CE /* CellData.swift in Sources */,
 				2EBB716627E0E48300A61755 /* NewsCell.swift in Sources */,
 				2E99236927CCE5C40082B5F9 /* MenuBarButtonContainer.swift in Sources */,
 				2EB96A2827CCE6A500623AB0 /* BannerView.swift in Sources */,
@@ -461,6 +486,7 @@
 				2EB96A3327CCE70800623AB0 /* UIColor.swift in Sources */,
 				2E9E1A6627DDF108009AAEFE /* Hero.swift in Sources */,
 				2EB96A2427CCE68300623AB0 /* Banner.swift in Sources */,
+				2E9CFAFD27EB6C35001ED7CE /* DetailCell.swift in Sources */,
 				2E8A7EE827D79EB700091065 /* HeaderView.swift in Sources */,
 				2EC4591927CCE4E000EBE36B /* AppDelegate.swift in Sources */,
 				2E9710A027E4A0DB00534CBA /* SearchTableViewCell.swift in Sources */,
@@ -469,8 +495,10 @@
 				2E9E1A6227DDD920009AAEFE /* PlaceHolderCell.swift in Sources */,
 				2ECB7EA627E33D2F00736FEA /* NotificationViewController.swift in Sources */,
 				2EC4591B27CCE4E000EBE36B /* SceneDelegate.swift in Sources */,
+				2E9CFB0127EC59E7001ED7CE /* MenuCell.swift in Sources */,
 				2E93726F27D0CE0B0075077F /* DateTime.swift in Sources */,
 				2EB96A2B27CCE6BC00623AB0 /* FrontViewController.swift in Sources */,
+				2E7E2CAB27E8E889009813F5 /* HeaderCell.swift in Sources */,
 				2EEC60A327E8C9B40054AB6C /* Loader.swift in Sources */,
 				2EBB716A27E0EC3A00A61755 /* News.swift in Sources */,
 				2EB96A2127CCE65D00623AB0 /* RootViewController.swift in Sources */,
