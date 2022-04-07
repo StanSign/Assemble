@@ -14,14 +14,17 @@ protocol HomeUseCase {
 }
 
 final class DefaultHomeUseCase: HomeUseCase {
+    //MARK: - Constants
     private let bannerRepository: HomeBannerRepository
     private let disposeBag: DisposeBag
     
+    //MARK: - init
     init(bannerRepository: HomeBannerRepository) {
         self.bannerRepository = bannerRepository
         self.disposeBag = DisposeBag()
     }
     
+    //MARK: - functions
     func fetchHomeBannerData() -> Observable<UpcomingList> {
         return Observable.create { emitter in
             self.bannerRepository.fetchBannerData()
