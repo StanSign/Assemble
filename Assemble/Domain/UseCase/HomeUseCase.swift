@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol HomeUseCase {
-    func fetchHomeBannerData() -> Observable<[HomeBanner]>
+    func fetchHomeBannerData() -> Observable<UpcomingList>
 }
 
 final class DefaultHomeUseCase: HomeUseCase {
@@ -22,9 +22,9 @@ final class DefaultHomeUseCase: HomeUseCase {
         self.disposeBag = DisposeBag()
     }
     
-    func fetchHomeBannerData() -> Observable<[HomeBanner]> {
+    func fetchHomeBannerData() -> Observable<UpcomingList> {
         return Observable.create { emitter in
-            self.bannerRepository.fetchBanner()
+            self.bannerRepository.fetchBannerData()
                 .subscribe(onNext: { banner in
                     emitter.onNext(banner)
                 }, onError: { error in
