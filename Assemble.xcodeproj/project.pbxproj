@@ -45,7 +45,7 @@
 		2EB96A3127CCE6FC00623AB0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB96A3027CCE6FC00623AB0 /* Colors.swift */; };
 		2EB96A3327CCE70800623AB0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB96A3227CCE70800623AB0 /* UIColor.swift */; };
 		2EB96A3727CCE74400623AB0 /* Front1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB96A3627CCE74400623AB0 /* Front1.storyboard */; };
-		2EBB6D9027FF384F00E66F64 /* AssembleUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB6D8F27FF384F00E66F64 /* AssembleUseCaseTests.swift */; };
+		2EBB6D9827FF390A00E66F64 /* HomeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB6D9727FF390A00E66F64 /* HomeUseCaseTests.swift */; };
 		2EBB716627E0E48300A61755 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB716427E0E48300A61755 /* NewsCell.swift */; };
 		2EBB716727E0E48300A61755 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBB716527E0E48300A61755 /* NewsCell.xib */; };
 		2EBB716A27E0EC3A00A61755 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB716827E0EC3A00A61755 /* News.swift */; };
@@ -126,7 +126,7 @@
 		2EB96A3227CCE70800623AB0 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		2EB96A3627CCE74400623AB0 /* Front1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Front1.storyboard; sourceTree = "<group>"; };
 		2EBB6D8D27FF384F00E66F64 /* AssembleUseCaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AssembleUseCaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2EBB6D8F27FF384F00E66F64 /* AssembleUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssembleUseCaseTests.swift; sourceTree = "<group>"; };
+		2EBB6D9727FF390A00E66F64 /* HomeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCaseTests.swift; sourceTree = "<group>"; };
 		2EBB716427E0E48300A61755 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		2EBB716527E0E48300A61755 /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		2EBB716827E0EC3A00A61755 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 		2EBB6D9627FF386300E66F64 /* HomeScene */ = {
 			isa = PBXGroup;
 			children = (
-				2EBB6D8F27FF384F00E66F64 /* AssembleUseCaseTests.swift */,
+				2EBB6D9727FF390A00E66F64 /* HomeUseCaseTests.swift */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -686,6 +686,7 @@
 				TargetAttributes = {
 					2EBB6D8C27FF384F00E66F64 = {
 						CreatedOnToolsVersion = 13.3;
+						LastSwiftMigration = 1330;
 						TestTargetID = 2EC4591427CCE4E000EBE36B;
 					};
 					2EC4591427CCE4E000EBE36B = {
@@ -798,7 +799,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EBB6D9027FF384F00E66F64 /* AssembleUseCaseTests.swift in Sources */,
+				2EBB6D9827FF390A00E66F64 /* HomeUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,15 +887,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XW996HTK32;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stansign.AssembleUseCaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Assemble.app/Assemble";
@@ -905,11 +913,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XW996HTK32;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stansign.AssembleUseCaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
