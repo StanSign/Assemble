@@ -1,5 +1,5 @@
 //
-//  FrontViewController.swift
+//  SecondaryViewController.swift
 //  Assemble
 //
 //  Created by 이창준 on 2022/02/27.
@@ -7,9 +7,11 @@
 
 import UIKit
 import Hero
+import RxSwift
+import RxCocoa
 import Kingfisher
 
-class FrontViewController: UIViewController {
+class SecondaryViewController: UIViewController {
     
     //MARK: - Constants
     private let reuseIdentifier = "TestCell"
@@ -100,7 +102,7 @@ class FrontViewController: UIViewController {
 
 //MARK: - CollectionView
 
-extension FrontViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SecondaryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfCell
@@ -165,7 +167,7 @@ extension FrontViewController: UICollectionViewDelegate, UICollectionViewDataSou
 
 //MARK: - Collection View Delegate Flow Layout
 
-extension FrontViewController: UICollectionViewDelegateFlowLayout {
+extension SecondaryViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let heightArray = FrontComposition.frontComposition.map { $0.height }

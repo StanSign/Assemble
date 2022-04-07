@@ -26,8 +26,6 @@ class SetupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadingSpinner()
-        
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     override func viewDidAppear(_ animated: Bool) {

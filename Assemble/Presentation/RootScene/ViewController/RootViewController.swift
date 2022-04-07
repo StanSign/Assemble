@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import Tabman
 import Pageboy
 
@@ -13,7 +14,7 @@ class RootViewController: TabmanViewController {
     
     enum Tab: String, CaseIterable {
         case detail // rawValue: detail
-        case front
+        case home
         case board
     }
     private let tabItems = Tab.allCases.map({ BarItem(for: $0) })
@@ -89,8 +90,8 @@ private class BarItem: TMBarItemable {
         switch tab {
         case .detail:
             storyboardName = "Detail"
-        case .front:
-            storyboardName = "Front"
+        case .home:
+            storyboardName = "Home"
         case .board:
             storyboardName = "Board"
         }

@@ -97,14 +97,6 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="backgroundView" destination="LI3-8S-4EY" id="Fow-I1-xut"/>
-                        <outlet property="buttonStack" destination="wdt-cU-yHg" id="H68-Ua-zh9"/>
-                        <outlet property="collectionView" destination="PfD-Ov-wNG" id="XzH-Da-H6k"/>
-                        <outlet property="notifyIcon" destination="xvm-Qd-ggk" id="ckW-ut-0GY"/>
-                        <outlet property="searchIcon" destination="MjF-vG-o0M" id="smR-DJ-jkh"/>
-                        <outlet property="topMenuView" destination="mtA-Yu-28b" id="c15-q7-jDP"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

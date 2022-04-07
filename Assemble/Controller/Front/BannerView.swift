@@ -9,12 +9,11 @@ import UIKit
 import CHIPageControl
 import SnapKit
 import Kingfisher
-import RealmSwift
 
-class BannerView: UIView {
+class BannerView: UICollectionViewCell {
     
     //MARK: - Constants
-    let realm = try! Realm()
+    let identifier = "BannerView"
     let pageControl = CHIPageControlChimayo(frame: CGRect(x: 0, y: 0, width: 100, height: 4))
     
     //MARK: - Variables
