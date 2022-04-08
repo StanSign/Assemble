@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol HomeBannerRepository {
-    func fetchBannerData() -> Observable<UpcomingList>
+    func fetchUpcomingData() -> Observable<UpcomingList>
 }

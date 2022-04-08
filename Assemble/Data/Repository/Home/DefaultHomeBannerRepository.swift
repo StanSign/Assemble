@@ -8,25 +8,30 @@
 import Foundation
 
 import RxSwift
-import Alamofire
 import RxAlamofire
 
+enum HomeBannerRepositoryError: Error {
+    case decodingError
+}
+
 final class DefaultHomeBannerRepository: HomeBannerRepository {
+    typealias Error = HomeBannerRepositoryError
     private let disposeBag: DisposeBag
     
     init() {
         self.disposeBag = DisposeBag()
     }
     
-    func fetchBannerData() -> Observable<UpcomingList> {
+    func fetchUpcomingData() -> Observable<UpcomingList> {
         let url = awsConfiguration.baseURL + awsConfiguration.upcomingFilmPath
         
         return RxAlamofire.requestJSON(.get, url)
             .map { (response, json) -> UpcomingList in
-                guard let dict = json as? [String: Any] else {
-                    return UpcomingList(count: 0, upcomings: [Upcoming(id: 0, title: "", titleEN: "", releaseDate: "", imageURL: "")])
-                }
-                return UpcomingList(count: 0, upcomings: [Upcoming(id: 0, title: "", titleEN: "", releaseDate: "", imageURL: "")])
+                // Alamofire 이용하여 data를 UpcomingListDTO에 매핑
+                guard let dto = json as? UpcomingResponseDTO else { throw Error.decodingError }
+                // DTO의 toDomain 함수를 이용하여 UpcomingList type으로 return
+                print(dto.toDomain())
+                return dto.toDomain()
             }
     }
 }

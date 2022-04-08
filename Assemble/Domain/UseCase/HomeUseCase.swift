@@ -10,13 +10,16 @@ import Foundation
 import RxSwift
 
 protocol HomeUseCase {
-    func fetchHomeBannerData() -> Observable<UpcomingList>
+    var upcomingList: PublishSubject<UpcomingList> { get set }
+    func fetchUpcomingList()
+    func buttonPress()
 }
 
 final class DefaultHomeUseCase: HomeUseCase {
     //MARK: - Constants
     private let bannerRepository: HomeBannerRepository
     private let disposeBag: DisposeBag
+    var upcomingList: PublishSubject<UpcomingList> = PublishSubject()
     
     //MARK: - init
     init(bannerRepository: HomeBannerRepository) {
@@ -25,16 +28,15 @@ final class DefaultHomeUseCase: HomeUseCase {
     }
     
     //MARK: - functions
-    func fetchHomeBannerData() -> Observable<UpcomingList> {
-        return Observable.create { emitter in
-            self.bannerRepository.fetchBannerData()
-                .subscribe(onNext: { banner in
-                    emitter.onNext(banner)
-                }, onError: { error in
-                    emitter.onError(error)
-                })
-                .disposed(by: self.disposeBag)
-            return Disposables.create()
-        }
+    func fetchUpcomingList() {
+        self.bannerRepository.fetchUpcomingData()
+            .subscribe(onNext: { [weak self] upcomingList in
+                self?.upcomingList.onNext(upcomingList)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func buttonPress() {
+        print("Pressed")
     }
 }
