@@ -88,11 +88,6 @@
                                     <constraint firstItem="k1D-c5-fht" firstAttribute="centerY" secondItem="wHx-4X-b01" secondAttribute="centerY" id="zA2-Ua-bEi"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEB-Xo-Az1">
-                                <rect key="frame" x="173.5" y="432.5" width="67" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,8 +96,6 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wHx-4X-b01" secondAttribute="trailing" id="FIf-EN-TQu"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="lAj-1F-gGG" secondAttribute="bottom" id="HsM-Nv-kt0"/>
                             <constraint firstItem="wHx-4X-b01" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Pha-ms-DQc"/>
-                            <constraint firstItem="fEB-Xo-Az1" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="VTL-i6-Og1"/>
-                            <constraint firstItem="fEB-Xo-Az1" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ZCY-3o-5Ui"/>
                             <constraint firstItem="wHx-4X-b01" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="cZg-7F-wfW"/>
                             <constraint firstItem="lAj-1F-gGG" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="gha-lx-qFh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lAj-1F-gGG" secondAttribute="trailing" id="uaE-JB-Nd4"/>
@@ -111,7 +104,6 @@
                     <connections>
                         <outlet property="collectionView" destination="PgC-ub-WeP" id="aHu-YP-e9D"/>
                         <outlet property="scrollView" destination="lAj-1F-gGG" id="pFv-AS-kM9"/>
-                        <outlet property="tmpButton" destination="fEB-Xo-Az1" id="FQP-ZH-qVD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

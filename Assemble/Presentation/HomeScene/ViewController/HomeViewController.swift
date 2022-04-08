@@ -23,7 +23,6 @@ final class HomeViewController: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tmpButton: UIButton!
     
     //MARK: - Life Cycle
     
@@ -80,12 +79,11 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
             return UICollectionViewCell()
         }
-        print(viewModel?.upcomingList?.upcomings.first?.title)
         cell.titleLabel.text = viewModel?.upcomingList?.upcomings.first?.title
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("View Model: \(self.viewModel)")
+        print("View Model: \(self.viewModel?.upcomingList)")
     }
 }
