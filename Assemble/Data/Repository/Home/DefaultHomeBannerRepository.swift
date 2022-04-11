@@ -8,7 +8,7 @@
 import Foundation
 
 import RxSwift
-import RxAlamofire
+import Alamofire
 
 enum HomeBannerRepositoryError: Error {
     case decodingError
@@ -25,13 +25,23 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
     func fetchUpcomingData() -> Observable<UpcomingList> {
         let url = awsConfiguration.baseURL + awsConfiguration.upcomingFilmPath
         
-        return RxAlamofire.requestJSON(.get, url)
-            .map { (response, json) -> UpcomingList in
-                // Alamofire 이용하여 data를 UpcomingListDTO에 매핑
-//                print(json)
-                guard let dto = json as? UpcomingResponseDTO else { throw Error.decodingError }
-                // DTO의 toDomain 함수를 이용하여 UpcomingList type으로 return
-                return dto.toDomain()
+        return Observable.create { observer -> Disposable in
+            let request = AF.request(url, method: .get).responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    do {
+                        let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+                        let dto = try JSONDecoder().decode(UpcomingResponseDTO.self, from: data)
+                        observer.onNext(dto.toDomain())
+                    } catch { }
+                case .failure(let error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
             }
+            return Disposables.create {
+                request.cancel()
+            }
+        }
     }
 }

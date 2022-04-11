@@ -17,5 +17,8 @@ struct Upcoming {
 
 struct UpcomingList {
     let count: Int
+    let statusCode: Int
+    let description: String
+    let title: String
     let upcomings: [Upcoming]
 }

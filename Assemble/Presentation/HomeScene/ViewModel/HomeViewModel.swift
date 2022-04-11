@@ -19,6 +19,9 @@ final class HomeViewModel {
     init(coordinator: HomeCoordinator, homeUseCase: HomeUseCase) {
         self.upcomingList = UpcomingList(
             count: 0,
+            statusCode: 0,
+            description: "",
+            title: "",
             upcomings: []
         )
         self.coordinator = coordinator
@@ -52,7 +55,7 @@ final class HomeViewModel {
         
         self.homeUseCase.upcomingList
             .subscribe(onNext: { [weak self] list in
-//                print(list)
+                print(list)
                 self?.upcomingList = list
             })
             .disposed(by: disposeBag)

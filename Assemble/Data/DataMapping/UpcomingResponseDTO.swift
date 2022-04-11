@@ -12,11 +12,26 @@ import Foundation
 
 struct UpcomingResponseDTO: Decodable {
     private enum CodingKeys: String, CodingKey {
+        case statusCode
+        case title
         case count
+        case description
         case upcomings = "results"
     }
+    let statusCode: Int
+    let title: String
     let count: Int
+    let description: String
     let upcomings: [UpcomingDTO]
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.statusCode = try container.decode(Int.self, forKey: .statusCode)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.count = try container.decode(Int.self, forKey: .count)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.upcomings = try container.decode([UpcomingDTO].self, forKey: .upcomings)
+    }
 }
 
 extension UpcomingResponseDTO {
@@ -50,6 +65,9 @@ extension UpcomingResponseDTO {
 extension UpcomingResponseDTO {
     func toDomain() -> UpcomingList {
         return .init(count: count,
+                     statusCode: statusCode,
+                     description: description,
+                     title: title,
                      upcomings: upcomings.map { $0.toDomain() })
     }
 }
