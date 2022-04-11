@@ -7,12 +7,16 @@
 
 import UIKit
 
+//MARK: - Protocol
+
 protocol TabBarCoordinator: Coordinator {
     var tabBarController: UITabBarController { get set }
     func selectPage(_ page: TabBarPage)
     func setSelectedIndex(_ index: Int)
     func currentPage() -> TabBarPage?
 }
+
+//MARK: - Class
 
 final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     weak var finishDelegate: CoordinatorFinishDelegate?
@@ -94,6 +98,8 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
         self.navigationController.pushViewController(tabBarController, animated: true)
     }
 }
+
+//MARK: - Coordinator Finish Delegate
 
 extension DefaultTabBarCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childCoordinator: Coordinator) {
