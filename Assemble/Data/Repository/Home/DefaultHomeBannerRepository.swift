@@ -28,6 +28,7 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
         return RxAlamofire.requestJSON(.get, url)
             .map { (response, json) -> UpcomingList in
                 // Alamofire 이용하여 data를 UpcomingListDTO에 매핑
+                print(json)
                 guard let dto = json as? UpcomingResponseDTO else { throw Error.decodingError }
                 // DTO의 toDomain 함수를 이용하여 UpcomingList type으로 return
                 print(dto.toDomain())
