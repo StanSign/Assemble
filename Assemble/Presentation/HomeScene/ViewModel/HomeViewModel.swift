@@ -52,7 +52,7 @@ final class HomeViewModel {
         
         self.homeUseCase.upcomingList
             .subscribe(onNext: { [weak self] list in
-                print(list)
+//                print(list)
                 self?.upcomingList = list
             })
             .disposed(by: disposeBag)

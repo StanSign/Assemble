@@ -89,6 +89,7 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     private func configureTabBarController(with tabViewControllers: [UINavigationController]) {
         self.tabBarController.setViewControllers(tabViewControllers, animated: true)
         self.tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber()
+        self.tabBarController.tabBar.backgroundColor = .darkGray
         
         self.navigationController.pushViewController(tabBarController, animated: true)
     }

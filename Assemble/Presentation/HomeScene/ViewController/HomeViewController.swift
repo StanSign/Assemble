@@ -10,15 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import Kingfisher
 
 final class HomeViewController: UIViewController {
     
     //MARK: - Constants
-    private let disposeBag = DisposeBag()
     
     //MARK: - Variables
     var viewModel: HomeViewModel?
+    var disposeBag = DisposeBag()
     
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -31,6 +30,11 @@ final class HomeViewController: UIViewController {
         
         configureUI()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     //MARK: - Binding

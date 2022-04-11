@@ -20,7 +20,9 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.homeViewController = HomeViewController()
+        let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
+        let homeVC = homeStoryboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
+        self.homeViewController = homeVC
     }
     
     func start() {
