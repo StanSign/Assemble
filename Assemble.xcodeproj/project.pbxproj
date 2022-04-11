@@ -11,7 +11,9 @@
 		2E1C8F2427D4887000085124 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1C8F2327D4887000085124 /* BannerView.xib */; };
 		2E5C3CE32800188700803F05 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE22800188700803F05 /* AppCoordinator.swift */; };
 		2E5C3CE5280018B000803F05 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE4280018B000803F05 /* Coordinator.swift */; };
-		2E5C3CE828008E7400803F05 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE728008E7400803F05 /* RootCoordinator.swift */; };
+		2E5C3CE828008E7400803F05 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */; };
+		2E5C3CEA28044E4600803F05 /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE928044E4600803F05 /* TabBarPage.swift */; };
+		2E5C3CEC28045F6A00803F05 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CEB28045F6A00803F05 /* HomeCoordinator.swift */; };
 		2E7E2CAB27E8E889009813F5 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7E2CA927E8E889009813F5 /* HeaderCell.swift */; };
 		2E7E2CAC27E8E889009813F5 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7E2CAA27E8E889009813F5 /* HeaderCell.xib */; };
 		2E8A7EE827D79EB700091065 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8A7EE727D79EB700091065 /* HeaderView.swift */; };
@@ -96,7 +98,9 @@
 		2E1C8F2327D4887000085124 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		2E5C3CE22800188700803F05 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2E5C3CE4280018B000803F05 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		2E5C3CE728008E7400803F05 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		2E5C3CE928044E4600803F05 /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
+		2E5C3CEB28045F6A00803F05 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		2E7E2CA927E8E889009813F5 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		2E7E2CAA27E8E889009813F5 /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
 		2E8A7EE727D79EB700091065 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 		2E5C3CDF2800158300803F05 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				2E5C3CEB28045F6A00803F05 /* HomeCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -271,7 +276,7 @@
 			children = (
 				2E5C3CE22800188700803F05 /* AppCoordinator.swift */,
 				2E5C3CE4280018B000803F05 /* Coordinator.swift */,
-				2E5C3CE728008E7400803F05 /* RootCoordinator.swift */,
+				2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 			isa = PBXGroup;
 			children = (
 				2EE4A15627FDF97700F6A4B3 /* awsConstants.swift */,
+				2E5C3CE928044E4600803F05 /* TabBarPage.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -864,11 +870,12 @@
 				2EB96A2827CCE6A500623AB0 /* BannerView.swift in Sources */,
 				2EEC60A127E77F150054AB6C /* APIModels.swift in Sources */,
 				2EB96A3127CCE6FC00623AB0 /* Colors.swift in Sources */,
+				2E5C3CEC28045F6A00803F05 /* HomeCoordinator.swift in Sources */,
 				2EB96A3327CCE70800623AB0 /* UIColor.swift in Sources */,
 				2E9E1A6627DDF108009AAEFE /* Hero.swift in Sources */,
 				2EB96A2427CCE68300623AB0 /* Banner.swift in Sources */,
 				2ED9802727FF09E100744F9D /* UpcomingResponseDTO.swift in Sources */,
-				2E5C3CE828008E7400803F05 /* RootCoordinator.swift in Sources */,
+				2E5C3CE828008E7400803F05 /* TabBarCoordinator.swift in Sources */,
 				2E9CFAFD27EB6C35001ED7CE /* DetailCell.swift in Sources */,
 				2EE4A14827FDE23300F6A4B3 /* Film.swift in Sources */,
 				2E8A7EE827D79EB700091065 /* HeaderView.swift in Sources */,
@@ -888,6 +895,7 @@
 				2E7E2CAB27E8E889009813F5 /* HeaderCell.swift in Sources */,
 				2EEC60A327E8C9B40054AB6C /* Loader.swift in Sources */,
 				2EBB716A27E0EC3A00A61755 /* News.swift in Sources */,
+				2E5C3CEA28044E4600803F05 /* TabBarPage.swift in Sources */,
 				2EE4A15227FDF66900F6A4B3 /* DefaultHomeBannerRepository.swift in Sources */,
 				2EE4A15A27FE063C00F6A4B3 /* AlamoFireService.swift in Sources */,
 				2EB96A2127CCE65D00623AB0 /* RootViewController.swift in Sources */,

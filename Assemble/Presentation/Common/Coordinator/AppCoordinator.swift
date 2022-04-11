@@ -8,7 +8,8 @@
 import UIKit
 
 protocol AppCoordinator: Coordinator {
-    func showHomeFlow()
+    func showMainFlow()
+    func showLoginFlow()
 }
 
 final class DefaultAppCoordinator: AppCoordinator {
@@ -23,17 +24,31 @@ final class DefaultAppCoordinator: AppCoordinator {
     }
     
     func start() {
-        showHomeFlow()
+        showMainFlow()
     }
     
-    func showHomeFlow() {
-        let rootVC = RootViewController()
-        navigationController.pushViewController(rootVC, animated: true)
+    func showLoginFlow() {
+        
+    }
+    
+    func showMainFlow() {
+        let tabCoordinator = DefaultTabBarCoordinator.init(navigationController)
+        tabCoordinator.finishDelegate = self
+        tabCoordinator.start()
+        childCoordinators.append(tabCoordinator)
     }
 }
 
 extension DefaultAppCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childCoordinator: Coordinator) {
         childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
+        self.navigationController.viewControllers.removeAll()
+        
+        switch childCoordinator.type {
+        case .tab:
+            showLoginFlow()
+        default:
+            break
+        }
     }
 }

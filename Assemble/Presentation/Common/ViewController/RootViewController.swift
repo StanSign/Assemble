@@ -92,10 +92,6 @@ private class BarItem: TMBarItemable {
             storyboardName = "Detail"
         case .home:
             storyboardName = "Home"
-            let storyBoard = UIStoryboard(name: storyboardName, bundle: nil)
-            let homeVC = storyBoard.instantiateInitialViewController() as! HomeViewController
-            homeVC.viewModel = HomeViewModel(homeUseCase: DefaultHomeUseCase(bannerRepository: DefaultHomeBannerRepository()))
-            return homeVC
         case .board:
             storyboardName = "Board"
         }

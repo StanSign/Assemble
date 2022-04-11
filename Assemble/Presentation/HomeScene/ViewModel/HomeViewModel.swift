@@ -11,15 +11,17 @@ import RxSwift
 import RxRelay
 
 final class HomeViewModel {
+    weak var coordinator: HomeCoordinator?
     private let homeUseCase: HomeUseCase
     private let disposeBag = DisposeBag()
     var upcomingList: UpcomingList?
     
-    init(homeUseCase: HomeUseCase) {
+    init(coordinator: HomeCoordinator, homeUseCase: HomeUseCase) {
         self.upcomingList = UpcomingList(
             count: 0,
             upcomings: []
         )
+        self.coordinator = coordinator
         self.homeUseCase = homeUseCase
     }
     

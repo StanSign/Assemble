@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,17 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAj-1F-gGG">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUB-8T-FJJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cze-oL-mas">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="5Wt-Vf-QVm">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="938"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PgC-ub-WeP">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="538"/>
-                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="PgC-ub-WeP" secondAttribute="height" multiplier="1:1.3" id="Gc8-Ba-9o1"/>
+                                                    <constraint firstAttribute="width" secondItem="PgC-ub-WeP" secondAttribute="height" multiplier="1:1.3" id="CQb-mh-Vdg"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qus-O2-xby">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -35,25 +36,28 @@
                                                 </collectionViewFlowLayout>
                                                 <cells/>
                                             </collectionView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGr-GW-gTO">
+                                                <rect key="frame" x="0.0" y="538" width="414" height="400"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="400" id="Y0W-v2-S1A"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="PgC-ub-WeP" firstAttribute="top" secondItem="Cze-oL-mas" secondAttribute="top" id="Got-NW-MKg"/>
-                                            <constraint firstAttribute="trailing" secondItem="PgC-ub-WeP" secondAttribute="trailing" id="Wmy-0k-lvo"/>
-                                            <constraint firstAttribute="height" constant="1500" id="sjI-qN-Kg7"/>
-                                            <constraint firstItem="PgC-ub-WeP" firstAttribute="leading" secondItem="Cze-oL-mas" secondAttribute="leading" id="yd8-LI-FO2"/>
+                                            <constraint firstItem="PgC-ub-WeP" firstAttribute="width" secondItem="5Wt-Vf-QVm" secondAttribute="width" id="nv1-81-ELS"/>
                                         </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Cze-oL-mas" firstAttribute="bottom" secondItem="R3J-7a-RcZ" secondAttribute="bottom" id="NzB-GV-q9H"/>
-                                    <constraint firstItem="Cze-oL-mas" firstAttribute="top" secondItem="R3J-7a-RcZ" secondAttribute="top" id="X1Y-am-3xM"/>
-                                    <constraint firstItem="Cze-oL-mas" firstAttribute="trailing" secondItem="R3J-7a-RcZ" secondAttribute="trailing" id="gZM-A0-1ZE"/>
-                                    <constraint firstItem="Cze-oL-mas" firstAttribute="width" secondItem="vOW-YD-s43" secondAttribute="width" id="gmc-BR-3uG"/>
-                                    <constraint firstItem="Cze-oL-mas" firstAttribute="leading" secondItem="R3J-7a-RcZ" secondAttribute="leading" id="izb-mY-roU"/>
+                                    <constraint firstItem="5Wt-Vf-QVm" firstAttribute="top" secondItem="GUB-8T-FJJ" secondAttribute="top" id="8J3-9Z-72O"/>
+                                    <constraint firstItem="5Wt-Vf-QVm" firstAttribute="width" secondItem="GUB-8T-FJJ" secondAttribute="width" id="OUG-TW-lmy"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Wt-Vf-QVm" secondAttribute="trailing" id="V3q-JW-RwW"/>
+                                    <constraint firstItem="5Wt-Vf-QVm" firstAttribute="leading" secondItem="GUB-8T-FJJ" secondAttribute="leading" id="kJY-B6-m5D"/>
+                                    <constraint firstAttribute="bottom" secondItem="5Wt-Vf-QVm" secondAttribute="bottom" id="xkh-ph-5M1"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="R3J-7a-RcZ"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="vOW-YD-s43"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="kgb-4b-BJs"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="GzV-wE-Zdp"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHx-4X-b01" userLabel="Top Menu View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="65"/>
@@ -92,18 +96,18 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lAj-1F-gGG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6fa-1l-f7F"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wHx-4X-b01" secondAttribute="trailing" id="FIf-EN-TQu"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="lAj-1F-gGG" secondAttribute="bottom" id="HsM-Nv-kt0"/>
+                            <constraint firstItem="GUB-8T-FJJ" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="PTS-Au-d13"/>
+                            <constraint firstAttribute="bottom" secondItem="GUB-8T-FJJ" secondAttribute="bottom" id="PVY-ji-QfF"/>
                             <constraint firstItem="wHx-4X-b01" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Pha-ms-DQc"/>
                             <constraint firstItem="wHx-4X-b01" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="cZg-7F-wfW"/>
-                            <constraint firstItem="lAj-1F-gGG" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="gha-lx-qFh"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lAj-1F-gGG" secondAttribute="trailing" id="uaE-JB-Nd4"/>
+                            <constraint firstItem="GUB-8T-FJJ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="sZF-Fg-Tdq"/>
+                            <constraint firstAttribute="trailing" secondItem="GUB-8T-FJJ" secondAttribute="trailing" id="uen-ZY-1Iw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="PgC-ub-WeP" id="aHu-YP-e9D"/>
-                        <outlet property="scrollView" destination="lAj-1F-gGG" id="pFv-AS-kM9"/>
+                        <outlet property="scrollView" destination="GUB-8T-FJJ" id="Shj-fz-cfe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -114,5 +118,8 @@
     <resources>
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
