@@ -93,7 +93,11 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     private func configureTabBarController(with tabViewControllers: [UINavigationController]) {
         self.tabBarController.setViewControllers(tabViewControllers, animated: true)
         self.tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber()
-        self.tabBarController.tabBar.backgroundColor = .darkGray
+        let tabBar = self.tabBarController.tabBar
+        tabBar.backgroundColor = .darkGray
+        tabBar.isTranslucent = false
+        tabBar.standardAppearance.configureWithOpaqueBackground()
+        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         
         self.navigationController.pushViewController(tabBarController, animated: true)
     }
