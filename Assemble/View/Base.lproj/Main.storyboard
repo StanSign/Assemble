@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ppv-YN-Fp6">
                         <rightBarButtonItems>
@@ -41,7 +41,6 @@
         <!--Navigation Controller-->
         <scene sceneID="gER-Yk-Wep">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pw6-SN-8ND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="Eo5-jg-G3z" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ya2-k7-c9n">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -54,6 +53,7 @@
                         <segue destination="bbX-S9-pCj" kind="relationship" relationship="rootViewController" id="cvN-di-2oq"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pw6-SN-8ND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-975" y="96"/>
         </scene>
