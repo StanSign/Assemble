@@ -44,6 +44,15 @@ extension String {
         let timeInterval = (targetDate?.timeIntervalSinceNow)!
         let D_Day = Int(timeInterval) / 86400
         
-        return "D-\(D_Day)"
+        switch D_Day {
+        case Int.min ..< 0:
+            return "상영 중"
+        case 0 ..< Int.max:
+            return "D-\(abs(D_Day))"
+        case 0:
+            return "오늘 개봉"
+        default:
+            return "개봉 날짜 미정"
+        }
     }
 }

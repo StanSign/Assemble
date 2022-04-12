@@ -490,8 +490,8 @@
 		2EE4A13727FD8CD600F6A4B3 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2EC4592327CCE4E000EBE36B /* LaunchScreen.storyboard */,
 				2EC4591827CCE4E000EBE36B /* AppDelegate.swift */,
+				2EC4592327CCE4E000EBE36B /* LaunchScreen.storyboard */,
 				2EC4591A27CCE4E000EBE36B /* SceneDelegate.swift */,
 			);
 			path = Application;
