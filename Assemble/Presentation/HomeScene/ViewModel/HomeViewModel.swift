@@ -37,7 +37,8 @@ final class HomeViewModel {
     //MARK: - Output
     
     struct Output {
-        
+        let upcomingListFetched = PublishRelay<[Upcoming]>()
+        let bannerData = PublishRelay<[BannerData]>()
     }
     
     //MARK: - Transform
@@ -54,12 +55,29 @@ final class HomeViewModel {
         let output = Output()
         
         self.homeUseCase.upcomingList
-            .subscribe(onNext: { [weak self] list in
-                print(list)
-                self?.upcomingList = list
+            .map({ $0.upcomings })
+            .map({ upcomings -> [BannerData] in
+                let banners = self.createBannerData(with: upcomings)
+                return banners
             })
+            .bind(to: output.bannerData)
             .disposed(by: disposeBag)
         
         return output
+    }
+}
+
+private extension HomeViewModel {
+    func createBannerData(with upcomings: [Upcoming]) -> [BannerData] {
+        var banners: [BannerData] = []
+        for upcoming in upcomings {
+            banners.append(BannerData(
+                title: upcoming.title.splitAndGet(.head, by: [":"]),
+                subtitle: upcoming.title.splitAndGet(.tail, by: [":"]),
+                image: upcoming.imageURL,
+                d_day: upcoming.releaseDate.getStateFromReleaseDate()
+            ))
+        }
+        return banners
     }
 }

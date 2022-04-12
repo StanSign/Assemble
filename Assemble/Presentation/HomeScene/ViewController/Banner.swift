@@ -11,6 +11,8 @@ import SnapKit
 
 class Banner: UICollectionViewCell {
     
+    static let identifier = "Banner"
+    
     @IBOutlet weak var bannerView: UIView!
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var gradientContainerView: UIView!
@@ -23,6 +25,10 @@ class Banner: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        bannerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         setupGestures()
         setupGradientLayer()
     }

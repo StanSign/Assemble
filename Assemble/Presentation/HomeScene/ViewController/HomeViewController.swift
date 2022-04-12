@@ -43,9 +43,6 @@ final class HomeViewController: UIViewController {
         // 스크롤뷰 상단 Safe Area 무시
         scrollView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
         let bannerNib = UINib(nibName: "Banner", bundle: nil)
         collectionView.register(bannerNib, forCellWithReuseIdentifier: "Banner")
     }
@@ -56,6 +53,19 @@ final class HomeViewController: UIViewController {
         )
         
         let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
+        
+        output?.bannerData
+            .bind(to: collectionView.rx.items(cellIdentifier: Banner.identifier, cellType: Banner.self)) { index, banners, cell in
+                cell.snp.makeConstraints { make in
+                    let width = UIScreen.main.bounds.width
+                    make.width.equalTo(width)
+                    make.height.equalTo(width * 1.3)
+                }
+                cell.titleLabel.text = banners.title
+                cell.subLabel.text = banners.subtitle
+                cell.D_DayLabel.text = banners.d_day
+            }
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -67,27 +77,5 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let height = width * 1.3
         let size = CGSize(width: width, height: height)
         return size
-    }
-}
-
-//MARK: - CollectionView DataSource
-
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let upcomingList = self.viewModel?.upcomingList else { return 1 }
-        print(upcomingList.count)
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
-            return UICollectionViewCell()
-        }
-        cell.titleLabel.text = viewModel?.upcomingList?.upcomings.first?.title
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("View Model: \(self.viewModel?.upcomingList)")
     }
 }
