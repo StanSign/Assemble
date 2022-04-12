@@ -18,10 +18,32 @@ extension String {
         case .head:
             return result.first ?? ""
         case .tail:
-            if result.first != result.last {
-                return result.last ?? ""
+            if result.last == nil {
+                return ""
+            } else if result.first == result.last {
+                return ""
+            } else {
+                return result.last!
             }
-            return ""
         }
+    }
+    
+    func stringToDate(from string: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        
+        return formatter.date(from: string)
+    }
+    
+    func getStateFromReleaseDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        formatter.locale = Locale(identifier: "ko_KR")
+        
+        let targetDate = formatter.date(from: self)
+        let timeInterval = (targetDate?.timeIntervalSinceNow)!
+        let D_Day = Int(timeInterval) / 86400
+        
+        return "D-\(D_Day)"
     }
 }
