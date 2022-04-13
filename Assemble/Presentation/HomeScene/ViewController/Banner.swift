@@ -26,9 +26,6 @@ class Banner: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        bannerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
         setupGestures()
         setupGradientLayer()
     }

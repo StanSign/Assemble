@@ -43,8 +43,10 @@ final class HomeViewController: UIViewController {
         // 스크롤뷰 상단 Safe Area 무시
         scrollView.contentInsetAdjustmentBehavior = .never
         
-        let bannerNib = UINib(nibName: "Banner", bundle: nil)
-        collectionView.register(bannerNib, forCellWithReuseIdentifier: "Banner")
+        collectionView.delegate = self
+        
+        let bannerNib = UINib(nibName: Banner.identifier, bundle: nil)
+        collectionView.register(bannerNib, forCellWithReuseIdentifier: Banner.identifier)
     }
     
     private func bindViewModel() {
@@ -56,14 +58,10 @@ final class HomeViewController: UIViewController {
         
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: Banner.identifier, cellType: Banner.self)) { index, banners, cell in
-                cell.snp.makeConstraints { make in
-                    let width = UIScreen.main.bounds.width
-                    make.width.equalTo(width)
-                    make.height.equalTo(width * 1.3)
-                }
                 cell.titleLabel.text = banners.title
                 cell.subLabel.text = banners.subtitle
                 cell.D_DayLabel.text = banners.d_day
+//                cell.bannerImage.kf.setImage(with: URL(string: banners.image))
             }
             .disposed(by: self.disposeBag)
     }
