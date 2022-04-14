@@ -16,15 +16,18 @@ target 'Assemble' do
   pod 'Alamofire'
   pod 'RxAlamofire'
 
-  pod 'RealmSwift'
-  pod 'FaceAware'
-  pod 'SnapKit'
-  pod 'Hero'
-  pod 'CHIPageControl'
-  pod 'Kingfisher'
-  pod 'SDWebImage'
+  # Indicator
   pod 'NVActivityIndicatorView'
+  pod 'CHIPageControl'
+
+  # UI
+  pod 'SnapKit'
+  pod 'Kingfisher'
   pod 'lottie-ios'
+  pod 'Hero'
+
+  # Local DB
+  pod 'RealmSwift'
   
   target 'AssembleUseCaseTests' do
     inhibit_all_warnings!

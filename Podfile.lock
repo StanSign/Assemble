@@ -18,7 +18,6 @@ PODS:
   - CHIPageControl/Paprika (0.2)
   - CHIPageControl/Puya (0.2)
   - Differentiator (5.0.0)
-  - FaceAware (2.1.0)
   - Hero (1.6.1)
   - Kingfisher (7.2.0)
   - lottie-ios (3.3.0)
@@ -58,15 +57,11 @@ PODS:
   - RxSwift (6.5.0)
   - RxTest (6.5.0):
     - RxSwift (= 6.5.0)
-  - SDWebImage (5.12.3):
-    - SDWebImage/Core (= 5.12.3)
-  - SDWebImage/Core (5.12.3)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - Alamofire
   - CHIPageControl
-  - FaceAware
   - Hero
   - Kingfisher
   - lottie-ios
@@ -78,7 +73,6 @@ DEPENDENCIES:
   - RxNimble
   - RxSwift
   - RxTest
-  - SDWebImage
   - SnapKit
 
 SPEC REPOS:
@@ -86,7 +80,6 @@ SPEC REPOS:
     - Alamofire
     - CHIPageControl
     - Differentiator
-    - FaceAware
     - Hero
     - Kingfisher
     - lottie-ios
@@ -102,14 +95,12 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxTest
-    - SDWebImage
     - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   CHIPageControl: a787bf7205c9b7e7fbfc412be36c5e8636b68f86
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
-  FaceAware: f1266b8719a1a90da3d763b8cb428554edf0fa61
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
@@ -125,9 +116,8 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
-  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 96fd1f71eb7e44a1c27c12eb41e95a4ed02fe06d
+PODFILE CHECKSUM: a234560704e478548552fac6b17eef697f45bf9f
 
 COCOAPODS: 1.11.3

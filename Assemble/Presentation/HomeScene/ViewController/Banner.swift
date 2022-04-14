@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FaceAware
 import SnapKit
 
 class Banner: UICollectionViewCell {
