@@ -58,27 +58,31 @@ final class HomeViewController: UIViewController {
         
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
-                let cache = ImageCache.default
-                guard let url = URL(string: banners.imageURL) else { return }
-                cell.upcomingImageView.kf.setImage(
-                    with: url,
-                    options: [
-                        .waitForCache
-                    ]) { _ in
-                        cache.retrieveImage(forKey: "bannerCache\(index)") { result in
-                            switch result {
-                            case .success(let value):
-                                cell.upcomingImageView.image = value.image
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    }
+                self.setImage(with: banners.imageURL, to: cell, at: index)
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle
                 cell.stateLabel.text = banners.d_day
             }
             .disposed(by: self.disposeBag)
+    }
+    
+    private func setImage(with imageURL: String, to cell: BannerCell, at index: Int) {
+        let cache = ImageCache.default
+        guard let url = URL(string: imageURL) else { return }
+        cell.upcomingImageView.kf.setImage(
+            with: url,
+            options: [
+                .waitForCache
+            ]) { _ in
+                cache.retrieveImage(forKey: "bannerCache\(index)") { result in
+                    switch result {
+                    case .success(let value):
+                        cell.upcomingImageView.image = value.image
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
     }
 }
 
