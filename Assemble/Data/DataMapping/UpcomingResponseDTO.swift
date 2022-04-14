@@ -5,7 +5,7 @@
 //  Created by 이창준 on 2022/04/07.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - Data Transfer Object (DTO)
 // JSON response를 domain layer에 encode/decode하여 넣어주는 중간 단계의 Object

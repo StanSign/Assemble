@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import FaceAware
 import SnapKit
 
 class Banner: UICollectionViewCell {
     
+    static let identifier = "Banner"
+    
     @IBOutlet weak var bannerView: UIView!
-    @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var gradientContainerView: UIView!
     @IBOutlet weak var labelStack: UIStackView!
     @IBOutlet weak var D_DayLabel: UILabel!
@@ -23,6 +23,7 @@ class Banner: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
         setupGestures()
         setupGradientLayer()
     }

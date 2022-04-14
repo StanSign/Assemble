@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Kingfisher
 
 final class HomeViewController: UIViewController {
     
@@ -44,10 +45,22 @@ final class HomeViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         
         collectionView.delegate = self
-        collectionView.dataSource = self
         
-        let bannerNib = UINib(nibName: "Banner", bundle: nil)
-        collectionView.register(bannerNib, forCellWithReuseIdentifier: "Banner")
+        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
+        
+        collectionView.rx.didEndDecelerating
+            .subscribe(onNext: { value in
+                let x = self.collectionView.contentOffset.x
+                let w = self.collectionView.bounds.size.width
+                let currentPage = Int(ceil(x / w))
+                
+                guard let count = self.viewModel?.upcomingCount else { return }
+                self.collectionView.scrollToItem(
+                    at: IndexPath(item: (currentPage % count) + count, section: 0),
+                    at: .centeredHorizontally,
+                    animated: false)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func bindViewModel() {
@@ -56,6 +69,35 @@ final class HomeViewController: UIViewController {
         )
         
         let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
+        
+        output?.bannerData
+            .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
+                guard let count = self.viewModel?.upcomingCount else { return }
+                self.setImage(with: banners.imageURL, to: cell, at: index, numberOfUpcomings: count)
+                cell.titleLabel.text = banners.title
+                cell.subtitleLabel.text = banners.subtitle
+                cell.stateLabel.text = banners.d_day
+            }
+            .disposed(by: self.disposeBag)
+    }
+    
+    private func setImage(with imageURL: String, to cell: BannerCell, at index: Int, numberOfUpcomings: Int) {
+        let cache = ImageCache.default
+        guard let url = URL(string: imageURL) else { return }
+        cell.upcomingImageView.kf.setImage(
+            with: url,
+            options: [
+                .waitForCache
+            ]) { _ in
+                cache.retrieveImage(forKey: "bannerCache\(index % numberOfUpcomings)") { result in
+                    switch result {
+                    case .success(let value):
+                        cell.upcomingImageView.image = value.image
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
     }
 }
 
@@ -63,31 +105,9 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width
+        let width = UIScreen.main.bounds.width
         let height = width * 1.3
         let size = CGSize(width: width, height: height)
         return size
-    }
-}
-
-//MARK: - CollectionView DataSource
-
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let upcomingList = self.viewModel?.upcomingList else { return 1 }
-        print(upcomingList.count)
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Banner", for: indexPath) as? Banner else {
-            return UICollectionViewCell()
-        }
-        cell.titleLabel.text = viewModel?.upcomingList?.upcomings.first?.title
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("View Model: \(self.viewModel?.upcomingList)")
     }
 }

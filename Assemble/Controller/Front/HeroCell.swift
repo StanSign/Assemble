@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import UIImageColors
 
 class HeroCell: UICollectionViewCell {
 
@@ -46,9 +45,6 @@ extension HeroCell: UICollectionViewDelegate, UICollectionViewDataSource {
         let character = FrontComposition.heroCellCharacters[indexPath.row]
         cell.nameLabel.text = character.name
         cell.imageView.image = UIImage(named: character.nameEn)
-        cell.imageView.image?.getColors { colors in
-            cell.bgView?.backgroundColor = colors?.primary
-        }
         return cell
     }
 }
