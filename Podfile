@@ -18,7 +18,6 @@ target 'Assemble' do
 
   pod 'RealmSwift'
   pod 'FaceAware'
-  pod 'UIImageColors'
   pod 'SnapKit'
   pod 'Hero'
   pod 'CHIPageControl'
