@@ -5,9 +5,9 @@
 //  Created by 이창준 on 2022/04/14.
 //
 
-import Foundation
+import UIKit
 
-enum TypeSize: Int {
+enum TypeSize: CGFloat {
     case largeTitle = 34
     case title_01 = 28
     case title_02 = 22
