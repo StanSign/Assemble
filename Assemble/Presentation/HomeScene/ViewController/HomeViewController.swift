@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Kingfisher
 
 final class HomeViewController: UIViewController {
     
@@ -45,8 +46,7 @@ final class HomeViewController: UIViewController {
         
         collectionView.delegate = self
         
-        let bannerNib = UINib(nibName: Banner.identifier, bundle: nil)
-        collectionView.register(bannerNib, forCellWithReuseIdentifier: Banner.identifier)
+        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
     }
     
     private func bindViewModel() {
@@ -57,11 +57,21 @@ final class HomeViewController: UIViewController {
         let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
         
         output?.bannerData
-            .bind(to: collectionView.rx.items(cellIdentifier: Banner.identifier, cellType: Banner.self)) { index, banners, cell in
+            .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
+                let cache = ImageCache.default
+                if (cache.isCached(forKey: "bannerCache\(index)")) {
+                    cache.retrieveImage(forKey: "bannerCache\(index)") { result in
+                        switch result {
+                        case .success(let value):
+                            cell.upcomingImageView.image = value.image
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
                 cell.titleLabel.text = banners.title
-                cell.subLabel.text = banners.subtitle
-                cell.D_DayLabel.text = banners.d_day
-//                cell.bannerImage.kf.setImage(with: URL(string: banners.image))
+                cell.subtitleLabel.text = banners.subtitle
+                cell.stateLabel.text = banners.d_day
             }
             .disposed(by: self.disposeBag)
     }
@@ -71,7 +81,7 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width
+        let width = UIScreen.main.bounds.width
         let height = width * 1.3
         let size = CGSize(width: width, height: height)
         return size

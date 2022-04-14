@@ -18,7 +18,6 @@ class BannerCell: UICollectionViewCell {
     lazy var upcomingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.frame = self.bounds
         return imageView
     }()
     
