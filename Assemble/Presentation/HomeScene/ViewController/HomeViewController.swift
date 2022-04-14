@@ -59,16 +59,21 @@ final class HomeViewController: UIViewController {
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
                 let cache = ImageCache.default
-                if (cache.isCached(forKey: "bannerCache\(index)")) {
-                    cache.retrieveImage(forKey: "bannerCache\(index)") { result in
-                        switch result {
-                        case .success(let value):
-                            cell.upcomingImageView.image = value.image
-                        case .failure(let error):
-                            print(error)
+                guard let url = URL(string: banners.imageURL) else { return }
+                cell.upcomingImageView.kf.setImage(
+                    with: url,
+                    options: [
+                        .waitForCache
+                    ]) { _ in
+                        cache.retrieveImage(forKey: "bannerCache\(index)") { result in
+                            switch result {
+                            case .success(let value):
+                                cell.upcomingImageView.image = value.image
+                            case .failure(let error):
+                                print(error)
+                            }
                         }
                     }
-                }
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle
                 cell.stateLabel.text = banners.d_day
