@@ -17,10 +17,12 @@ class BannerCell: UICollectionViewCell {
     
     lazy var upcomingImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.frame = self.bounds
         return imageView
     }()
     
-    lazy var gradientContainer: UIView = {
+    private lazy var gradientContainer: UIView = {
         let view = UIView()
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
@@ -38,14 +40,14 @@ class BannerCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 44, weight: .heavy)
+        label.font = .systemFont(ofSize: TypeSize.largeTitle.rawValue, weight: .heavy)
         label.textColor = .white
         return label
     }()
     
     lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.font = .systemFont(ofSize: TypeSize.body.rawValue, weight: .regular)
         label.textColor = .white
         return label
     }()

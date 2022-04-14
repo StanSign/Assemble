@@ -23,6 +23,7 @@ target 'Assemble' do
   pod 'Hero'
   pod 'CHIPageControl'
   pod 'Kingfisher'
+  pod 'SDWebImage'
   pod 'NVActivityIndicatorView'
   pod 'lottie-ios'
   
