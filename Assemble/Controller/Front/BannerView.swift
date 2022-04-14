@@ -131,18 +131,18 @@ extension BannerView: UIScrollViewDelegate {
 
 extension BannerView {
     func loadImageToBanner(atIndex index: Int, with upcomingResults: [AssembleAPIManager.Film], to cell: Banner) {
-        let imgURL = URL(string: upcomingResults[index].fImage!)
+//        let imgURL = URL(string: upcomingResults[index].fImage!)
         let fNM = upcomingResults[index].fNM
         let releaseDate = upcomingResults[index].fReleaseDate
         let fID = upcomingResults[index].fID
         
-        let imgIndicator = CustomIndicator()
-        cell.bannerImage.kf.indicatorType = .custom(indicator: imgIndicator)
-        cell.bannerImage.kf.setImage(with: imgURL, options: [
-            .processor(DownsamplingImageProcessor(size: cell.bannerImage.bounds.size)),
-            .scaleFactor(UIScreen.main.scale),
-            .cacheOriginalImage
-        ])
+//        let imgIndicator = CustomIndicator()
+//        cell.bannerImage.kf.indicatorType = .custom(indicator: imgIndicator)
+//        cell.bannerImage.kf.setImage(with: imgURL, options: [
+//            .processor(DownsamplingImageProcessor(size: cell.bannerImage.bounds.size)),
+//            .scaleFactor(UIScreen.main.scale),
+//            .cacheOriginalImage
+//        ])
         
         let split_fNM = fNM.components(separatedBy: [":"])
         // Title

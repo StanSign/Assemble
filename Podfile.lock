@@ -1,0 +1,139 @@
+PODS:
+  - Alamofire (5.4.3)
+  - CHIPageControl (0.2):
+    - CHIPageControl/Aji (= 0.2)
+    - CHIPageControl/Aleppo (= 0.2)
+    - CHIPageControl/Chimayo (= 0.2)
+    - CHIPageControl/Fresno (= 0.2)
+    - CHIPageControl/Jalapeno (= 0.2)
+    - CHIPageControl/Jaloro (= 0.2)
+    - CHIPageControl/Paprika (= 0.2)
+    - CHIPageControl/Puya (= 0.2)
+  - CHIPageControl/Aji (0.2)
+  - CHIPageControl/Aleppo (0.2)
+  - CHIPageControl/Chimayo (0.2)
+  - CHIPageControl/Fresno (0.2)
+  - CHIPageControl/Jalapeno (0.2)
+  - CHIPageControl/Jaloro (0.2)
+  - CHIPageControl/Paprika (0.2)
+  - CHIPageControl/Puya (0.2)
+  - Differentiator (5.0.0)
+  - FaceAware (2.1.0)
+  - Hero (1.6.1)
+  - Kingfisher (7.2.0)
+  - lottie-ios (3.3.0)
+  - Nimble (9.2.1)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - Pageboy (3.6.2)
+  - Realm (10.8.0):
+    - Realm/Headers (= 10.8.0)
+  - Realm/Headers (10.8.0)
+  - RealmSwift (10.8.0):
+    - Realm (= 10.8.0)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 6.0)
+  - RxBlocking (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxNimble (5.1.2):
+    - RxNimble/RxBlocking (= 5.1.2)
+  - RxNimble/Core (5.1.2):
+    - Nimble (~> 9.2)
+    - RxSwift (~> 6.0)
+  - RxNimble/RxBlocking (5.1.2):
+    - RxBlocking
+    - RxNimble/Core
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - RxTest (6.5.0):
+    - RxSwift (= 6.5.0)
+  - SnapKit (5.0.1)
+  - Tabman (2.11.1):
+    - Pageboy (~> 3.6.0)
+  - UIImageColors (2.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - CHIPageControl
+  - FaceAware
+  - Hero
+  - Kingfisher
+  - lottie-ios
+  - NVActivityIndicatorView
+  - RealmSwift
+  - RxAlamofire
+  - RxCocoa
+  - RxDataSources
+  - RxNimble
+  - RxSwift
+  - RxTest
+  - SnapKit
+  - Tabman
+  - UIImageColors
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - CHIPageControl
+    - Differentiator
+    - FaceAware
+    - Hero
+    - Kingfisher
+    - lottie-ios
+    - Nimble
+    - NVActivityIndicatorView
+    - Pageboy
+    - Realm
+    - RealmSwift
+    - RxAlamofire
+    - RxBlocking
+    - RxCocoa
+    - RxDataSources
+    - RxNimble
+    - RxRelay
+    - RxSwift
+    - RxTest
+    - SnapKit
+    - Tabman
+    - UIImageColors
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  CHIPageControl: a787bf7205c9b7e7fbfc412be36c5e8636b68f86
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  FaceAware: f1266b8719a1a90da3d763b8cb428554edf0fa61
+  Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
+  Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  Pageboy: cf121b9dd48c63f3f281b2a9ec93d02e0f23879b
+  Realm: ad3c5cd762e5a5bc02080fc55aa04a0e43f98575
+  RealmSwift: 316e450478fb01e06ece4438dda42f407c5f51d2
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
+  RxBlocking: 04b5fd28bb5ea49f7d64b80db8bbfe50d9cc1c7d
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
+  RxNimble: 60c8162b1518306a11d0c272a65ade133b209670
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Tabman: 792ac76fd1ec95af175c93db880a3c47cabedc91
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
+
+PODFILE CHECKSUM: cb5e969c3aab72ab0afb729139b1b6d6afb8f0f9
+
+COCOAPODS: 1.11.3

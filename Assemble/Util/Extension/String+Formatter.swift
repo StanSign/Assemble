@@ -55,4 +55,8 @@ extension String {
             return "개봉 날짜 미정"
         }
     }
+    
+    func fetchImageFromString() -> UIImage {
+        return UIImage()
+    }
 }

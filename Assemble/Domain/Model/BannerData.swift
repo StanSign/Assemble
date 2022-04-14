@@ -18,18 +18,18 @@ struct BannerDataList {
 struct BannerData {
     let title: String
     let subtitle: String
-    let image: String
+    let imageURL: String
     let d_day: String
     
     init(
         title: String = "",
         subtitle: String = "",
-        image: String = "",
+        imageURL: String = "",
         d_day: String = ""
     ) {
         self.title = title
         self.subtitle = subtitle
-        self.image = image
+        self.imageURL = imageURL
         self.d_day = d_day
     }
 }

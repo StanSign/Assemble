@@ -19,12 +19,6 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcs-zi-85Z" userLabel="Banner View">
                         <rect key="frame" x="0.0" y="0.0" width="376" height="488"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ft9-fF-nD0">
-                                <rect key="frame" x="0.0" y="0.0" width="376" height="488"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="focusOnFaces" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLo-pK-vlr" userLabel="Gradient Container">
                                 <rect key="frame" x="0.0" y="0.0" width="376" height="488"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,14 +61,10 @@
                         <constraints>
                             <constraint firstItem="TBy-5J-rOY" firstAttribute="leading" secondItem="wcs-zi-85Z" secondAttribute="leading" constant="32" id="AHb-fF-hDb"/>
                             <constraint firstItem="BLo-pK-vlr" firstAttribute="top" secondItem="wcs-zi-85Z" secondAttribute="top" id="DZ2-TC-dMW"/>
-                            <constraint firstAttribute="bottom" secondItem="Ft9-fF-nD0" secondAttribute="bottom" id="Ffu-JE-aJi"/>
                             <constraint firstItem="BLo-pK-vlr" firstAttribute="leading" secondItem="wcs-zi-85Z" secondAttribute="leading" id="Li2-qm-m7M"/>
                             <constraint firstAttribute="bottom" secondItem="BLo-pK-vlr" secondAttribute="bottom" id="ZKA-IB-ItC"/>
-                            <constraint firstAttribute="trailing" secondItem="Ft9-fF-nD0" secondAttribute="trailing" id="bcN-Pp-4pD"/>
-                            <constraint firstItem="Ft9-fF-nD0" firstAttribute="top" secondItem="wcs-zi-85Z" secondAttribute="top" id="dEn-7v-GG5"/>
                             <constraint firstAttribute="bottom" secondItem="TBy-5J-rOY" secondAttribute="bottom" constant="32" id="eBk-wk-s9f"/>
                             <constraint firstAttribute="trailing" secondItem="BLo-pK-vlr" secondAttribute="trailing" id="ghX-mk-CTO"/>
-                            <constraint firstItem="Ft9-fF-nD0" firstAttribute="leading" secondItem="wcs-zi-85Z" secondAttribute="leading" id="iIF-Ah-mil"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -88,7 +78,6 @@
             <size key="customSize" width="295" height="141"/>
             <connections>
                 <outlet property="D_DayLabel" destination="xUP-qS-YVr" id="dWo-m8-SZ0"/>
-                <outlet property="bannerImage" destination="Ft9-fF-nD0" id="8tr-Qh-PXJ"/>
                 <outlet property="bannerView" destination="wcs-zi-85Z" id="PSU-G3-WTJ"/>
                 <outlet property="gradientContainerView" destination="BLo-pK-vlr" id="tGa-oc-bx0"/>
                 <outlet property="labelStack" destination="TBy-5J-rOY" id="JDU-Hy-Byo"/>

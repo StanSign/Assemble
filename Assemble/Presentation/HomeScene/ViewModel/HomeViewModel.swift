@@ -37,7 +37,6 @@ final class HomeViewModel {
     //MARK: - Output
     
     struct Output {
-        let upcomingListFetched = PublishRelay<[Upcoming]>()
         let bannerData = PublishRelay<[BannerData]>()
     }
     
@@ -74,7 +73,7 @@ private extension HomeViewModel {
             banners.append(BannerData(
                 title: upcoming.title.splitAndGet(.head, by: [":"]),
                 subtitle: upcoming.title.splitAndGet(.tail, by: [":"]),
-                image: upcoming.imageURL,
+                imageURL: upcoming.imageURL,
                 d_day: upcoming.releaseDate.getStateFromReleaseDate()
             ))
         }

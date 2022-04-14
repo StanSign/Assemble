@@ -62,6 +62,8 @@
 		2ECB7EA427E3242700736FEA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB7EA327E3242700736FEA /* SearchViewController.swift */; };
 		2ECB7EA627E33D2F00736FEA /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB7EA527E33D2F00736FEA /* NotificationViewController.swift */; };
 		2ECB7EA827E33D3E00736FEA /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ECB7EA727E33D3E00736FEA /* Notification.storyboard */; };
+		2ECF52BE2807C8D80015DC25 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECF52BD2807C8D80015DC25 /* BannerCell.swift */; };
+		2ECF52C028080BB10015DC25 /* TypeSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECF52BF28080BB10015DC25 /* TypeSize.swift */; };
 		2ED9802727FF09E100744F9D /* UpcomingResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED9802627FF09E100744F9D /* UpcomingResponseDTO.swift */; };
 		2ED9802927FF271400744F9D /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED9802827FF271400744F9D /* Upcoming.swift */; };
 		2EE0F07327CCEA08008BA4B2 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EE0F07227CCEA08008BA4B2 /* Detail.storyboard */; };
@@ -150,6 +152,8 @@
 		2ECB7EA327E3242700736FEA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2ECB7EA527E33D2F00736FEA /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		2ECB7EA727E33D3E00736FEA /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
+		2ECF52BD2807C8D80015DC25 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		2ECF52BF28080BB10015DC25 /* TypeSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSize.swift; sourceTree = "<group>"; };
 		2ED9802627FF09E100744F9D /* UpcomingResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingResponseDTO.swift; sourceTree = "<group>"; };
 		2ED9802827FF271400744F9D /* Upcoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
 		2EE0F07227CCEA08008BA4B2 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 			children = (
 				2EB96A2A27CCE6BC00623AB0 /* HomeViewController.swift */,
 				2EB96A2227CCE68300623AB0 /* Banner.swift */,
+				2ECF52BD2807C8D80015DC25 /* BannerCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 			children = (
 				2EE4A15627FDF97700F6A4B3 /* awsConstants.swift */,
 				2E5C3CE928044E4600803F05 /* TabBarPage.swift */,
+				2ECF52BF28080BB10015DC25 /* TypeSize.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -847,6 +853,7 @@
 				2ECB7EA427E3242700736FEA /* SearchViewController.swift in Sources */,
 				2E78B0862805E24900938567 /* Date+Formatter.swift in Sources */,
 				2EE4A14C27FDE8C300F6A4B3 /* HomeBannerRepository.swift in Sources */,
+				2ECF52C028080BB10015DC25 /* TypeSize.swift in Sources */,
 				2EB96A2F27CCE6E900623AB0 /* DetailViewController.swift in Sources */,
 				2E024AE927E5B33300C116F1 /* AssembleAPIManager.swift in Sources */,
 				2E9CFAF827E9E29C001ED7CE /* CellData.swift in Sources */,
@@ -871,6 +878,7 @@
 				2E9710A027E4A0DB00534CBA /* SearchTableViewCell.swift in Sources */,
 				2EE4A14527FD916800F6A4B3 /* HomeUseCase.swift in Sources */,
 				2EBB6D9A27FF41DD00E66F64 /* HomeViewModel.swift in Sources */,
+				2ECF52BE2807C8D80015DC25 /* BannerCell.swift in Sources */,
 				2E9E1A6227DDD920009AAEFE /* PlaceHolderCell.swift in Sources */,
 				2E4E59B228049CB4005BF567 /* APIService.swift in Sources */,
 				2ECB7EA627E33D2F00736FEA /* NotificationViewController.swift in Sources */,
