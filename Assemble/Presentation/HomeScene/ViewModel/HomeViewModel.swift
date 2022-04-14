@@ -15,6 +15,7 @@ final class HomeViewModel {
     private let homeUseCase: HomeUseCase
     private let disposeBag = DisposeBag()
     var upcomingList: UpcomingList?
+    var upcomingCount: Int?
     
     init(coordinator: HomeCoordinator, homeUseCase: HomeUseCase) {
         self.upcomingList = UpcomingList(
@@ -56,8 +57,10 @@ final class HomeViewModel {
         self.homeUseCase.upcomingList
             .map({ $0.upcomings })
             .map({ upcomings -> [BannerData] in
+                self.upcomingCount = upcomings.count
                 let banners = self.createBannerData(with: upcomings)
-                return banners
+                let carouselBanner = self.createCarouselData(with: banners)
+                return carouselBanner
             })
             .bind(to: output.bannerData)
             .disposed(by: disposeBag)
@@ -78,5 +81,10 @@ private extension HomeViewModel {
             ))
         }
         return banners
+    }
+    
+    func createCarouselData(with banners: [BannerData]) -> [BannerData] {
+        let carousel = Array(repeating: banners, count: 3)
+        return carousel.flatMap{( $0 )}
     }
 }

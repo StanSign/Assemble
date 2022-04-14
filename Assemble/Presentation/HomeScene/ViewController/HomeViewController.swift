@@ -47,6 +47,20 @@ final class HomeViewController: UIViewController {
         collectionView.delegate = self
         
         collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
+        
+        collectionView.rx.didEndDecelerating
+            .subscribe(onNext: { value in
+                let x = self.collectionView.contentOffset.x
+                let w = self.collectionView.bounds.size.width
+                let currentPage = Int(ceil(x / w))
+                
+                guard let count = self.viewModel?.upcomingCount else { return }
+                self.collectionView.scrollToItem(
+                    at: IndexPath(item: (currentPage % count) + count, section: 0),
+                    at: .centeredHorizontally,
+                    animated: false)
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func bindViewModel() {
@@ -58,7 +72,8 @@ final class HomeViewController: UIViewController {
         
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
-                self.setImage(with: banners.imageURL, to: cell, at: index)
+                guard let count = self.viewModel?.upcomingCount else { return }
+                self.setImage(with: banners.imageURL, to: cell, at: index, numberOfUpcomings: count)
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle
                 cell.stateLabel.text = banners.d_day
@@ -66,7 +81,7 @@ final class HomeViewController: UIViewController {
             .disposed(by: self.disposeBag)
     }
     
-    private func setImage(with imageURL: String, to cell: BannerCell, at index: Int) {
+    private func setImage(with imageURL: String, to cell: BannerCell, at index: Int, numberOfUpcomings: Int) {
         let cache = ImageCache.default
         guard let url = URL(string: imageURL) else { return }
         cell.upcomingImageView.kf.setImage(
@@ -74,7 +89,7 @@ final class HomeViewController: UIViewController {
             options: [
                 .waitForCache
             ]) { _ in
-                cache.retrieveImage(forKey: "bannerCache\(index)") { result in
+                cache.retrieveImage(forKey: "bannerCache\(index % numberOfUpcomings)") { result in
                     switch result {
                     case .success(let value):
                         cell.upcomingImageView.image = value.image
