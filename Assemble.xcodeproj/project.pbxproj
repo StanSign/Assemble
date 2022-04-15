@@ -10,6 +10,7 @@
 		2E024AE927E5B33300C116F1 /* AssembleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E024AE827E5B33300C116F1 /* AssembleAPIManager.swift */; };
 		2E1C8F2427D4887000085124 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1C8F2327D4887000085124 /* BannerView.xib */; };
 		2E4E59B228049CB4005BF567 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E59B128049CB4005BF567 /* APIService.swift */; };
+		2E55D3292809352900C66C93 /* MockServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55D3282809352900C66C93 /* MockServerConstants.swift */; };
 		2E5C3CE32800188700803F05 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE22800188700803F05 /* AppCoordinator.swift */; };
 		2E5C3CE5280018B000803F05 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE4280018B000803F05 /* Coordinator.swift */; };
 		2E5C3CE828008E7400803F05 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */; };
@@ -20,6 +21,7 @@
 		2E78B0882805E94000938567 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E78B0872805E94000938567 /* Main.storyboard */; };
 		2E7E2CAB27E8E889009813F5 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7E2CA927E8E889009813F5 /* HeaderCell.swift */; };
 		2E7E2CAC27E8E889009813F5 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7E2CAA27E8E889009813F5 /* HeaderCell.xib */; };
+		2E8F530A2809222C00D81045 /* CustomIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F53092809222C00D81045 /* CustomIndicator.swift */; };
 		2E93726F27D0CE0B0075077F /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E93726E27D0CE0B0075077F /* DateTime.swift */; };
 		2E95659627CFCBDF00268C5D /* Loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E95659527CFCBDF00268C5D /* Loader.json */; };
 		2E9710A027E4A0DB00534CBA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97109F27E4A0DB00534CBA /* SearchTableViewCell.swift */; };
@@ -95,6 +97,7 @@
 		2E024AE827E5B33300C116F1 /* AssembleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssembleAPIManager.swift; sourceTree = "<group>"; };
 		2E1C8F2327D4887000085124 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		2E4E59B128049CB4005BF567 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		2E55D3282809352900C66C93 /* MockServerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServerConstants.swift; sourceTree = "<group>"; };
 		2E5C3CE22800188700803F05 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2E5C3CE4280018B000803F05 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		2E78B0872805E94000938567 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2E7E2CA927E8E889009813F5 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		2E7E2CAA27E8E889009813F5 /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		2E8F53092809222C00D81045 /* CustomIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIndicator.swift; sourceTree = "<group>"; };
 		2E93726E27D0CE0B0075077F /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		2E95659527CFCBDF00268C5D /* Loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loader.json; sourceTree = "<group>"; };
 		2E97109F27E4A0DB00534CBA /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -374,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				2E024AE827E5B33300C116F1 /* AssembleAPIManager.swift */,
+				2E8F53092809222C00D81045 /* CustomIndicator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -597,6 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				2EE4A15627FDF97700F6A4B3 /* awsConstants.swift */,
+				2E55D3282809352900C66C93 /* MockServerConstants.swift */,
 				2E5C3CE928044E4600803F05 /* TabBarPage.swift */,
 				2ECF52BF28080BB10015DC25 /* TypeSize.swift */,
 			);
@@ -852,6 +858,7 @@
 				2E024AE927E5B33300C116F1 /* AssembleAPIManager.swift in Sources */,
 				2E9CFAF827E9E29C001ED7CE /* CellData.swift in Sources */,
 				2EBB716627E0E48300A61755 /* NewsCell.swift in Sources */,
+				2E8F530A2809222C00D81045 /* CustomIndicator.swift in Sources */,
 				2EE4A15727FDF97700F6A4B3 /* awsConstants.swift in Sources */,
 				2EB96A2827CCE6A500623AB0 /* BannerView.swift in Sources */,
 				2EEC60A127E77F150054AB6C /* APIModels.swift in Sources */,
@@ -887,6 +894,7 @@
 				2EF1BA622805B55E00E476CD /* BannerData.swift in Sources */,
 				2EEC609F27E779C20054AB6C /* InformationViewController.swift in Sources */,
 				2E9E1A5127DA0C11009AAEFE /* FrontComposition.swift in Sources */,
+				2E55D3292809352900C66C93 /* MockServerConstants.swift in Sources */,
 				2E5C3CE5280018B000803F05 /* Coordinator.swift in Sources */,
 				2E9E1A5827DCF184009AAEFE /* HeroCell.swift in Sources */,
 				2E5C3CE32800188700803F05 /* AppCoordinator.swift in Sources */,

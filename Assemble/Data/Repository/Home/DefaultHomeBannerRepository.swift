@@ -19,6 +19,7 @@ enum HomeBannerRepositoryError: Error {
 final class DefaultHomeBannerRepository: HomeBannerRepository {
     typealias Error = HomeBannerRepositoryError
     private let disposeBag: DisposeBag
+    private var fetchCount = 0
     
     init() {
         self.disposeBag = DisposeBag()
@@ -26,9 +27,10 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
     
     func fetchUpcomingData() -> Observable<UpcomingList> {
         let url = awsConfiguration.baseURL + awsConfiguration.upcomingFilmPath
+        let testURL = MockServerConstants.baseURL + MockServerConstants.upcomingFilmPath
         
         return Observable.create { observer -> Disposable in
-            let request = AF.request(url, method: .get).responseJSON { response in
+            let request = AF.request(testURL, method: .get).responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     do {
@@ -37,13 +39,14 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
                             options: .prettyPrinted
                         )
                         let dto = try JSONDecoder().decode(UpcomingResponseDTO.self, from: data)
-                        self.fetchBannerImage(from: dto.toDomain().upcomings)
+                        self.fetchBannerImage(from: dto.toDomain().upcomings) {
+                            observer.onCompleted()
+                        }
                         observer.onNext(dto.toDomain())
                     } catch { }
                 case .failure(let error):
                     observer.onError(error)
                 }
-                observer.onCompleted()
             }
             return Disposables.create {
                 request.cancel()
@@ -51,7 +54,7 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
         }
     }
     
-    private func fetchBannerImage(from upcomings: [Upcoming]) {
+    private func fetchBannerImage(from upcomings: [Upcoming], completion: @escaping () -> ()) {
         for (index, url) in upcomings.map({ URL(string: $0.imageURL) }).enumerated() {
             guard let url = url else { return }
             let resource = ImageResource(downloadURL: url, cacheKey: "bannerCache\(index)")
@@ -63,8 +66,16 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
                     .processor(DownsamplingImageProcessor(size: size)),
                     .scaleFactor(UIScreen.main.scale),
                     .cacheOriginalImage
-                ]) { _ in
-                    // completion
+                ]) { result in
+                    switch result {
+                    case .success(_):
+                        self.fetchCount += 1
+                        if self.fetchCount == upcomings.count - 1 {
+                            completion()
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
                 }
         }
     }
