@@ -37,6 +37,8 @@ final class HomeViewController: UIViewController {
         pageControl.elementWidth = 20
         return pageControl
     }()
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var notifyButton: UIButton!
     
     //MARK: - Life Cycle
     
@@ -86,7 +88,9 @@ final class HomeViewController: UIViewController {
         let input = HomeViewModel.Input(
             viewDidLoadEvent: Observable.just(()),
             bannerContentOffsetX: collectionView.rx.contentOffset.asObservable(),
-            bannerBoundsWidth: Observable.just(collectionView.bounds.size.width)
+            bannerBoundsWidth: Observable.just(collectionView.bounds.size.width),
+            searchButtonDidTapEvent: searchButton.rx.tap.asObservable(),
+            notifyButtonDidTapEvent: notifyButton.rx.tap.asObservable()
         )
         
         let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)

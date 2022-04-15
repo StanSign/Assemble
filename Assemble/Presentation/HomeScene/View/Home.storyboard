@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,22 +65,29 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k1D-c5-fht" userLabel="Button Stack View">
                                         <rect key="frame" x="334" y="20.5" width="64" height="24"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gc6-Cj-wbn">
-                                                <rect key="frame" x="0.0" y="0.5" width="24" height="22.5"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vur-z0-JtH">
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="24" id="nrC-9u-nGP"/>
-                                                    <constraint firstAttribute="height" constant="24" id="sJL-9K-09A"/>
+                                                    <constraint firstAttribute="width" constant="24" id="KaD-ki-Mrc"/>
+                                                    <constraint firstAttribute="height" constant="24" id="lXh-r5-v6u"/>
                                                 </constraints>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NtM-9J-tXX">
-                                                <rect key="frame" x="40" y="0.0" width="24" height="23.5"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="">
+                                                    <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmK-ER-c2X">
+                                                <rect key="frame" x="40" y="0.0" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="Sv7-I0-EFN"/>
-                                                    <constraint firstAttribute="width" constant="24" id="VY8-77-7qg"/>
+                                                    <constraint firstAttribute="width" constant="24" id="4Qy-Dg-EHX"/>
+                                                    <constraint firstAttribute="height" constant="24" id="hPu-0R-SkC"/>
                                                 </constraints>
-                                            </imageView>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="bell" catalog="system"/>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -106,7 +114,9 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="PgC-ub-WeP" id="aHu-YP-e9D"/>
+                        <outlet property="notifyButton" destination="GmK-ER-c2X" id="9id-0E-r1h"/>
                         <outlet property="scrollView" destination="GUB-8T-FJJ" id="Shj-fz-cfe"/>
+                        <outlet property="searchButton" destination="vur-z0-JtH" id="lTM-2k-DSz"/>
                         <outlet property="stackView" destination="5Wt-Vf-QVm" id="MnO-Co-yIk"/>
                     </connections>
                 </viewController>

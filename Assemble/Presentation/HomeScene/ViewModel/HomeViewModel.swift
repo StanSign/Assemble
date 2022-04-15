@@ -36,6 +36,8 @@ final class HomeViewModel {
         let viewDidLoadEvent: Observable<Void>
         let bannerContentOffsetX: Observable<CGPoint>
         let bannerBoundsWidth: Observable<CGFloat>
+        let searchButtonDidTapEvent: Observable<Void>
+        let notifyButtonDidTapEvent: Observable<Void>
     }
     
     //MARK: - Output
@@ -55,6 +57,18 @@ final class HomeViewModel {
         input.viewDidLoadEvent
             .subscribe(onNext: { [weak self] in
                 self?.homeUseCase.fetchUpcomingList()
+            })
+            .disposed(by: disposeBag)
+        
+        input.searchButtonDidTapEvent
+            .subscribe(onNext: {
+                print("Search Tapped")
+            })
+            .disposed(by: disposeBag)
+        
+        input.notifyButtonDidTapEvent
+            .subscribe(onNext: {
+                print("Notify Tapped")
             })
             .disposed(by: disposeBag)
         
