@@ -20,7 +20,6 @@ final class HomeViewController: UIViewController {
     //MARK: - Variables
     var viewModel: HomeViewModel?
     var disposeBag = DisposeBag()
-    var testFlag = false
     
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
