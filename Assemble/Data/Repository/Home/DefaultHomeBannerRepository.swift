@@ -63,7 +63,7 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
                 options: [
                     .processor(DownsamplingImageProcessor(size: size)),
                     .scaleFactor(UIScreen.main.scale),
-                    .cacheOriginalImage
+                    .alsoPrefetchToMemory
                 ]) { _ in
                     // completion
                 }

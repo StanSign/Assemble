@@ -81,6 +81,17 @@ final class HomeViewController: UIViewController {
                 cell.stateLabel.text = banners.d_day
             }
             .disposed(by: self.disposeBag)
+        
+        collectionView.rx.prefetchItems
+            .map({ $0.map({ $0.item }) })
+            .withLatestFrom(output!.bannerData) { indexes, elements in
+                indexes.map({ elements[$0] })
+            }
+            .map({ $0.compactMap({ URL(string: $0.imageURL) }) })
+            .subscribe(onNext: {
+                ImagePrefetcher(urls: $0).start()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func setImage(with imageURL: String, to cell: BannerCell, at index: Int, numberOfUpcomings: Int) {
