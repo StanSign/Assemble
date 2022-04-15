@@ -44,6 +44,13 @@ class BannerCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var arrowIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "chevron.right")
+        imageView.tintColor = .white
+        return imageView
+    }()
+    
     lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: TypeSize.body.rawValue, weight: .regular)
@@ -81,13 +88,11 @@ private extension BannerCell {
     func configureUI() {
         contentView.addSubview(self.upcomingImageView)
         self.upcomingImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
             make.edges.equalToSuperview()
         }
         
         contentView.addSubview(self.gradientContainer)
         self.gradientContainer.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
             make.edges.equalToSuperview()
         }
         
@@ -98,5 +103,11 @@ private extension BannerCell {
         labelStack.addArrangedSubview(stateLabel)
         labelStack.addArrangedSubview(titleLabel)
         labelStack.addArrangedSubview(subtitleLabel)
+        
+        insertSubview(self.arrowIcon, aboveSubview: gradientContainer)
+        self.arrowIcon.snp.makeConstraints { make in
+            make.centerY.equalTo(self.titleLabel)
+            make.left.equalTo(self.titleLabel.snp.right)
+        }
     }
 }

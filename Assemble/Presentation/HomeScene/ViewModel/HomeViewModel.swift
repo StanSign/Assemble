@@ -16,6 +16,7 @@ final class HomeViewModel {
     private let disposeBag = DisposeBag()
     var upcomingList: UpcomingList?
     var upcomingCount: Int?
+    var bannerCount = BehaviorRelay<Int>(value: 0)
     
     init(coordinator: HomeCoordinator, homeUseCase: HomeUseCase) {
         self.upcomingList = UpcomingList(
@@ -33,13 +34,18 @@ final class HomeViewModel {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let bannerContentOffsetX: Observable<CGPoint>
+        let bannerBoundsWidth: Observable<CGFloat>
     }
     
     //MARK: - Output
     
     struct Output {
-        let bannerData = PublishRelay<[BannerData]>()
+        let bannerData = BehaviorRelay<[BannerData]>(value: [])
         let didLoadBanner = PublishRelay<Bool>()
+        let upcomingCount = BehaviorRelay<Int>(value: 0) // Upcoming Count (Total Page Control)
+        let bannerCount = BehaviorRelay<Int>(value: 0) // Total Banner Page Count
+        let currentBannerPage = BehaviorRelay<Int?>(value: nil)
     }
     
     //MARK: - Transform
@@ -58,8 +64,11 @@ final class HomeViewModel {
         self.homeUseCase.upcomingList
             .map({ $0.upcomings })
             .map({ upcomings -> [BannerData] in
+                output.upcomingCount.accept(upcomings.count)
+                self.bannerCount.accept(upcomings.count)
                 self.upcomingCount = upcomings.count
                 let banners = self.createBannerData(with: upcomings)
+                output.bannerCount.accept(banners.count)
                 let carouselBanner = self.createCarouselData(with: banners)
                 return carouselBanner
             })
@@ -71,6 +80,19 @@ final class HomeViewModel {
             .subscribe(onNext: { didLoad in
                 output.didLoadBanner.accept(didLoad)
             })
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(
+            input.bannerBoundsWidth,
+            input.bannerContentOffsetX,
+            bannerCount,
+            resultSelector: { (width, offset, bannerCount) -> Int? in
+                if bannerCount == .zero {
+                    return nil
+                }
+                return Int(ceil(offset.x / width)) % bannerCount
+            })
+            .bind(to: output.currentBannerPage)
             .disposed(by: disposeBag)
         
         return output

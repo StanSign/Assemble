@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import Kingfisher
+import CHIPageControl
 
 final class HomeViewController: UIViewController {
     
@@ -23,7 +24,19 @@ final class HomeViewController: UIViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var collectionView: UICollectionView!
+    private lazy var pageControl: CHIPageControlJaloro = {
+        let pageControl = CHIPageControlJaloro()
+        pageControl.padding = 1
+        pageControl.radius = 1
+        pageControl.currentPageTintColor = .white.withAlphaComponent(0.75)
+        pageControl.inactiveTransparency = 0.75
+        pageControl.tintColor = .systemGray
+        pageControl.elementHeight = 2
+        pageControl.elementWidth = 20
+        return pageControl
+    }()
     
     //MARK: - Life Cycle
     
@@ -60,11 +73,20 @@ final class HomeViewController: UIViewController {
                     animated: false)
             })
             .disposed(by: self.disposeBag)
+        
+        view.addSubview(self.pageControl)
+        pageControl.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.bottom.equalTo(self.collectionView.snp.bottom).inset(32)
+            make.right.equalToSuperview().inset(32)
+        }
     }
     
     private func bindViewModel() {
         let input = HomeViewModel.Input(
-            viewDidLoadEvent: Observable.just(())
+            viewDidLoadEvent: Observable.just(()),
+            bannerContentOffsetX: collectionView.rx.contentOffset.asObservable(),
+            bannerBoundsWidth: Observable.just(collectionView.bounds.size.width)
         )
         
         let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
@@ -82,6 +104,18 @@ final class HomeViewController: UIViewController {
         output?.didLoadBanner
             .subscribe(onNext: { _ in // Bool
                 self.collectionView.reloadData()
+            })
+            .disposed(by: self.disposeBag)
+        
+        output?.bannerCount
+            .subscribe(onNext: { count in
+                self.pageControl.numberOfPages = count
+            })
+            .disposed(by: self.disposeBag)
+        
+        output?.currentBannerPage
+            .subscribe(onNext: { currentPage in
+                self.pageControl.set(progress: currentPage ?? 0, animated: true)
             })
             .disposed(by: self.disposeBag)
         
