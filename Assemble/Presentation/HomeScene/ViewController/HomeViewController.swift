@@ -19,6 +19,7 @@ final class HomeViewController: UIViewController {
     //MARK: - Variables
     var viewModel: HomeViewModel?
     var disposeBag = DisposeBag()
+    var testFlag = false
     
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -45,9 +46,7 @@ final class HomeViewController: UIViewController {
         scrollView.contentInsetAdjustmentBehavior = .never
         
         collectionView.delegate = self
-        
         collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
-        
         collectionView.rx.didEndDecelerating
             .subscribe(onNext: { value in
                 let x = self.collectionView.contentOffset.x
@@ -73,13 +72,17 @@ final class HomeViewController: UIViewController {
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
                 guard let count = self.viewModel?.upcomingCount else { return }
-                let indicator = CustomIndicator(with: CGSize(width: 32, height: 32))
-                cell.upcomingImageView.kf.indicatorType = .custom(indicator: indicator)
                 self.setImage(with: banners.imageURL, to: cell, at: index, numberOfUpcomings: count)
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle
                 cell.stateLabel.text = banners.d_day
             }
+            .disposed(by: self.disposeBag)
+        
+        output?.didLoadBanner
+            .subscribe(onNext: { _ in // Bool
+                self.collectionView.reloadData()
+            })
             .disposed(by: self.disposeBag)
         
         collectionView.rx.prefetchItems
@@ -97,10 +100,13 @@ final class HomeViewController: UIViewController {
     private func setImage(with imageURL: String, to cell: BannerCell, at index: Int, numberOfUpcomings: Int) {
         let cache = ImageCache.default
         guard let url = URL(string: imageURL) else { return }
+        let indicator = CustomIndicator(with: CGSize(width: 32, height: 32))
+        cell.upcomingImageView.kf.indicatorType = .custom(indicator: indicator)
         cell.upcomingImageView.kf.setImage(
             with: url,
             options: [
-                .waitForCache
+                .waitForCache,
+                .onlyFromCache
             ]) { _ in
                 cache.retrieveImage(forKey: "bannerCache\(index % numberOfUpcomings)") { result in
                     switch result {

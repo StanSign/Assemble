@@ -39,6 +39,7 @@ final class HomeViewModel {
     
     struct Output {
         let bannerData = PublishRelay<[BannerData]>()
+        let didLoadBanner = PublishRelay<Bool>()
     }
     
     //MARK: - Transform
@@ -63,6 +64,13 @@ final class HomeViewModel {
                 return carouselBanner
             })
             .bind(to: output.bannerData)
+            .disposed(by: disposeBag)
+        
+        self.homeUseCase.didLoadImage
+            .filter({ $0 })
+            .subscribe(onNext: { didLoad in
+                output.didLoadBanner.accept(didLoad)
+            })
             .disposed(by: disposeBag)
         
         return output

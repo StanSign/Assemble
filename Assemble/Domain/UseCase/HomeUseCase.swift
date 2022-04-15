@@ -11,7 +11,7 @@ import RxSwift
 
 protocol HomeUseCase {
     var upcomingList: PublishSubject<UpcomingList> { get set }
-    var isImagePrefetched: PublishSubject<Bool> { get set }
+    var didLoadImage: PublishSubject<Bool> { get set }
     func fetchUpcomingList()
     func buttonPress()
 }
@@ -21,7 +21,7 @@ final class DefaultHomeUseCase: HomeUseCase {
     private let bannerRepository: HomeBannerRepository
     private let disposeBag: DisposeBag
     var upcomingList: PublishSubject<UpcomingList> = PublishSubject()
-    var isImagePrefetched: PublishSubject<Bool> = PublishSubject()
+    var didLoadImage: PublishSubject<Bool> = PublishSubject()
     
     //MARK: - init
     init(bannerRepository: HomeBannerRepository) {
@@ -34,6 +34,8 @@ final class DefaultHomeUseCase: HomeUseCase {
         self.bannerRepository.fetchUpcomingData()
             .subscribe(onNext: { [weak self] upcomingList in
                 self?.upcomingList.onNext(upcomingList)
+            }, onCompleted: { [weak self] in
+                self?.didLoadImage.onNext(true)
             })
             .disposed(by: disposeBag)
     }
