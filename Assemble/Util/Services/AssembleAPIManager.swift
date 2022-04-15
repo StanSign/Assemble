@@ -116,25 +116,3 @@ class AssembleAPIManager {
         }
     }
 }
-
-//MARK: - Custom Indicator
-
-import NVActivityIndicatorView
-
-struct CustomIndicator: Indicator {
-    let view: UIView = UIView()
-    var subView: NVActivityIndicatorView
-    
-    func startAnimatingView() { view.isHidden = false }
-    func stopAnimatingView() { view.isHidden = true }
-    
-    init() {
-        subView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 32, height: 32), type: .ballBeat, color: .white, padding: nil)
-        subView.startAnimating()
-        view.addSubview(subView)
-        
-        subView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-    }
-}

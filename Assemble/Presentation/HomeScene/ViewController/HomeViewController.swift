@@ -73,6 +73,8 @@ final class HomeViewController: UIViewController {
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
                 guard let count = self.viewModel?.upcomingCount else { return }
+                let indicator = CustomIndicator(with: CGSize(width: 32, height: 32))
+                cell.upcomingImageView.kf.indicatorType = .custom(indicator: indicator)
                 self.setImage(with: banners.imageURL, to: cell, at: index, numberOfUpcomings: count)
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle

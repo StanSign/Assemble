@@ -26,9 +26,10 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
     
     func fetchUpcomingData() -> Observable<UpcomingList> {
         let url = awsConfiguration.baseURL + awsConfiguration.upcomingFilmPath
+        let testURL = MockServerConstants.baseURL + MockServerConstants.upcomingFilmPath
         
         return Observable.create { observer -> Disposable in
-            let request = AF.request(url, method: .get).responseJSON { response in
+            let request = AF.request(testURL, method: .get).responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     do {
