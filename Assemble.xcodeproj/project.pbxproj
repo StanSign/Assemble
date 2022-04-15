@@ -10,7 +10,7 @@
 		2E024AE927E5B33300C116F1 /* AssembleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E024AE827E5B33300C116F1 /* AssembleAPIManager.swift */; };
 		2E1C8F2427D4887000085124 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E1C8F2327D4887000085124 /* BannerView.xib */; };
 		2E4E59B228049CB4005BF567 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E59B128049CB4005BF567 /* APIService.swift */; };
-		2E55D3292809352900C66C93 /* mockServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55D3282809352900C66C93 /* mockServerConstants.swift */; };
+		2E55D3292809352900C66C93 /* MockServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55D3282809352900C66C93 /* MockServerConstants.swift */; };
 		2E5C3CE32800188700803F05 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE22800188700803F05 /* AppCoordinator.swift */; };
 		2E5C3CE5280018B000803F05 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE4280018B000803F05 /* Coordinator.swift */; };
 		2E5C3CE828008E7400803F05 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */; };
@@ -97,7 +97,7 @@
 		2E024AE827E5B33300C116F1 /* AssembleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssembleAPIManager.swift; sourceTree = "<group>"; };
 		2E1C8F2327D4887000085124 /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		2E4E59B128049CB4005BF567 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		2E55D3282809352900C66C93 /* mockServerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mockServerConstants.swift; sourceTree = "<group>"; };
+		2E55D3282809352900C66C93 /* MockServerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServerConstants.swift; sourceTree = "<group>"; };
 		2E5C3CE22800188700803F05 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2E5C3CE4280018B000803F05 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
@@ -602,7 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				2EE4A15627FDF97700F6A4B3 /* awsConstants.swift */,
-				2E55D3282809352900C66C93 /* mockServerConstants.swift */,
+				2E55D3282809352900C66C93 /* MockServerConstants.swift */,
 				2E5C3CE928044E4600803F05 /* TabBarPage.swift */,
 				2ECF52BF28080BB10015DC25 /* TypeSize.swift */,
 			);
@@ -894,7 +894,7 @@
 				2EF1BA622805B55E00E476CD /* BannerData.swift in Sources */,
 				2EEC609F27E779C20054AB6C /* InformationViewController.swift in Sources */,
 				2E9E1A5127DA0C11009AAEFE /* FrontComposition.swift in Sources */,
-				2E55D3292809352900C66C93 /* mockServerConstants.swift in Sources */,
+				2E55D3292809352900C66C93 /* MockServerConstants.swift in Sources */,
 				2E5C3CE5280018B000803F05 /* Coordinator.swift in Sources */,
 				2E9E1A5827DCF184009AAEFE /* HeroCell.swift in Sources */,
 				2E5C3CE32800188700803F05 /* AppCoordinator.swift in Sources */,
