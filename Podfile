@@ -11,6 +11,7 @@ target 'Assemble' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'RxGesture'
   
   # Alamofire
   pod 'Alamofire'
