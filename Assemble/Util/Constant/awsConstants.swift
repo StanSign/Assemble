@@ -15,4 +15,6 @@ enum awsConfiguration {
     
     /** Upcoming_GET */
     static let upcomingFilmPath = "films/upcoming"
+    /** searchData */
+    static let searchPath = "search/"
 }
