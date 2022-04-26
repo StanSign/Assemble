@@ -18,14 +18,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h9g-LZ-OFK" userLabel="Top Menu View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="65"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rxU-Rm-fFI">
-                                        <rect key="frame" x="16" y="23" width="24" height="19"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHO-qi-WxG">
+                                        <rect key="frame" x="16" y="20.5" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="rxU-Rm-fFI" secondAttribute="height" multiplier="1:1" id="Wv9-9T-KCb"/>
-                                            <constraint firstAttribute="width" constant="24" id="pyg-mA-AfK"/>
+                                            <constraint firstAttribute="width" constant="24" id="a4I-iJ-Icb"/>
+                                            <constraint firstAttribute="width" secondItem="QHO-qi-WxG" secondAttribute="height" multiplier="1:1" id="jrC-ld-Gng"/>
                                         </constraints>
-                                    </imageView>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                                    </button>
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UlY-b9-1OR">
                                         <rect key="frame" x="52" y="16.5" width="350" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,16 +58,16 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="UlY-b9-1OR" secondAttribute="trailing" constant="12" id="0rF-MS-UVH"/>
-                                    <constraint firstItem="rxU-Rm-fFI" firstAttribute="leading" secondItem="h9g-LZ-OFK" secondAttribute="leading" constant="16" id="4dL-cd-xAp"/>
+                                    <constraint firstItem="UlY-b9-1OR" firstAttribute="leading" secondItem="QHO-qi-WxG" secondAttribute="trailing" constant="12" id="8N4-Hg-NCx"/>
                                     <constraint firstItem="UlY-b9-1OR" firstAttribute="centerY" secondItem="h9g-LZ-OFK" secondAttribute="centerY" id="E77-EZ-CTy"/>
+                                    <constraint firstItem="QHO-qi-WxG" firstAttribute="centerY" secondItem="UlY-b9-1OR" secondAttribute="centerY" id="I1M-uf-jLQ"/>
                                     <constraint firstItem="2Qu-o4-HLl" firstAttribute="centerY" secondItem="h9g-LZ-OFK" secondAttribute="centerY" id="KoG-Pg-Tfq"/>
                                     <constraint firstItem="Sm3-bd-fel" firstAttribute="leading" secondItem="UlY-b9-1OR" secondAttribute="leading" constant="16" id="PX3-NO-li1"/>
-                                    <constraint firstItem="rxU-Rm-fFI" firstAttribute="centerY" secondItem="h9g-LZ-OFK" secondAttribute="centerY" id="SdR-Ue-e9a"/>
+                                    <constraint firstItem="QHO-qi-WxG" firstAttribute="leading" secondItem="h9g-LZ-OFK" secondAttribute="leading" constant="16" id="UAt-lU-tpc"/>
                                     <constraint firstItem="2Qu-o4-HLl" firstAttribute="leading" secondItem="Sm3-bd-fel" secondAttribute="trailing" constant="4" id="Vbb-5r-HSK"/>
                                     <constraint firstItem="UlY-b9-1OR" firstAttribute="trailing" secondItem="2Qu-o4-HLl" secondAttribute="trailing" constant="16" id="arH-XB-42R"/>
                                     <constraint firstItem="Sm3-bd-fel" firstAttribute="centerY" secondItem="h9g-LZ-OFK" secondAttribute="centerY" id="ipd-ZR-u48"/>
                                     <constraint firstAttribute="height" constant="65" id="kTZ-y1-bQX"/>
-                                    <constraint firstItem="UlY-b9-1OR" firstAttribute="leading" secondItem="rxU-Rm-fFI" secondAttribute="trailing" constant="12" id="qcl-EZ-y5R"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="112" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fSl-2z-hqg">
@@ -135,29 +137,17 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="fSl-2z-hqg" secondAttribute="bottom" id="hYu-M2-xbr"/>
                             <constraint firstItem="h9g-LZ-OFK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="n7z-JD-zwx"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="4w0-qC-9kA" appends="YES" id="Qq3-oM-0GV"/>
-                        </connections>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="backIcon" destination="rxU-Rm-fFI" id="uL4-r2-vFW"/>
-                        <outlet property="bgView" destination="5EZ-qb-Rvc" id="oNT-Ei-p92"/>
-                        <outlet property="screenEdgePanRecognizer" destination="4w0-qC-9kA" id="XUw-3t-pr4"/>
-                        <outlet property="searchContainer" destination="UlY-b9-1OR" id="4n9-bw-zF5"/>
-                        <outlet property="searchIcon" destination="uNz-Rh-GUY" id="Q1a-ua-Rj9"/>
-                        <outlet property="searchTextField" destination="Sm3-bd-fel" id="vj3-vh-im1"/>
-                        <outlet property="tableView" destination="fSl-2z-hqg" id="HLI-Xv-c6W"/>
+                        <outlet property="backButton" destination="QHO-qi-WxG" id="9cE-ON-y6L"/>
+                        <outlet property="searchBar" destination="Sm3-bd-fel" id="JEM-cv-cVC"/>
+                        <outlet property="searchBarView" destination="UlY-b9-1OR" id="h6f-VU-wnD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="4w0-qC-9kA">
-                    <connections>
-                        <action selector="screenEdgePanned:" destination="Y6W-OH-hqX" id="iNT-kt-WwZ"/>
-                    </connections>
-                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="132" y="117"/>
         </scene>

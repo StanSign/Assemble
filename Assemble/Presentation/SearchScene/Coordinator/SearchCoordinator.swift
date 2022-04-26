@@ -31,4 +31,8 @@ final class DefaultSearchCoordinator: SearchCoordinator {
             searchUseCase: DefaultSearchUseCase(searchRepository: DefaultSearchRepository()))
         self.navigationController.pushViewController(searchViewController, animated: true)
     }
+    
+    func finish() {
+        self.finishDelegate?.coordinatorDidFinish(childCoordinator: self)
+    }
 }

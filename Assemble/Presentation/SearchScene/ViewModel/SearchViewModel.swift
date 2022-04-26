@@ -23,19 +23,41 @@ final class SearchViewModel {
     //MARK: - Input
     
     struct Input {
-        
+        let backButtonDidTapEvent: Observable<Void>
+        let screenEdgePanGestureEvent: Observable<Void>
+        let searchBarEvent: Observable<String>
     }
     
     //MARK: - Output
     
     struct Output {
-        
+        let testString = PublishRelay<String>()
     }
     
     //MARK: - Transform
     
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
         // input
+
+        input.backButtonDidTapEvent
+            .subscribe(onNext: {
+                self.coordinator?.finish()
+            })
+            .disposed(by: disposeBag)
+        
+        input.screenEdgePanGestureEvent
+            .subscribe(onNext: {
+                self.coordinator?.finish()
+            })
+            .disposed(by: disposeBag)
+        
+        input.searchBarEvent
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(onNext: { text in
+                print(text)
+            })
+            .disposed(by: disposeBag)
         
         // output
         let output = Output()

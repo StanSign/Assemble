@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import RxGesture
 
 class SearchViewController: UIViewController {
     
@@ -17,9 +18,33 @@ class SearchViewController: UIViewController {
     var viewModel: SearchViewModel?
     var disposeBag = DisposeBag()
     
+    //MARK: - IBOutlets
+    @IBOutlet weak var searchBarView: UIView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var searchBar: UITextField!
+    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configureUI()
+        bindViewModel()
+    }
+    
+    private func configureUI() {
+        searchBarView.layer.cornerRadius = searchBarView.bounds.height / 2
+    }
+    
+    private func bindViewModel() {
+        let input = SearchViewModel.Input(
+            backButtonDidTapEvent: self.backButton.rx.tap.asObservable(),
+            screenEdgePanGestureEvent: self.view.rx.panGesture()
+                .when(.recognized)
+                .map({ _ in })
+                .asObservable(),
+            searchBarEvent: self.searchBar.rx.text.orEmpty.asObservable()
+        )
+        
+        let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
     }
 }

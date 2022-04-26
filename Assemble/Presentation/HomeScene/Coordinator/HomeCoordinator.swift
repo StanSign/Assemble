@@ -30,10 +30,21 @@ final class DefaultHomeCoordinator: HomeCoordinator {
             coordinator: self,
             homeUseCase: DefaultHomeUseCase(bannerRepository: DefaultHomeBannerRepository())
         )
-        self.navigationController.pushViewController(homeViewController, animated: true)
+        self.navigationController.pushViewController(self.homeViewController, animated: true)
     }
     
     func showSearchFlow() {
-        //
+        let searchCoordinator = DefaultSearchCoordinator(self.navigationController)
+        searchCoordinator.finishDelegate = self
+        self.childCoordinators.append(searchCoordinator)
+        searchCoordinator.start()
+    }
+}
+
+extension DefaultHomeCoordinator: CoordinatorFinishDelegate {
+    func coordinatorDidFinish(childCoordinator: Coordinator) {
+        self.childCoordinators = self.childCoordinators
+            .filter({ $0.type != childCoordinator.type })
+        childCoordinator.navigationController.popToRootViewController(animated: true) 
     }
 }

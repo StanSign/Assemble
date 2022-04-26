@@ -61,8 +61,8 @@ final class HomeViewModel {
             .disposed(by: disposeBag)
         
         input.searchButtonDidTapEvent
-            .subscribe(onNext: {
-                print("Search Tapped")
+            .subscribe({ [weak self] _ in
+                self?.coordinator?.showSearchFlow()
             })
             .disposed(by: disposeBag)
         
