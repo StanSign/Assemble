@@ -19,9 +19,9 @@ final class DefaultSearchRepository: SearchRepository {
     }
     
     func fetchSearchResult(with query: String) -> Observable<SearchResultList> {
+        print(query)
         let url = awsConfiguration.baseURL + awsConfiguration.searchPath + query
         let encodedURL = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        print(query)
         return Observable.create { observer in
             let request = AF.request(encodedURL, method: .get).responseJSON { response in
                 switch response.result {
@@ -32,7 +32,6 @@ final class DefaultSearchRepository: SearchRepository {
                             options: .prettyPrinted
                         )
                         let dto = try JSONDecoder().decode(SearchResultDTO.self, from: data)
-                        print(dto)
                         observer.onNext(dto.toDomain())
                     } catch { }
                 case .failure(let error):
