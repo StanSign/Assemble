@@ -10,5 +10,5 @@ import Foundation
 import RxSwift
 
 protocol SearchRepository {
-    
+    func fetchSearchResult(with query: String) -> Observable<SearchResultList>
 }

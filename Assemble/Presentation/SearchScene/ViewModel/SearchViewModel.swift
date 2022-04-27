@@ -55,12 +55,17 @@ final class SearchViewModel {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { text in
-                print(text)
+                self.searchUseCase.fetchSearchResult(with: text)
             })
             .disposed(by: disposeBag)
         
         // output
         let output = Output()
+        
+        self.searchUseCase.searchResultList
+            .map({ result in
+                print(result)
+            })
         
         return output
     }

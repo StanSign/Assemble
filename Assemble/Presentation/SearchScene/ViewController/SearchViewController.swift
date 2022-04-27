@@ -33,6 +33,7 @@ class SearchViewController: UIViewController {
     
     private func configureUI() {
         searchBarView.layer.cornerRadius = searchBarView.bounds.height / 2
+        searchBar.becomeFirstResponder()
     }
     
     private func bindViewModel() {
