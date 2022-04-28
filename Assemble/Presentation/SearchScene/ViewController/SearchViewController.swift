@@ -41,7 +41,10 @@ class SearchViewController: UIViewController {
     private func bindViewModel() {
         let input = SearchViewModel.Input(
             backButtonDidTapEvent: self.backButton.rx.tap.asObservable(),
-            screenEdgePanGestureEvent: self.view.rx.panGesture()
+            screenEdgePanGestureEvent: self.view.rx
+                .anyGesture(
+                    .swipe(direction: .right)
+                )
                 .when(.recognized)
                 .map({ _ in })
                 .asObservable(),
