@@ -31,7 +31,7 @@ final class SearchViewModel {
     //MARK: - Output
     
     struct Output {
-        let testString = PublishRelay<String>()
+        let searchResults = BehaviorRelay<[SearchResult]>(value: [])
     }
     
     //MARK: - Transform
@@ -63,14 +63,22 @@ final class SearchViewModel {
         let output = Output()
         
         self.searchUseCase.searchResultList
+            .map({ $0.results })
             .map({ result in
-                print("UseCase Result: \(result)")
+                let results = self.createResultData(with: result)
+                return results
             })
+            .bind(to: output.searchResults)
+            .disposed(by: disposeBag)
         
         return output
     }
 }
 
 private extension SearchViewModel {
-    
+    func createResultData(with resultList: [SearchResult]) -> [SearchResult] {
+        print("UseCase Result: \(resultList)")
+        
+        return resultList
+    }
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import RxDataSources
 import RxGesture
 
 class SearchViewController: UIViewController {
@@ -22,6 +23,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchBar: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -47,5 +49,12 @@ class SearchViewController: UIViewController {
         )
         
         let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
+        
+        output?.searchResults
+            .bind(to: self.tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { index, searchResult, cell in
+                cell.titleLabel.text = searchResult.name
+                cell.typeLabel.text = searchResult.type
+            }
+            .disposed(by: self.disposeBag)
     }
 }

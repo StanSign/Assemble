@@ -299,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				2E55D33E2809BF4A00C66C93 /* SearchViewController.swift */,
+				2E97109F27E4A0DB00534CBA /* SearchTableViewCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -363,7 +364,6 @@
 		2E7E2CA627E8E75E009813F5 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				2E97109F27E4A0DB00534CBA /* SearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";

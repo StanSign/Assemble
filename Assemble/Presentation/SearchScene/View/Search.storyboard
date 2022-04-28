@@ -116,6 +116,7 @@
                                                 <constraint firstItem="v8T-mF-iq2" firstAttribute="top" secondItem="sai-op-Naa" secondAttribute="topMargin" constant="24" id="zAf-JK-DuZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="cellImage" destination="OTE-c9-2MH" id="lut-Kc-x3O"/>
                                             <outlet property="titleLabel" destination="rCI-yC-YlD" id="3ea-RV-qYh"/>
@@ -145,6 +146,7 @@
                         <outlet property="backButton" destination="QHO-qi-WxG" id="9cE-ON-y6L"/>
                         <outlet property="searchBar" destination="Sm3-bd-fel" id="JEM-cv-cVC"/>
                         <outlet property="searchBarView" destination="UlY-b9-1OR" id="h6f-VU-wnD"/>
+                        <outlet property="tableView" destination="fSl-2z-hqg" id="Zj8-J1-ssD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
