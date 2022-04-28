@@ -9,5 +9,6 @@
 
 enum CoordinatorType {
     case app, tab, home
+    case setup
     case search
 }
