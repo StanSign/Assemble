@@ -48,11 +48,6 @@ final class HomeViewController: UIViewController {
         bindViewModel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
     //MARK: - Binding
     
     private func configureUI() {
@@ -96,6 +91,7 @@ final class HomeViewController: UIViewController {
         
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
+                print(banners)
                 guard let count = self.viewModel?.upcomingCount else { return }
                 self.setImage(with: banners.imageURL, to: cell, at: index, numberOfUpcomings: count)
                 cell.titleLabel.text = banners.title

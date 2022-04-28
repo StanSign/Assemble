@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeSetupCoordinator: Coordinator {
-    func showHomeFlow()
+    func showHomeFlow(with bannerData: [BannerData])
 }
 
 final class DefaultHomeSetupCoordinator: HomeSetupCoordinator {
@@ -25,16 +25,17 @@ final class DefaultHomeSetupCoordinator: HomeSetupCoordinator {
     }
     
     func start() {
-        print("I'm at Setup Flow")
+        self.homeSetupViewController.viewModel = HomeSetupViewModel(
+            coordinator: self,
+            homeUseCase: DefaultHomeUseCase(bannerRepository: DefaultHomeBannerRepository()))
         self.navigationController.pushViewController(self.homeSetupViewController, animated: true)
-        showHomeFlow()
     }
     
-    func showHomeFlow() {
-        let homeCoordinator = DefaultHomeCoordinator.init(navigationController)
+    func showHomeFlow(with bannerData: [BannerData]) {
+        let homeCoordinator = DefaultHomeCoordinator.init(self.navigationController)
         homeCoordinator.finishDelegate = self
-        homeCoordinator.start()
-        childCoordinators.append(homeCoordinator)
+        self.childCoordinators.append(homeCoordinator)
+        homeCoordinator.pushHomeViewController(with: bannerData)
     }
 }
 

@@ -6,34 +6,55 @@
 //
 
 import UIKit
+
 import Lottie
+import RxSwift
+import RxCocoa
+import SnapKit
 
 final class HomeSetupViewController: UIViewController {
     
     private var animationView: AnimationView?
+    var viewModel: HomeSetupViewModel?
+    var disposeBag = DisposeBag()
+    
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .black
         
         configureUI()
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
+        super.viewWillAppear(animated)
         resumeSpinner()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(false)
+        super.viewWillDisappear(animated)
         pauseSpinner()
     }
     
+    //MARK: - Binding
+    
     private func configureUI() {
+        self.view.backgroundColor = .black
         loadSpinner()
     }
     
-    private func loadSpinner() {
+    private func bindViewModel() {
+        let input = HomeSetupViewModel.Input(
+            viewDidLoadEvent: Observable.just(())
+        )
+        
+        _ = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
+    }
+}
+
+private extension HomeSetupViewController {
+    func loadSpinner() {
         animationView = .init(name: "Loader")
         animationView?.loopMode = .loop
         view.addSubview(animationView!)
@@ -42,11 +63,11 @@ final class HomeSetupViewController: UIViewController {
         })
     }
     
-    private func resumeSpinner() {
+    func resumeSpinner() {
         animationView?.play()
     }
     
-    private func pauseSpinner() {
+    func pauseSpinner() {
         animationView?.pause()
     }
 }

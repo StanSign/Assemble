@@ -276,13 +276,6 @@
 			path = Front;
 			sourceTree = "<group>";
 		};
-		2E4C0A6C281A56D9009C547A /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		2E55D32C2809B97F00C66C93 /* SearchScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,8 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				2E5C3CE12800187600803F05 /* Coordinator */,
-				2E5C3CE628008E3D00803F05 /* ViewController */,
-				2E4C0A6C281A56D9009C547A /* ViewModel */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -362,13 +353,6 @@
 				2E5C3CE728008E7400803F05 /* TabBarCoordinator.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		2E5C3CE628008E3D00803F05 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		2E7E2CA527E8E74E009813F5 /* Search */ = {
