@@ -14,6 +14,7 @@
 		2E4C0A6B281A5429009C547A /* SetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A6A281A5429009C547A /* SetupCoordinator.swift */; };
 		2E4C0A6E281A56FE009C547A /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A6D281A56FE009C547A /* SetupViewModel.swift */; };
 		2E4C0A70281A5886009C547A /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A6F281A5885009C547A /* SetupViewController.swift */; };
+		2E4C0A72281A6303009C547A /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A71281A6303009C547A /* UIImageView.swift */; };
 		2E4E59B228049CB4005BF567 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E59B128049CB4005BF567 /* APIService.swift */; };
 		2E55D3292809352900C66C93 /* MockServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55D3282809352900C66C93 /* MockServerConstants.swift */; };
 		2E55D3322809BA6100C66C93 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55D3312809BA6100C66C93 /* SearchCoordinator.swift */; };
@@ -112,6 +113,7 @@
 		2E4C0A6A281A5429009C547A /* SetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCoordinator.swift; sourceTree = "<group>"; };
 		2E4C0A6D281A56FE009C547A /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
 		2E4C0A6F281A5885009C547A /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		2E4C0A71281A6303009C547A /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		2E4E59B128049CB4005BF567 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2E55D3282809352900C66C93 /* MockServerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServerConstants.swift; sourceTree = "<group>"; };
 		2E55D3312809BA6100C66C93 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 			children = (
 				2E78B0832805DB2C00938567 /* String+Formatter.swift */,
 				2E78B0852805E24900938567 /* Date+Formatter.swift */,
+				2E4C0A71281A6303009C547A /* UIImageView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				2EBB716627E0E48300A61755 /* NewsCell.swift in Sources */,
 				2E8F530A2809222C00D81045 /* CustomIndicator.swift in Sources */,
 				2EE4A15727FDF97700F6A4B3 /* awsConstants.swift in Sources */,
+				2E4C0A72281A6303009C547A /* UIImageView.swift in Sources */,
 				2EB96A2827CCE6A500623AB0 /* BannerView.swift in Sources */,
 				2EEC60A127E77F150054AB6C /* APIModels.swift in Sources */,
 				2EB96A3127CCE6FC00623AB0 /* Colors.swift in Sources */,
