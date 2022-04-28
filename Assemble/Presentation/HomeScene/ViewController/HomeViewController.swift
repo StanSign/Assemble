@@ -44,7 +44,6 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("HomeView did Load")
         configureUI()
         bindViewModel()
     }
