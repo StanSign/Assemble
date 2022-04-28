@@ -44,6 +44,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("HomeView did Load")
         configureUI()
         bindViewModel()
     }
@@ -122,7 +123,7 @@ final class HomeViewController: UIViewController {
             })
             .disposed(by: self.disposeBag)
         
-        collectionView.rx.prefetchItems
+        self.collectionView.rx.prefetchItems
             .map({ $0.map({ $0.item }) })
             .withLatestFrom(output!.bannerData) { indexes, elements in
                 indexes.map({ elements[$0] })
@@ -135,25 +136,9 @@ final class HomeViewController: UIViewController {
     }
     
     private func setImage(with imageURL: String, to cell: BannerCell, at index: Int, numberOfUpcomings: Int) {
-        let cache = ImageCache.default
-        guard let url = URL(string: imageURL) else { return }
         let indicator = CustomIndicator(with: CGSize(width: 32, height: 32))
         cell.upcomingImageView.kf.indicatorType = .custom(indicator: indicator)
-        cell.upcomingImageView.kf.setImage(
-            with: url,
-            options: [
-                .waitForCache,
-                .onlyFromCache
-            ]) { _ in
-                cache.retrieveImage(forKey: "bannerCache\(index % numberOfUpcomings)") { result in
-                    switch result {
-                    case .success(let value):
-                        cell.upcomingImageView.image = value.image
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-            }
+        cell.upcomingImageView.setImage(with: imageURL)
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-final class SetupViewController: UIViewController {
+final class HomeSetupViewController: UIViewController {
     
     private var animationView: AnimationView?
     
@@ -17,6 +17,16 @@ final class SetupViewController: UIViewController {
         self.view.backgroundColor = .black
         
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        resumeSpinner()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        pauseSpinner()
     }
     
     private func configureUI() {
@@ -30,6 +40,13 @@ final class SetupViewController: UIViewController {
         animationView?.snp.makeConstraints({ make in
             make.center.equalToSuperview()
         })
+    }
+    
+    private func resumeSpinner() {
         animationView?.play()
+    }
+    
+    private func pauseSpinner() {
+        animationView?.pause()
     }
 }

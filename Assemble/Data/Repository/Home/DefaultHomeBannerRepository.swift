@@ -55,16 +55,12 @@ final class DefaultHomeBannerRepository: HomeBannerRepository {
     }
     
     private func fetchBannerImage(from upcomings: [Upcoming], completion: @escaping () -> ()) {
-        for (index, url) in upcomings.map({ URL(string: $0.imageURL) }).enumerated() {
-            guard let url = url else { return }
-            let resource = ImageResource(downloadURL: url, cacheKey: "bannerCache\(index)")
-            let width = UIScreen.main.bounds.width
-            let size = CGSize(width: width, height: width * 1.3)
+        for urlString in upcomings.map({ $0.imageURL }) {
+            guard let url = URL(string: urlString) else { return }
+            let resource = ImageResource(downloadURL: url, cacheKey: urlString)
             KingfisherManager.shared.retrieveImage(
                 with: resource,
                 options: [
-                    .processor(DownsamplingImageProcessor(size: size)),
-                    .scaleFactor(UIScreen.main.scale),
                     .cacheOriginalImage
                 ]) { result in
                     switch result {

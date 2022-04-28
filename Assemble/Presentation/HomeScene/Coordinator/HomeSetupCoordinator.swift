@@ -7,38 +7,38 @@
 
 import UIKit
 
-protocol SetupCoordinator: Coordinator {
-    func showMainFlow()
+protocol HomeSetupCoordinator: Coordinator {
+    func showHomeFlow()
 }
 
-final class DefaultSetupCoordinator: SetupCoordinator {
+final class DefaultHomeSetupCoordinator: HomeSetupCoordinator {
     weak var finishDelegate: CoordinatorFinishDelegate?
     var navigationController: UINavigationController
-    var setupViewController: SetupViewController
+    var homeSetupViewController: HomeSetupViewController
     var childCoordinators = [Coordinator]()
     var type: CoordinatorType { .setup }
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         navigationController.setNavigationBarHidden(true, animated: true)
-        self.setupViewController = SetupViewController()
+        self.homeSetupViewController = HomeSetupViewController()
     }
     
     func start() {
         print("I'm at Setup Flow")
-        self.navigationController.pushViewController(self.setupViewController, animated: true)
-        showMainFlow()
+        self.navigationController.pushViewController(self.homeSetupViewController, animated: true)
+        showHomeFlow()
     }
     
-    func showMainFlow() {
-        let tabCoordinator = DefaultTabBarCoordinator.init(navigationController)
-        tabCoordinator.finishDelegate = self
-        tabCoordinator.start()
-        childCoordinators.append(tabCoordinator)
+    func showHomeFlow() {
+        let homeCoordinator = DefaultHomeCoordinator.init(navigationController)
+        homeCoordinator.finishDelegate = self
+        homeCoordinator.start()
+        childCoordinators.append(homeCoordinator)
     }
 }
 
-extension DefaultSetupCoordinator: CoordinatorFinishDelegate {
+extension DefaultHomeSetupCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childCoordinator: Coordinator) {
         childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
         self.navigationController.viewControllers.removeAll()

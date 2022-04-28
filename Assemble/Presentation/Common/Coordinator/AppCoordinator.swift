@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AppCoordinator: Coordinator {
-    func showSetupFlow()
+    func showMainFlow()
     func showLoginFlow()
 }
 
@@ -24,15 +24,15 @@ final class DefaultAppCoordinator: AppCoordinator {
     }
     
     func start() {
-        showSetupFlow()
+        showMainFlow()
     }
     
     func showLoginFlow() {
         
     }
     
-    func showSetupFlow() {
-        let setupCoordinator = DefaultSetupCoordinator.init(navigationController)
+    func showMainFlow() {
+        let setupCoordinator = DefaultTabBarCoordinator.init(navigationController)
         setupCoordinator.finishDelegate = self
         setupCoordinator.start()
         childCoordinators.append(setupCoordinator)
