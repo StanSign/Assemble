@@ -14,9 +14,6 @@ final class HomeViewModel {
     weak var coordinator: HomeCoordinator?
     private let homeUseCase: HomeUseCase
     private let disposeBag = DisposeBag()
-    var upcomingList: UpcomingList?
-    var upcomingCount: Int?
-    var bannerCount = BehaviorRelay<Int>(value: 0)
     
     init(coordinator: HomeCoordinator, homeUseCase: HomeUseCase) {
         self.coordinator = coordinator
@@ -27,8 +24,9 @@ final class HomeViewModel {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
-        let bannerContentOffsetX: Observable<CGPoint>
+        let bannerContentOffset: Observable<CGPoint>
         let bannerBoundsWidth: Observable<CGFloat>
+        let collectionViewDidEndDecelerating: Observable<Void>
         let searchButtonDidTapEvent: Observable<Void>
         let notifyButtonDidTapEvent: Observable<Void>
     }
@@ -37,15 +35,17 @@ final class HomeViewModel {
     
     struct Output {
         let bannerData = BehaviorRelay<[BannerData]>(value: [])
-        let didLoadBanner = PublishRelay<Bool>()
-        let upcomingCount = BehaviorRelay<Int>(value: 0) // Upcoming Count (Total Page Control)
-        let bannerCount = BehaviorRelay<Int>(value: 0) // Total Banner Page Count
-        let currentBannerPage = BehaviorRelay<Int?>(value: nil)
+        let bannerActualPage = BehaviorRelay<Int>(value: 0)
+        let bannerCurrentPage = BehaviorRelay<Int>(value: 0)
+        let bannerPresentedPage = BehaviorRelay<Int>(value: 0)
+        let scrollTo = PublishRelay<Int>()
     }
     
     //MARK: - Transform
     
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
+        let output = Output()
+        
         // input
         input.searchButtonDidTapEvent
             .subscribe({ [weak self] _ in
@@ -59,24 +59,37 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        // output
-        let output = Output()
-        
         self.homeUseCase.bannerData?
             .bind(to: output.bannerData)
             .disposed(by: disposeBag)
         
         Observable.combineLatest(
+            input.bannerContentOffset,
             input.bannerBoundsWidth,
-            input.bannerContentOffsetX,
-            bannerCount,
-            resultSelector: { (width, offset, bannerCount) -> Int? in
-                if bannerCount == .zero {
-                    return nil
-                }
-                return Int(ceil(offset.x / width)) % bannerCount
+            resultSelector: { offset, width in
+                let actualPage = self.homeUseCase.updateActualPage(offset: offset, width: width)
+                return actualPage
             })
-            .bind(to: output.currentBannerPage)
+            .distinctUntilChanged()
+            .bind(to: output.bannerActualPage)
+            .disposed(by: disposeBag)
+        
+        self.homeUseCase.bannerCurrentPage
+            .distinctUntilChanged()
+            .bind(to: output.bannerCurrentPage)
+            .disposed(by: disposeBag)
+        
+        self.homeUseCase.bannerPresentedPage
+            .distinctUntilChanged()
+            .bind(to: output.bannerPresentedPage)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(
+            output.bannerActualPage,
+            output.bannerCurrentPage
+        ).filter { $0 != $1 }
+            .map({ $1 })
+            .bind(to: output.scrollTo)
             .disposed(by: disposeBag)
         
         return output

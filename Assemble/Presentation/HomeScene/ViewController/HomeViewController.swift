@@ -54,21 +54,11 @@ final class HomeViewController: UIViewController {
         // 스크롤뷰 상단 Safe Area 무시
         scrollView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.delegate = self
-        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
-        collectionView.rx.didEndDecelerating
-            .subscribe(onNext: { value in
-                let x = self.collectionView.contentOffset.x
-                let w = self.collectionView.bounds.size.width
-                let currentPage = Int(ceil(x / w))
-                
-                guard let count = self.viewModel?.upcomingCount else { return }
-                self.collectionView.scrollToItem(
-                    at: IndexPath(item: (currentPage % count) + count, section: 0),
-                    at: .centeredHorizontally,
-                    animated: false)
-            })
-            .disposed(by: self.disposeBag)
+        self.collectionView.delegate = self
+        self.collectionView.register(
+            BannerCell.self,
+            forCellWithReuseIdentifier: BannerCell.identifier
+        )
         
         view.addSubview(self.pageControl)
         pageControl.snp.makeConstraints { make in
@@ -81,8 +71,9 @@ final class HomeViewController: UIViewController {
     private func bindViewModel() {
         let input = HomeViewModel.Input(
             viewDidLoadEvent: Observable.just(()),
-            bannerContentOffsetX: collectionView.rx.contentOffset.asObservable(),
-            bannerBoundsWidth: Observable.just(collectionView.bounds.size.width),
+            bannerContentOffset: self.collectionView.rx.contentOffset.asObservable(),
+            bannerBoundsWidth: Observable.just(self.collectionView.bounds.size.width),
+            collectionViewDidEndDecelerating: self.collectionView.rx.didEndDecelerating.asObservable(),
             searchButtonDidTapEvent: searchButton.rx.tap.asObservable(),
             notifyButtonDidTapEvent: notifyButton.rx.tap.asObservable()
         )
@@ -91,50 +82,39 @@ final class HomeViewController: UIViewController {
         
         output?.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
-                print(banners)
-                guard let count = self.viewModel?.upcomingCount else { return }
-                self.setImage(with: banners.imageURL, to: cell, at: index, numberOfUpcomings: count)
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle
                 cell.stateLabel.text = banners.d_day
+                cell.upcomingImageView.setImage(with: banners.imageURL)
             }
             .disposed(by: self.disposeBag)
         
-        output?.didLoadBanner
-            .subscribe(onNext: { _ in // Bool
-                self.collectionView.reloadData()
+        output?.bannerData
+            .subscribe(onNext: { data in
+                self.pageControl.numberOfPages = data.count / 3
             })
             .disposed(by: self.disposeBag)
         
-        output?.bannerCount
-            .subscribe(onNext: { count in
-                self.pageControl.numberOfPages = count
+        output?.bannerPresentedPage
+            .subscribe(onNext: { page in
+                self.pageControl.set(progress: page, animated: true)
             })
             .disposed(by: self.disposeBag)
         
-        output?.currentBannerPage
-            .subscribe(onNext: { currentPage in
-                self.pageControl.set(progress: currentPage ?? 0, animated: true)
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.collectionView.rx.prefetchItems
-            .map({ $0.map({ $0.item }) })
-            .withLatestFrom(output!.bannerData) { indexes, elements in
-                indexes.map({ elements[$0] })
-            }
-            .map({ $0.compactMap({ URL(string: $0.imageURL) }) })
-            .subscribe(onNext: {
-                ImagePrefetcher(urls: $0).start()
-            })
-            .disposed(by: self.disposeBag)
+        self.collectionView.rx.didEndDecelerating
+            .withLatestFrom(output!.scrollTo) { $1 }
+            .subscribe(onNext: { a in
+                self.collectionView.scrollToItem(
+                    at: IndexPath(item: a, section: 0),
+                    at: .centeredHorizontally,
+                    animated: false
+                )
+            }).disposed(by: self.disposeBag)
     }
+}
+
+private extension HomeViewController {
     
-    private func setImage(with imageURL: String, to cell: BannerCell, at index: Int, numberOfUpcomings: Int) {
-        let indicator = CustomIndicator(with: CGSize(width: 32, height: 32))
-        cell.upcomingImageView.kf.indicatorType = .custom(indicator: indicator)
-        cell.upcomingImageView.setImage(with: imageURL)
-    }
 }
 
 //MARK: - CollectionView Delegate Flow Layout
