@@ -48,6 +48,14 @@ final class HomeViewController: UIViewController {
         bindViewModel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     //MARK: - Binding
     
     private func configureUI() {
@@ -70,7 +78,8 @@ final class HomeViewController: UIViewController {
     
     private func bindViewModel() {
         let input = HomeViewModel.Input(
-            viewDidLoadEvent: Observable.just(()),
+            viewDidLoadEvent: Observable.just(()).asObservable(),
+            viewDidAppearEvent: self.rx.methodInvoked(#selector(UIViewController.viewDidAppear)).map { _ in },
             bannerContentOffset: self.collectionView.rx.contentOffset.asObservable(),
             bannerBoundsWidth: Observable.just(self.collectionView.bounds.size.width),
             collectionViewDidEndDecelerating: self.collectionView.rx.didEndDecelerating.asObservable(),
@@ -78,9 +87,11 @@ final class HomeViewController: UIViewController {
             notifyButtonDidTapEvent: notifyButton.rx.tap.asObservable()
         )
         
-        let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
+        guard let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag) else {
+            return
+        }
         
-        output?.bannerData
+        output.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle
@@ -89,20 +100,32 @@ final class HomeViewController: UIViewController {
             }
             .disposed(by: self.disposeBag)
         
-        output?.bannerData
+        output.bannerInitialPage
+            .asDriver(onErrorJustReturn: 0)
+            .delay(.milliseconds(100))
+            .drive(onNext: { initialPage in
+                self.collectionView.scrollToItem(
+                    at: IndexPath(item: initialPage, section: 0),
+                    at: .centeredHorizontally,
+                    animated: false
+                )
+            })
+            .disposed(by: self.disposeBag)
+        
+        output.bannerData
             .subscribe(onNext: { data in
                 self.pageControl.numberOfPages = data.count / 3
             })
             .disposed(by: self.disposeBag)
         
-        output?.bannerPresentedPage
+        output.bannerPresentedPage
             .subscribe(onNext: { page in
                 self.pageControl.set(progress: page, animated: true)
             })
             .disposed(by: self.disposeBag)
         
         self.collectionView.rx.didEndDecelerating
-            .withLatestFrom(output!.scrollTo) { $1 }
+            .withLatestFrom(output.scrollTo) { $1 }
             .subscribe(onNext: { a in
                 self.collectionView.scrollToItem(
                     at: IndexPath(item: a, section: 0),
