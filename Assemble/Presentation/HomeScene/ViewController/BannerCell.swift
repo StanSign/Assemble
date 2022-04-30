@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import RxGesture
 import SnapKit
 
 class BannerCell: UICollectionViewCell {

@@ -24,6 +24,7 @@ final class HomeViewModel {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let viewDidAppearEvent: Observable<Void>
         let bannerContentOffset: Observable<CGPoint>
         let bannerBoundsWidth: Observable<CGFloat>
         let collectionViewDidEndDecelerating: Observable<Void>
@@ -39,6 +40,7 @@ final class HomeViewModel {
         let bannerCurrentPage = BehaviorRelay<Int>(value: 0)
         let bannerPresentedPage = BehaviorRelay<Int>(value: 0)
         let scrollTo = PublishRelay<Int>()
+        let bannerInitialPage = PublishRelay<Int>()
     }
     
     //MARK: - Transform
@@ -47,6 +49,14 @@ final class HomeViewModel {
         let output = Output()
         
         // input
+        input.viewDidAppearEvent
+            .map({
+                let initialPage = self.getInitialPage()
+                return initialPage
+            })
+            .bind(to: output.bannerInitialPage)
+            .disposed(by: disposeBag)
+        
         input.searchButtonDidTapEvent
             .subscribe({ [weak self] _ in
                 self?.coordinator?.showSearchFlow()
@@ -97,5 +107,8 @@ final class HomeViewModel {
 }
 
 private extension HomeViewModel {
-    
+    func getInitialPage() -> Int {
+        guard let initialPage = self.homeUseCase.upcomingCount else { return 0 }
+        return initialPage / 3
+    }
 }
