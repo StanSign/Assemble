@@ -32,10 +32,10 @@ final class DefaultAppCoordinator: AppCoordinator {
     }
     
     func showMainFlow() {
-        let tabCoordinator = DefaultTabBarCoordinator.init(navigationController)
-        tabCoordinator.finishDelegate = self
-        tabCoordinator.start()
-        childCoordinators.append(tabCoordinator)
+        let setupCoordinator = DefaultTabBarCoordinator.init(navigationController)
+        setupCoordinator.finishDelegate = self
+        setupCoordinator.start()
+        childCoordinators.append(setupCoordinator)
     }
 }
 

@@ -14,18 +14,8 @@ final class HomeViewModel {
     weak var coordinator: HomeCoordinator?
     private let homeUseCase: HomeUseCase
     private let disposeBag = DisposeBag()
-    var upcomingList: UpcomingList?
-    var upcomingCount: Int?
-    var bannerCount = BehaviorRelay<Int>(value: 0)
     
     init(coordinator: HomeCoordinator, homeUseCase: HomeUseCase) {
-        self.upcomingList = UpcomingList(
-            count: 0,
-            statusCode: 0,
-            description: "",
-            title: "",
-            upcomings: []
-        )
         self.coordinator = coordinator
         self.homeUseCase = homeUseCase
     }
@@ -34,8 +24,9 @@ final class HomeViewModel {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
-        let bannerContentOffsetX: Observable<CGPoint>
+        let bannerContentOffset: Observable<CGPoint>
         let bannerBoundsWidth: Observable<CGFloat>
+        let collectionViewDidEndDecelerating: Observable<Void>
         let searchButtonDidTapEvent: Observable<Void>
         let notifyButtonDidTapEvent: Observable<Void>
     }
@@ -44,25 +35,21 @@ final class HomeViewModel {
     
     struct Output {
         let bannerData = BehaviorRelay<[BannerData]>(value: [])
-        let didLoadBanner = PublishRelay<Bool>()
-        let upcomingCount = BehaviorRelay<Int>(value: 0) // Upcoming Count (Total Page Control)
-        let bannerCount = BehaviorRelay<Int>(value: 0) // Total Banner Page Count
-        let currentBannerPage = BehaviorRelay<Int?>(value: nil)
+        let bannerActualPage = BehaviorRelay<Int>(value: 0)
+        let bannerCurrentPage = BehaviorRelay<Int>(value: 0)
+        let bannerPresentedPage = BehaviorRelay<Int>(value: 0)
+        let scrollTo = PublishRelay<Int>()
     }
     
     //MARK: - Transform
     
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
-        // input
-        input.viewDidLoadEvent
-            .subscribe(onNext: { [weak self] in
-                self?.homeUseCase.fetchUpcomingList()
-            })
-            .disposed(by: disposeBag)
+        let output = Output()
         
+        // input
         input.searchButtonDidTapEvent
-            .subscribe(onNext: {
-                print("Search Tapped")
+            .subscribe({ [weak self] _ in
+                self?.coordinator?.showSearchFlow()
             })
             .disposed(by: disposeBag)
         
@@ -72,41 +59,37 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        // output
-        let output = Output()
-        
-        self.homeUseCase.upcomingList
-            .map({ $0.upcomings })
-            .map({ upcomings -> [BannerData] in
-                output.upcomingCount.accept(upcomings.count)
-                self.bannerCount.accept(upcomings.count)
-                self.upcomingCount = upcomings.count
-                let banners = self.createBannerData(with: upcomings)
-                output.bannerCount.accept(banners.count)
-                let carouselBanner = self.createCarouselData(with: banners)
-                return carouselBanner
-            })
+        self.homeUseCase.bannerData?
             .bind(to: output.bannerData)
             .disposed(by: disposeBag)
         
-        self.homeUseCase.didLoadImage
-            .filter({ $0 })
-            .subscribe(onNext: { didLoad in
-                output.didLoadBanner.accept(didLoad)
+        Observable.combineLatest(
+            input.bannerContentOffset,
+            input.bannerBoundsWidth,
+            resultSelector: { offset, width in
+                let actualPage = self.homeUseCase.updateActualPage(offset: offset, width: width)
+                return actualPage
             })
+            .distinctUntilChanged()
+            .bind(to: output.bannerActualPage)
+            .disposed(by: disposeBag)
+        
+        self.homeUseCase.bannerCurrentPage
+            .distinctUntilChanged()
+            .bind(to: output.bannerCurrentPage)
+            .disposed(by: disposeBag)
+        
+        self.homeUseCase.bannerPresentedPage
+            .distinctUntilChanged()
+            .bind(to: output.bannerPresentedPage)
             .disposed(by: disposeBag)
         
         Observable.combineLatest(
-            input.bannerBoundsWidth,
-            input.bannerContentOffsetX,
-            bannerCount,
-            resultSelector: { (width, offset, bannerCount) -> Int? in
-                if bannerCount == .zero {
-                    return nil
-                }
-                return Int(ceil(offset.x / width)) % bannerCount
-            })
-            .bind(to: output.currentBannerPage)
+            output.bannerActualPage,
+            output.bannerCurrentPage
+        ).filter { $0 != $1 }
+            .map({ $1 })
+            .bind(to: output.scrollTo)
             .disposed(by: disposeBag)
         
         return output
@@ -114,21 +97,5 @@ final class HomeViewModel {
 }
 
 private extension HomeViewModel {
-    func createBannerData(with upcomings: [Upcoming]) -> [BannerData] {
-        var banners: [BannerData] = []
-        for upcoming in upcomings {
-            banners.append(BannerData(
-                title: upcoming.title.splitAndGet(.head, by: [":"]),
-                subtitle: upcoming.title.splitAndGet(.tail, by: [":"]),
-                imageURL: upcoming.imageURL,
-                d_day: upcoming.releaseDate.getStateFromReleaseDate()
-            ))
-        }
-        return banners
-    }
     
-    func createCarouselData(with banners: [BannerData]) -> [BannerData] {
-        let carousel = Array(repeating: banners, count: 3)
-        return carousel.flatMap{( $0 )}
-    }
 }

@@ -79,10 +79,10 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
         case .first:
             print("First Page Not Implemented Yet")
         case .home:
-            let homeCoordinator = DefaultHomeCoordinator(tabNavigationController)
-            homeCoordinator.finishDelegate = self
-            self.childCoordinators.append(homeCoordinator)
-            homeCoordinator.start()
+            let homeSetupCoordinator = DefaultHomeSetupCoordinator(tabNavigationController)
+            homeSetupCoordinator.finishDelegate = self
+            self.childCoordinators.append(homeSetupCoordinator)
+            homeSetupCoordinator.start()
         case .last:
             print("Last Page Not Implemented Yet")
         }

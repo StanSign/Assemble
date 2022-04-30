@@ -21,19 +21,46 @@ final class DefaultHomeCoordinator: HomeCoordinator {
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         let homeStoryboard = UIStoryboard(name: "Home", bundle: nil)
-        let homeVC = homeStoryboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
-        self.homeViewController = homeVC
+        let homeViewController = homeStoryboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
+        self.homeViewController = homeViewController
     }
     
     func start() {
         self.homeViewController.viewModel = HomeViewModel(
             coordinator: self,
-            homeUseCase: DefaultHomeUseCase(bannerRepository: DefaultHomeBannerRepository())
+            homeUseCase: DefaultHomeUseCase(
+                bannerRepository: DefaultHomeBannerRepository()
+            )
         )
-        self.navigationController.pushViewController(homeViewController, animated: true)
+        self.navigationController.pushViewController(self.homeViewController, animated: true)
     }
     
     func showSearchFlow() {
-        //
+        let searchCoordinator = DefaultSearchCoordinator(self.navigationController)
+        searchCoordinator.finishDelegate = self
+        self.childCoordinators.append(searchCoordinator)
+        searchCoordinator.start()
+    }
+    
+    func pushHomeViewController(with bannerData: [BannerData]?) {
+        guard let bannerData = bannerData else {
+            return
+        }
+        self.homeViewController.viewModel = HomeViewModel(
+            coordinator: self,
+            homeUseCase: DefaultHomeUseCase(
+                bannerData: bannerData,
+                bannerRepository: DefaultHomeBannerRepository()
+            )
+        )
+        self.navigationController.pushViewController(homeViewController, animated: false)
+    }
+}
+
+extension DefaultHomeCoordinator: CoordinatorFinishDelegate {
+    func coordinatorDidFinish(childCoordinator: Coordinator) {
+        self.childCoordinators = self.childCoordinators
+            .filter({ $0.type != childCoordinator.type })
+        childCoordinator.navigationController.popToRootViewController(animated: true) 
     }
 }

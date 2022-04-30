@@ -35,9 +35,3 @@ extension Coordinator {
 protocol CoordinatorFinishDelegate: AnyObject {
     func coordinatorDidFinish(childCoordinator: Coordinator)
 }
-
-//MARK: - Coordinator Type
-
-enum CoordinatorType {
-    case app, tab, home
-}
