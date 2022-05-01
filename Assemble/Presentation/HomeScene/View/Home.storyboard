@@ -61,14 +61,14 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="65"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k1D-c5-fht" userLabel="Button Stack View">
-                                        <rect key="frame" x="318" y="16.5" width="80" height="32"/>
+                                        <rect key="frame" x="334" y="20.5" width="64" height="24"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vur-z0-JtH">
-                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="KaD-ki-Mrc"/>
-                                                    <constraint firstAttribute="height" constant="32" id="lXh-r5-v6u"/>
+                                                    <constraint firstAttribute="width" constant="24" id="KaD-ki-Mrc"/>
+                                                    <constraint firstAttribute="height" constant="24" id="lXh-r5-v6u"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
@@ -77,11 +77,11 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                                 </buttonConfiguration>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmK-ER-c2X">
-                                                <rect key="frame" x="48" y="0.0" width="32" height="32"/>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmK-ER-c2X">
+                                                <rect key="frame" x="40" y="0.0" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="4Qy-Dg-EHX"/>
-                                                    <constraint firstAttribute="height" constant="32" id="hPu-0R-SkC"/>
+                                                    <constraint firstAttribute="width" constant="24" id="4Qy-Dg-EHX"/>
+                                                    <constraint firstAttribute="height" constant="24" id="hPu-0R-SkC"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
@@ -126,7 +126,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_bell" width="15" height="15"/>
-        <image name="ic_search" width="15" height="15"/>
+        <image name="ic_bell" width="24" height="24"/>
+        <image name="ic_search" width="24" height="24"/>
     </resources>
 </document>
