@@ -69,7 +69,7 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     private func configureTabBarItem(of page: TabBarPage) -> UITabBarItem {
         return UITabBarItem(
             title: nil,
-            image: nil,
+            image: UIImage(named: page.pageIcon()),
             tag: page.pageOrderNumber()
         )
     }
@@ -94,12 +94,13 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
         self.tabBarController.setViewControllers(tabViewControllers, animated: true)
         self.tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber()
         let tabBar = self.tabBarController.tabBar
-        tabBar.backgroundColor = .darkGray
+        tabBar.barTintColor = .black
         tabBar.isTranslucent = false
-        tabBar.standardAppearance.configureWithOpaqueBackground()
-        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        tabBar.tintColor = .white
+//        tabBar.standardAppearance.configureWithOpaqueBackground()
+//        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         
-        self.navigationController.pushViewController(tabBarController, animated: true)
+        self.navigationController.pushViewController(self.tabBarController, animated: true)
     }
 }
 

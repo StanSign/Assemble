@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		2E4B988E28184036006A9292 /* SearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B988D28184036006A9292 /* SearchResultDTO.swift */; };
 		2E4B989028184AA5006A9292 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B988F28184AA5006A9292 /* SearchResult.swift */; };
-		2E4C0A6B281A5429009C547A /* HomeSetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A6A281A5429009C547A /* HomeSetupCoordinator.swift */; };
-		2E4C0A6E281A56FE009C547A /* HomeSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A6D281A56FE009C547A /* HomeSetupViewModel.swift */; };
-		2E4C0A70281A5886009C547A /* HomeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A6F281A5885009C547A /* HomeSetupViewController.swift */; };
 		2E4C0A72281A6303009C547A /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A71281A6303009C547A /* UIImageView.swift */; };
 		2E4E59B228049CB4005BF567 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E59B128049CB4005BF567 /* APIService.swift */; };
 		2E55D3292809352900C66C93 /* MockServerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E55D3282809352900C66C93 /* MockServerConstants.swift */; };
@@ -76,9 +73,6 @@
 /* Begin PBXFileReference section */
 		2E4B988D28184036006A9292 /* SearchResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDTO.swift; sourceTree = "<group>"; };
 		2E4B988F28184AA5006A9292 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
-		2E4C0A6A281A5429009C547A /* HomeSetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSetupCoordinator.swift; sourceTree = "<group>"; };
-		2E4C0A6D281A56FE009C547A /* HomeSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSetupViewModel.swift; sourceTree = "<group>"; };
-		2E4C0A6F281A5885009C547A /* HomeSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSetupViewController.swift; sourceTree = "<group>"; };
 		2E4C0A71281A6303009C547A /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		2E4E59B128049CB4005BF567 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2E55D3282809352900C66C93 /* MockServerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServerConstants.swift; sourceTree = "<group>"; };
@@ -224,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				2E5C3CEB28045F6A00803F05 /* HomeCoordinator.swift */,
-				2E4C0A6A281A5429009C547A /* HomeSetupCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -268,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				2EBB6D9927FF41DD00E66F64 /* HomeViewModel.swift */,
-				2E4C0A6D281A56FE009C547A /* HomeSetupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -277,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				2EB96A2A27CCE6BC00623AB0 /* HomeViewController.swift */,
-				2E4C0A6F281A5885009C547A /* HomeSetupViewController.swift */,
 				2ECF52BD2807C8D80015DC25 /* BannerCell.swift */,
 			);
 			path = ViewController;
@@ -734,13 +725,11 @@
 				2E78B0862805E24900938567 /* Date+Formatter.swift in Sources */,
 				2EE4A14C27FDE8C300F6A4B3 /* HomeBannerRepository.swift in Sources */,
 				2ECF52C028080BB10015DC25 /* TypeSize.swift in Sources */,
-				2E4C0A70281A5886009C547A /* HomeSetupViewController.swift in Sources */,
 				2E8F530A2809222C00D81045 /* CustomIndicator.swift in Sources */,
 				2EE4A15727FDF97700F6A4B3 /* awsConstants.swift in Sources */,
 				2E4C0A72281A6303009C547A /* UIImageView.swift in Sources */,
 				2E5C3CEC28045F6A00803F05 /* HomeCoordinator.swift in Sources */,
 				2E55D33D2809BDFF00C66C93 /* DefaultSearchRepository.swift in Sources */,
-				2E4C0A6E281A56FE009C547A /* HomeSetupViewModel.swift in Sources */,
 				2ED9802727FF09E100744F9D /* UpcomingResponseDTO.swift in Sources */,
 				2E55D3362809BB3300C66C93 /* SearchViewModel.swift in Sources */,
 				2E5C3CE828008E7400803F05 /* TabBarCoordinator.swift in Sources */,
@@ -767,7 +756,6 @@
 				2E55D33F2809BF4A00C66C93 /* SearchViewController.swift in Sources */,
 				2E55D3382809BB9500C66C93 /* SearchUseCase.swift in Sources */,
 				2E55D3292809352900C66C93 /* MockServerConstants.swift in Sources */,
-				2E4C0A6B281A5429009C547A /* HomeSetupCoordinator.swift in Sources */,
 				2E5C3CE5280018B000803F05 /* Coordinator.swift in Sources */,
 				2E55D3322809BA6100C66C93 /* SearchCoordinator.swift in Sources */,
 				2E5C3CE32800188700803F05 /* AppCoordinator.swift in Sources */,
