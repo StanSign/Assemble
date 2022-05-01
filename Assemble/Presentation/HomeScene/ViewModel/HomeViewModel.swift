@@ -14,6 +14,7 @@ final class HomeViewModel {
     weak var coordinator: HomeCoordinator?
     private let homeUseCase: HomeUseCase
     private let disposeBag = DisposeBag()
+    var bannerData: [BannerData]?
     
     init(coordinator: HomeCoordinator, homeUseCase: HomeUseCase) {
         self.coordinator = coordinator
@@ -41,6 +42,7 @@ final class HomeViewModel {
         let bannerPresentedPage = BehaviorRelay<Int>(value: 0)
         let scrollTo = PublishRelay<Int>()
         let bannerInitialPage = PublishRelay<Int>()
+        let isFetchFinished = BehaviorRelay<Bool>(value: false)
     }
     
     //MARK: - Transform
@@ -48,13 +50,13 @@ final class HomeViewModel {
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
         let output = Output()
         
+        self.bindSetup(to: output, disposeBag: disposeBag)
+        
         // input
-        input.viewDidAppearEvent
-            .map({
-                let initialPage = self.getInitialPage()
-                return initialPage
+        input.viewDidLoadEvent
+            .subscribe(onNext: { [weak self] in
+                self?.homeUseCase.fetchUpcomingList()
             })
-            .bind(to: output.bannerInitialPage)
             .disposed(by: disposeBag)
         
         input.searchButtonDidTapEvent
@@ -69,7 +71,7 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
         
-        self.homeUseCase.bannerData?
+        self.homeUseCase.bannerData
             .bind(to: output.bannerData)
             .disposed(by: disposeBag)
         
@@ -106,9 +108,58 @@ final class HomeViewModel {
     }
 }
 
+//MARK: - Setup Functions
+
+private extension HomeViewModel {
+    func bindSetup(to output: Output, disposeBag: DisposeBag) {
+        self.homeUseCase.upcomingList
+            .map({ $0.upcomings })
+            .map({ upcomings -> [BannerData] in
+                let banners = self.createBannerData(with: upcomings)
+                let carouselBanner = self.createCarouselData(with: banners)
+                self.bannerData = carouselBanner
+                return carouselBanner
+            })
+            .bind(to: output.bannerData)
+            .disposed(by: disposeBag)
+        
+        self.homeUseCase.isUpcomingFetchFinished
+            .asDriver(onErrorJustReturn: false)
+            .filter({ $0 == true })
+            .do(onNext: { _ in
+                let initialPage = self.getInitialPage()
+                output.bannerInitialPage.accept(initialPage)
+            })
+            .drive(onNext: { _ in
+                output.isFetchFinished.accept(true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func createBannerData(with upcomings: [Upcoming]) -> [BannerData] {
+        var banners: [BannerData] = []
+        for upcoming in upcomings {
+            banners.append(BannerData(
+                title: upcoming.title.splitAndGet(.head, by: [":"]),
+                subtitle: upcoming.title.splitAndGet(.tail, by: [":"]),
+                imageURL: upcoming.imageURL,
+                d_day: upcoming.releaseDate.getStateFromReleaseDate()
+            ))
+        }
+        return banners
+    }
+    
+    func createCarouselData(with banners: [BannerData]) -> [BannerData] {
+        let carousel = Array(repeating: banners, count: 3)
+        return carousel.flatMap{( $0 )}
+    }
+}
+
+//MARK: - Private Functions
+
 private extension HomeViewModel {
     func getInitialPage() -> Int {
         guard let initialPage = self.homeUseCase.upcomingCount else { return 0 }
-        return initialPage / 3
+        return initialPage
     }
 }

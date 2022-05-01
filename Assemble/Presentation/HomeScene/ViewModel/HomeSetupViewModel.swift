@@ -57,7 +57,7 @@ final class HomeSetupViewModel {
             .bind(to: output.bannerData)
             .disposed(by: disposeBag)
         
-        self.homeUseCase.didLoadImage
+        self.homeUseCase.isUpcomingFetchFinished
             .filter({ $0 == true })
             .subscribe(onNext: { _ in
                 self.coordinator?.showHomeFlow(with: self.bannerData ?? [])

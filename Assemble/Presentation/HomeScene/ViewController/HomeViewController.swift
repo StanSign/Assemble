@@ -12,6 +12,7 @@ import RxCocoa
 import RxDataSources
 import Kingfisher
 import CHIPageControl
+import Lottie
 
 final class HomeViewController: UIViewController {
     
@@ -38,6 +39,7 @@ final class HomeViewController: UIViewController {
     }()
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var notifyButton: UIButton!
+    lazy var loadingView = LoadingView()
     
     //MARK: - Life Cycle
     
@@ -74,6 +76,11 @@ final class HomeViewController: UIViewController {
             make.bottom.equalTo(self.collectionView.snp.bottom).inset(32)
             make.right.equalToSuperview().inset(32)
         }
+        
+        view.addSubview(self.loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     private func bindViewModel() {
@@ -90,6 +97,13 @@ final class HomeViewController: UIViewController {
         guard let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag) else {
             return
         }
+        
+        output.isFetchFinished
+            .filter({ $0 == true })
+            .subscribe(onNext: { a in
+                self.loadingView.isHidden = true
+            })
+            .disposed(by: self.disposeBag)
         
         output.bannerData
             .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
