@@ -20,9 +20,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="5Wt-Vf-QVm">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="938"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1066"/>
                                         <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PgC-ub-WeP">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PgC-ub-WeP" userLabel="Banner Collection View">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="538"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -36,8 +36,19 @@
                                                 </collectionViewFlowLayout>
                                                 <cells/>
                                             </collectionView>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hg6-f3-tNo" userLabel="News Collection View">
+                                                <rect key="frame" x="0.0" y="538" width="414" height="128"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bLM-gD-KDR">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells/>
+                                            </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGr-GW-gTO">
-                                                <rect key="frame" x="0.0" y="538" width="414" height="400"/>
+                                                <rect key="frame" x="0.0" y="666" width="414" height="400"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="Y0W-v2-S1A"/>
@@ -114,7 +125,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="PgC-ub-WeP" id="aHu-YP-e9D"/>
+                        <outlet property="bannerCollectionView" destination="PgC-ub-WeP" id="e8c-9I-fVM"/>
                         <outlet property="notifyButton" destination="GmK-ER-c2X" id="9id-0E-r1h"/>
                         <outlet property="scrollView" destination="GUB-8T-FJJ" id="Shj-fz-cfe"/>
                         <outlet property="searchButton" destination="vur-z0-JtH" id="lTM-2k-DSz"/>
