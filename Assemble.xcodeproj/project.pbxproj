@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E36B5CC281E9FE5004BFAC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E36B5CB281E9FE5004BFAC3 /* ContentView.swift */; };
+		2E36B5CE281ECA34004BFAC3 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E36B5CD281ECA34004BFAC3 /* UIImage.swift */; };
 		2E4B988E28184036006A9292 /* SearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B988D28184036006A9292 /* SearchResultDTO.swift */; };
 		2E4B989028184AA5006A9292 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4B988F28184AA5006A9292 /* SearchResult.swift */; };
 		2E4C0A72281A6303009C547A /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C0A71281A6303009C547A /* UIImageView.swift */; };
@@ -73,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E36B5CB281E9FE5004BFAC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2E36B5CD281ECA34004BFAC3 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		2E4B988D28184036006A9292 /* SearchResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDTO.swift; sourceTree = "<group>"; };
 		2E4B988F28184AA5006A9292 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		2E4C0A71281A6303009C547A /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 				2E9E1A6527DDF108009AAEFE /* Hero.xib */,
 				2EBB716527E0E48300A61755 /* NewsCell.xib */,
 				2EBB716927E0EC3A00A61755 /* News.xib */,
+				2E36B5CB281E9FE5004BFAC3 /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 			children = (
 				2E78B0832805DB2C00938567 /* String+Formatter.swift */,
 				2E78B0852805E24900938567 /* Date+Formatter.swift */,
+				2E36B5CD281ECA34004BFAC3 /* UIImage.swift */,
 				2E4C0A71281A6303009C547A /* UIImageView.swift */,
 			);
 			path = Extension;
@@ -762,6 +768,8 @@
 				2E4E59B228049CB4005BF567 /* APIService.swift in Sources */,
 				2EC4591B27CCE4E000EBE36B /* SceneDelegate.swift in Sources */,
 				2E55D33A2809BDD500C66C93 /* SearchRepository.swift in Sources */,
+				2E36B5CE281ECA34004BFAC3 /* UIImage.swift in Sources */,
+				2E36B5CC281E9FE5004BFAC3 /* ContentView.swift in Sources */,
 				2EB96A2B27CCE6BC00623AB0 /* HomeViewController.swift in Sources */,
 				2E55D3342809BAB500C66C93 /* CoordinatorType.swift in Sources */,
 				2E5C3CEA28044E4600803F05 /* TabBarPage.swift in Sources */,

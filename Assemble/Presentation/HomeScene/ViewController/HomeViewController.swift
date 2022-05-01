@@ -37,6 +37,7 @@ final class HomeViewController: UIViewController {
         pageControl.elementWidth = 20
         return pageControl
     }()
+    @IBOutlet weak var newsView: ContentView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var notifyButton: UIButton!
     lazy var loadingView = LoadingView()
@@ -55,30 +56,18 @@ final class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    //MARK: - Binding
+    //MARK: -
     
     private func configureUI() {
         // 스크롤뷰 상단 Safe Area 무시
         scrollView.contentInsetAdjustmentBehavior = .never
         
-        self.collectionView.delegate = self
-        self.collectionView.register(
-            BannerCell.self,
-            forCellWithReuseIdentifier: BannerCell.identifier
-        )
-        
-        view.addSubview(self.pageControl)
-        pageControl.snp.makeConstraints { make in
-            make.height.equalTo(2)
-            make.bottom.equalTo(self.collectionView.snp.bottom).inset(32)
-            make.right.equalToSuperview().inset(32)
-        }
-        
-        view.addSubview(self.loadingView)
-        loadingView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        self.configureLoader()
+        self.configureBanner()
+        self.configureNews()
     }
+    
+    //MARK: - Binding
     
     private func bindViewModel() {
         let input = HomeViewModel.Input(
@@ -147,8 +136,34 @@ final class HomeViewController: UIViewController {
     }
 }
 
+//MARK: - UI Configuration
+
 private extension HomeViewController {
+    func configureLoader() {
+        view.addSubview(self.loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
     
+    func configureBanner() {
+        self.collectionView.delegate = self
+        self.collectionView.register(
+            BannerCell.self,
+            forCellWithReuseIdentifier: BannerCell.identifier
+        )
+        
+        view.addSubview(self.pageControl)
+        pageControl.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.bottom.equalTo(self.collectionView.snp.bottom).inset(32)
+            make.right.equalToSuperview().inset(32)
+        }
+    }
+    
+    func configureNews() {
+        self.newsView.titleLabel.text = "새로운 소식"
+    }
 }
 
 //MARK: - CollectionView Delegate Flow Layout
