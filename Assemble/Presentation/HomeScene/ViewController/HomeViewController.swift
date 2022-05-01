@@ -25,7 +25,7 @@ final class HomeViewController: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var bannerCollectionView: UICollectionView!
     private lazy var pageControl: CHIPageControlJaloro = {
         let pageControl = CHIPageControlJaloro()
         pageControl.padding = 1
@@ -73,9 +73,9 @@ final class HomeViewController: UIViewController {
         let input = HomeViewModel.Input(
             viewDidLoadEvent: Observable.just(()).asObservable(),
             viewDidAppearEvent: self.rx.methodInvoked(#selector(UIViewController.viewDidAppear)).map { _ in },
-            bannerContentOffset: self.collectionView.rx.contentOffset.asObservable(),
-            bannerBoundsWidth: Observable.just(self.collectionView.bounds.size.width),
-            collectionViewDidEndDecelerating: self.collectionView.rx.didEndDecelerating.asObservable(),
+            bannerContentOffset: self.bannerCollectionView.rx.contentOffset.asObservable(),
+            bannerBoundsWidth: Observable.just(self.bannerCollectionView.bounds.size.width),
+            collectionViewDidEndDecelerating: self.bannerCollectionView.rx.didEndDecelerating.asObservable(),
             searchButtonDidTapEvent: searchButton.rx.tap.asObservable(),
             notifyButtonDidTapEvent: notifyButton.rx.tap.asObservable()
         )
@@ -92,7 +92,7 @@ final class HomeViewController: UIViewController {
             .disposed(by: self.disposeBag)
         
         output.bannerData
-            .bind(to: collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
+            .bind(to: bannerCollectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { index, banners, cell in
                 cell.titleLabel.text = banners.title
                 cell.subtitleLabel.text = banners.subtitle
                 cell.stateLabel.text = banners.d_day
@@ -104,7 +104,7 @@ final class HomeViewController: UIViewController {
             .asDriver(onErrorJustReturn: 0)
             .delay(.milliseconds(100))
             .drive(onNext: { initialPage in
-                self.collectionView.scrollToItem(
+                self.bannerCollectionView.scrollToItem(
                     at: IndexPath(item: initialPage, section: 0),
                     at: .centeredHorizontally,
                     animated: false
@@ -124,10 +124,10 @@ final class HomeViewController: UIViewController {
             })
             .disposed(by: self.disposeBag)
         
-        self.collectionView.rx.didEndDecelerating
+        self.bannerCollectionView.rx.didEndDecelerating
             .withLatestFrom(output.scrollTo) { $1 }
             .subscribe(onNext: { a in
-                self.collectionView.scrollToItem(
+                self.bannerCollectionView.scrollToItem(
                     at: IndexPath(item: a, section: 0),
                     at: .centeredHorizontally,
                     animated: false
