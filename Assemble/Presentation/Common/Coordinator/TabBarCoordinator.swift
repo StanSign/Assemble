@@ -10,7 +10,7 @@ import UIKit
 //MARK: - Protocol
 
 protocol TabBarCoordinator: Coordinator {
-    var tabBarController: UITabBarController { get set }
+    var tabBarController: TabBarController { get set }
     func selectPage(_ page: TabBarPage)
     func setSelectedIndex(_ index: Int)
     func currentPage() -> TabBarPage?
@@ -22,12 +22,12 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     weak var finishDelegate: CoordinatorFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
+    var tabBarController: TabBarController
     var type: CoordinatorType { .tab }
-    var tabBarController: UITabBarController
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.tabBarController = .init()
+        self.tabBarController = TabBarController()
         super.init()
     }
     
@@ -36,22 +36,22 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     }
     
     func currentPage() -> TabBarPage? {
-        TabBarPage.init(index: tabBarController.selectedIndex)
+        TabBarPage(index: self.tabBarController.selectedIndex)
     }
     
     func selectPage(_ page: TabBarPage) {
-        tabBarController.selectedIndex = page.pageOrderNumber()
+        self.tabBarController.selectedIndex = page.pageOrderNumber()
     }
     
     func setSelectedIndex(_ index: Int) {
-        guard let page = TabBarPage.init(index: index) else { return }
-        tabBarController.selectedIndex = page.pageOrderNumber()
+        guard let page = TabBarPage(index: index) else { return }
+        self.tabBarController.selectedIndex = page.pageOrderNumber()
     }
     
     func start() {
         let pages: [TabBarPage] = TabBarPage.allCases
-        let controllers: [UINavigationController] = pages.map({ createTabNavController(of: $0) })
-        configureTabBarController(with: controllers)
+        let controllers: [UINavigationController] = pages.map({ self.createTabNavController(of: $0) })
+        self.configureTabBarController(with: controllers)
     }
     
     //MARK: - Create Tab Navigation Controller
@@ -60,7 +60,7 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
         let tabNavController = UINavigationController()
         
         tabNavController.setNavigationBarHidden(false, animated: false)
-        tabNavController.tabBarItem = configureTabBarItem(of: page)
+        tabNavController.tabBarItem = self.configureTabBarItem(of: page)
         self.startTabCoordinator(of: page, to: tabNavController)
         
         return tabNavController
@@ -69,7 +69,7 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     private func configureTabBarItem(of page: TabBarPage) -> UITabBarItem {
         return UITabBarItem(
             title: nil,
-            image: nil,
+            image: UIImage(named: page.pageIcon()),
             tag: page.pageOrderNumber()
         )
     }
@@ -90,16 +90,16 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     
     //MARK: - Configure Tab Bar Controller
     
-    private func configureTabBarController(with tabViewControllers: [UINavigationController]) {
+    private func configureTabBarController(with tabViewControllers: [UIViewController]) {
         self.tabBarController.setViewControllers(tabViewControllers, animated: true)
         self.tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber()
         let tabBar = self.tabBarController.tabBar
-        tabBar.backgroundColor = .darkGray
-        tabBar.isTranslucent = false
+        tabBar.barTintColor = .black
+        tabBar.tintColor = .white
         tabBar.standardAppearance.configureWithOpaqueBackground()
         tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         
-        self.navigationController.pushViewController(tabBarController, animated: true)
+        self.navigationController.pushViewController(self.tabBarController, animated: true)
     }
 }
 
@@ -108,5 +108,11 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
 extension DefaultTabBarCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childCoordinator: Coordinator) {
         self.childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
+        if childCoordinator.type == .home {
+            navigationController.viewControllers.removeAll()
+        } else if childCoordinator.type == .setup {
+            self.navigationController.viewControllers.removeAll()
+            self.finishDelegate?.coordinatorDidFinish(childCoordinator: self)
+        }
     }
 }

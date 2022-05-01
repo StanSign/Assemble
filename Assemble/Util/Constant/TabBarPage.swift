@@ -35,6 +35,9 @@ enum TabBarPage: String, CaseIterable {
     }
     
     // Add Tab Icon Value
+    func pageIcon() -> String {
+        return "ic_\(self.rawValue)"
+    }
     
     // Add Tab Icon Selected / Deselected Color
     
