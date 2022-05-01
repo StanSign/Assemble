@@ -10,7 +10,7 @@ import UIKit
 //MARK: - Protocol
 
 protocol TabBarCoordinator: Coordinator {
-    var tabBarController: UITabBarController { get set }
+    var tabBarController: TabBarController { get set }
     func selectPage(_ page: TabBarPage)
     func setSelectedIndex(_ index: Int)
     func currentPage() -> TabBarPage?
@@ -23,7 +23,7 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .tab }
-    var tabBarController: UITabBarController
+    var tabBarController: TabBarController
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
