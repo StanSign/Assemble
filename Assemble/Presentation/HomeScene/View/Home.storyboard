@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="5Wt-Vf-QVm">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1066"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PgC-ub-WeP" userLabel="Banner Collection View">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="538"/>
@@ -36,26 +36,13 @@
                                                 </collectionViewFlowLayout>
                                                 <cells/>
                                             </collectionView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hg6-f3-tNo" userLabel="News Collection View">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohu-xg-wbt" userLabel="News View" customClass="ContentView" customModule="Assemble" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="538" width="414" height="128"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bLM-gD-KDR">
-                                                    <size key="itemSize" width="128" height="128"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                                <cells/>
-                                            </collectionView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGr-GW-gTO">
-                                                <rect key="frame" x="0.0" y="666" width="414" height="400"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="400" id="Y0W-v2-S1A"/>
-                                                </constraints>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customCo
                                             </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="Ohu-xg-wbt" firstAttribute="width" secondItem="5Wt-Vf-QVm" secondAttribute="width" id="mJE-q9-fqr"/>
                                             <constraint firstItem="PgC-ub-WeP" firstAttribute="width" secondItem="5Wt-Vf-QVm" secondAttribute="width" id="nv1-81-ELS"/>
                                         </constraints>
                                     </stackView>
@@ -74,14 +61,14 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="65"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k1D-c5-fht" userLabel="Button Stack View">
-                                        <rect key="frame" x="318" y="16.5" width="80" height="32"/>
+                                        <rect key="frame" x="334" y="20.5" width="64" height="24"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vur-z0-JtH">
-                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="KaD-ki-Mrc"/>
-                                                    <constraint firstAttribute="height" constant="32" id="lXh-r5-v6u"/>
+                                                    <constraint firstAttribute="width" constant="24" id="KaD-ki-Mrc"/>
+                                                    <constraint firstAttribute="height" constant="24" id="lXh-r5-v6u"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
@@ -90,11 +77,11 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                                 </buttonConfiguration>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmK-ER-c2X">
-                                                <rect key="frame" x="48" y="0.0" width="32" height="32"/>
+                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmK-ER-c2X">
+                                                <rect key="frame" x="40" y="0.0" width="24" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="32" id="4Qy-Dg-EHX"/>
-                                                    <constraint firstAttribute="height" constant="32" id="hPu-0R-SkC"/>
+                                                    <constraint firstAttribute="width" constant="24" id="4Qy-Dg-EHX"/>
+                                                    <constraint firstAttribute="height" constant="24" id="hPu-0R-SkC"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
@@ -125,7 +112,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bannerCollectionView" destination="PgC-ub-WeP" id="e8c-9I-fVM"/>
+                        <outlet property="collectionView" destination="PgC-ub-WeP" id="2C0-zR-3jq"/>
+                        <outlet property="newsView" destinati
                         <outlet property="notifyButton" destination="GmK-ER-c2X" id="9id-0E-r1h"/>
                         <outlet property="scrollView" destination="GUB-8T-FJJ" id="Shj-fz-cfe"/>
                         <outlet property="searchButton" destination="vur-z0-JtH" id="lTM-2k-DSz"/>
@@ -138,7 +126,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_bell" width="15" height="15"/>
-        <image name="ic_search" width="15" height="15"/>
+        <image name="ic_bell" width="24" height="24"/>
+        <image name="ic_search" width="24" height="24"/>
     </resources>
 </document>
