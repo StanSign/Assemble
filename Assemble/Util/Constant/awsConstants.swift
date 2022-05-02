@@ -17,4 +17,6 @@ enum awsConfiguration {
     static let upcomingFilmPath = "films/upcoming"
     /** searchData */
     static let searchPath = "search/"
+    /** news_GET */
+    static let newsPath = "news/"
 }

@@ -37,7 +37,7 @@ final class HomeViewController: UIViewController {
         pageControl.elementWidth = 20
         return pageControl
     }()
-    @IBOutlet weak var newsView: ContentView!
+    @IBOutlet weak var newsView: NewsView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var notifyButton: UIButton!
     lazy var loadingView = LoadingView()
@@ -162,7 +162,8 @@ private extension HomeViewController {
     }
     
     func configureNews() {
-        self.newsView.titleLabel.text = "새로운 소식"
+        self.newsView.titleLabel.text = "What's New"
+        self.newsView.subtitleLabel.text = "새로운 소식"
     }
 }
 

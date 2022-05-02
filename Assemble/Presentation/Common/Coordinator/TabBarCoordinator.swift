@@ -95,9 +95,9 @@ final class DefaultTabBarCoordinator: NSObject, TabBarCoordinator {
         self.tabBarController.selectedIndex = TabBarPage.home.pageOrderNumber()
         let tabBar = self.tabBarController.tabBar
         tabBar.barTintColor = .black
+        tabBar.isTranslucent = false
         tabBar.tintColor = .white
-        tabBar.standardAppearance.configureWithOpaqueBackground()
-        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+//        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         
         self.navigationController.pushViewController(self.tabBarController, animated: true)
     }
