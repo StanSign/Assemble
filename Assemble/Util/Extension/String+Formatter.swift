@@ -47,7 +47,7 @@ extension String {
         switch D_Day {
         case Int.min ..< 0:
             return "상영 중"
-        case 0 ..< Int.max:
+        case 1 ..< Int.max:
             return "D-\(abs(D_Day))"
         case 0:
             return "오늘 개봉"
