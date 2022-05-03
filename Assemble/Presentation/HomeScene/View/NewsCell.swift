@@ -11,6 +11,7 @@ class NewsCell: UICollectionViewCell {
     
     static let identifier = "NewsCell"
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -20,6 +21,11 @@ class NewsCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        tagLabel.layer.opacity = 0
+        self.configureUI()
+    }
+    
+    private func configureUI() {
+        self.tagLabel.layer.opacity = 0
+        self.containerView.layer.cornerRadius = 8
     }
 }

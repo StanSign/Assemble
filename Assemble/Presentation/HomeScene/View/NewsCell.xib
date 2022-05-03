@@ -36,11 +36,11 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZSq-S7-9gf">
-                                <rect key="frame" x="152" y="24" width="161" height="112"/>
+                                <rect key="frame" x="152" y="24" width="169" height="112"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;더 배트맨&quot; 공식 트레일러 공개" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ers-OA-BmZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="137" height="43"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="169" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -52,7 +52,7 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ers-OA-BmZ" secondAttribute="trailing" constant="24" id="6OT-Gn-UMn"/>
+                                    <constraint firstAttribute="trailing" secondItem="ers-OA-BmZ" secondAttribute="trailing" id="6OT-Gn-UMn"/>
                                 </constraints>
                             </stackView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pCG-Vf-mpm">
@@ -69,7 +69,7 @@
                             <constraint firstItem="cJx-wm-BTp" firstAttribute="leading" secondItem="deK-8z-TqH" secondAttribute="leading" id="9Vj-bJ-mzn"/>
                             <constraint firstItem="cJx-wm-BTp" firstAttribute="top" secondItem="deK-8z-TqH" secondAttribute="top" id="9lb-A9-Ssg"/>
                             <constraint firstAttribute="bottom" secondItem="ZSq-S7-9gf" secondAttribute="bottom" constant="24" id="Bxt-CR-rrs"/>
-                            <constraint firstAttribute="trailing" secondItem="ZSq-S7-9gf" secondAttribute="trailing" constant="12" id="Ejr-3g-Qef"/>
+                            <constraint firstAttribute="trailing" secondItem="ZSq-S7-9gf" secondAttribute="trailing" constant="4" id="Ejr-3g-Qef"/>
                             <constraint firstItem="pCG-Vf-mpm" firstAttribute="centerY" secondItem="cJx-wm-BTp" secondAttribute="centerY" id="M05-qG-VNa"/>
                             <constraint firstItem="lPC-bj-fQK" firstAttribute="top" secondItem="deK-8z-TqH" secondAttribute="top" id="VCg-OF-x7M"/>
                             <constraint firstAttribute="bottom" secondItem="lPC-bj-fQK" secondAttribute="bottom" id="WXw-xs-pKy"/>
@@ -91,6 +91,7 @@
             </constraints>
             <size key="customSize" width="282" height="125"/>
             <connections>
+                <outlet property="containerView" destination="deK-8z-TqH" id="y1z-gq-Ama"/>
                 <outlet property="imageView" destination="cJx-wm-BTp" id="Ob0-cj-doQ"/>
                 <outlet property="tagLabel" destination="O1E-JS-XWB" id="lmX-EO-p7Z"/>
                 <outlet property="titleLabel" destination="ers-OA-BmZ" id="9Ka-AV-8gO"/>
