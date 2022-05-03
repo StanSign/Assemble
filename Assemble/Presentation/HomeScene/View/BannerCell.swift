@@ -41,14 +41,16 @@ class BannerCell: UICollectionViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: TypeSize.largeTitle.rawValue, weight: .heavy)
+        label.allowsDefaultTighteningForTruncation = true
         label.textColor = .white
         return label
     }()
     
     lazy var arrowIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.right")
+        imageView.image = UIImage(named: "ic_right_small")
         imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -61,7 +63,9 @@ class BannerCell: UICollectionViewCell {
     
     lazy var stateLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: TypeSize.body.rawValue, weight: .regular)
         label.textColor = .white
+        label.layer.opacity = 0.7
         return label
     }()
     
@@ -69,6 +73,17 @@ class BannerCell: UICollectionViewCell {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .equalSpacing
+        stack.alignment = .leading
+        stack.contentMode = .scaleAspectFit
+        return stack
+    }()
+    
+    lazy var titleStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .equalSpacing
+        stack.alignment = .center
+        stack.contentMode = .scaleAspectFit
         return stack
     }()
     
@@ -97,18 +112,14 @@ private extension BannerCell {
             make.edges.equalToSuperview()
         }
         
-        insertSubview(self.labelStack, aboveSubview: gradientContainer)
+        insertSubview(self.labelStack, aboveSubview: self.gradientContainer)
         self.labelStack.snp.makeConstraints { make in
             make.bottom.left.equalToSuperview().inset(32)
         }
-        labelStack.addArrangedSubview(stateLabel)
-        labelStack.addArrangedSubview(titleLabel)
-        labelStack.addArrangedSubview(subtitleLabel)
-        
-        insertSubview(self.arrowIcon, aboveSubview: gradientContainer)
-        self.arrowIcon.snp.makeConstraints { make in
-            make.centerY.equalTo(self.titleLabel)
-            make.left.equalTo(self.titleLabel.snp.right)
-        }
+        self.labelStack.addArrangedSubview(self.stateLabel)
+        self.titleStack.addArrangedSubview(self.titleLabel)
+        self.titleStack.addArrangedSubview(self.arrowIcon)
+        self.labelStack.addArrangedSubview(self.titleStack)
+        self.labelStack.addArrangedSubview(self.subtitleLabel)
     }
 }

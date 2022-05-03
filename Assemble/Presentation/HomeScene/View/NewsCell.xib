@@ -18,43 +18,24 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deK-8z-TqH" userLabel="Container View">
                         <rect key="frame" x="0.0" y="0.0" width="325" height="160"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1E-JS-XWB">
-                                <rect key="frame" x="141" y="69" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1E-JS-XWB">
+                                <rect key="frame" x="322" y="158.5" width="3" height="1.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPC-bj-fQK">
-                                <rect key="frame" x="0.0" y="0.0" width="325" height="160"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJx-wm-BTp">
                                 <rect key="frame" x="0.0" y="0.0" width="128" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cJx-wm-BTp" secondAttribute="height" multiplier="4:5" id="viV-5d-Cpm"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZSq-S7-9gf">
-                                <rect key="frame" x="152" y="24" width="169" height="112"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;더 배트맨&quot; 공식 트레일러 공개" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ers-OA-BmZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="169" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YouTube" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WM-25-njA">
-                                        <rect key="frame" x="0.0" y="96" width="51.5" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ers-OA-BmZ" secondAttribute="trailing" id="6OT-Gn-UMn"/>
-                                </constraints>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YouTube" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WM-25-njA">
+                                <rect key="frame" x="144" y="128" width="51.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pCG-Vf-mpm">
                                 <rect key="frame" x="48" y="64.5" width="32" height="31"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -63,22 +44,27 @@
                                     <constraint firstAttribute="width" constant="32" id="ubg-aj-l7F"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;더 배트맨&quot; 공식 트레일러 공개" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ers-OA-BmZ">
+                                <rect key="frame" x="144" y="35.5" width="177" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ers-OA-BmZ" secondAttribute="trailing" constant="4" id="2b5-vO-OTk"/>
                             <constraint firstItem="cJx-wm-BTp" firstAttribute="leading" secondItem="deK-8z-TqH" secondAttribute="leading" id="9Vj-bJ-mzn"/>
                             <constraint firstItem="cJx-wm-BTp" firstAttribute="top" secondItem="deK-8z-TqH" secondAttribute="top" id="9lb-A9-Ssg"/>
-                            <constraint firstAttribute="bottom" secondItem="ZSq-S7-9gf" secondAttribute="bottom" constant="24" id="Bxt-CR-rrs"/>
-                            <constraint firstAttribute="trailing" secondItem="ZSq-S7-9gf" secondAttribute="trailing" constant="4" id="Ejr-3g-Qef"/>
+                            <constraint firstAttribute="trailing" secondItem="O1E-JS-XWB" secondAttribute="trailing" id="JMu-6n-TvW"/>
                             <constraint firstItem="pCG-Vf-mpm" firstAttribute="centerY" secondItem="cJx-wm-BTp" secondAttribute="centerY" id="M05-qG-VNa"/>
-                            <constraint firstItem="lPC-bj-fQK" firstAttribute="top" secondItem="deK-8z-TqH" secondAttribute="top" id="VCg-OF-x7M"/>
-                            <constraint firstAttribute="bottom" secondItem="lPC-bj-fQK" secondAttribute="bottom" id="WXw-xs-pKy"/>
+                            <constraint firstAttribute="bottom" secondItem="4WM-25-njA" secondAttribute="bottom" constant="16" id="QMn-tb-S8D"/>
                             <constraint firstAttribute="bottom" secondItem="cJx-wm-BTp" secondAttribute="bottom" id="Xct-7O-bBg"/>
-                            <constraint firstItem="lPC-bj-fQK" firstAttribute="leading" secondItem="deK-8z-TqH" secondAttribute="leading" id="aSj-xA-y9b"/>
-                            <constraint firstItem="ZSq-S7-9gf" firstAttribute="top" secondItem="deK-8z-TqH" secondAttribute="top" constant="24" id="dMz-ND-jhg"/>
+                            <constraint firstItem="ers-OA-BmZ" firstAttribute="leading" secondItem="cJx-wm-BTp" secondAttribute="trailing" constant="16" id="cRz-DE-0dm"/>
+                            <constraint firstItem="ers-OA-BmZ" firstAttribute="centerY" secondItem="deK-8z-TqH" secondAttribute="centerY" multiplier="0.7" id="d1E-Wr-qoU"/>
+                            <constraint firstItem="4WM-25-njA" firstAttribute="leading" secondItem="cJx-wm-BTp" secondAttribute="trailing" constant="16" id="eCA-dE-bNh"/>
                             <constraint firstItem="pCG-Vf-mpm" firstAttribute="centerX" secondItem="cJx-wm-BTp" secondAttribute="centerX" id="et5-Ux-d2b"/>
-                            <constraint firstAttribute="trailing" secondItem="lPC-bj-fQK" secondAttribute="trailing" id="sEZ-HW-zba"/>
-                            <constraint firstItem="ZSq-S7-9gf" firstAttribute="leading" secondItem="cJx-wm-BTp" secondAttribute="trailing" constant="24" id="sQ9-t7-ZTn"/>
+                            <constraint firstAttribute="bottom" secondItem="O1E-JS-XWB" secondAttribute="bottom" id="nQS-gF-sS7"/>
                         </constraints>
                     </view>
                 </subviews>

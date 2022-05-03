@@ -25,6 +25,7 @@ class NewsCell: UICollectionViewCell {
     }
     
     private func configureUI() {
+        self.containerView.backgroundColor = .systemGray6
         self.tagLabel.layer.opacity = 0
         self.containerView.layer.cornerRadius = 8
     }
