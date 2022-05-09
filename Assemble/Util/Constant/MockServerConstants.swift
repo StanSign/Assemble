@@ -10,3 +10,9 @@ enum MockServerConstants {
     static let upcomingFilmPath = "/films/upcoming"
     static let newsPath = "/news"
 }
+
+enum MockServer2Constants {
+    static let baseURL = "https://98abacce-90da-4ac4-bdef-ecbdf54676ec.mock.pstmn.io"
+    static let upcomingFilmPath = "/films/upcoming"
+    static let newsPath = "/news"
+}
