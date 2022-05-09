@@ -42,7 +42,7 @@ extension NewsResultDTO {
             case thumbnail
         }
         let id: Int
-        let type: String
+        let type: NewsType
         let urlString: String
         let title: String
         let body: String?
@@ -51,7 +51,19 @@ extension NewsResultDTO {
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.id = try container.decode(Int.self, forKey: .id)
-            self.type = try container.decode(String.self, forKey: .type)
+            let typeString = try container.decode(String.self, forKey: .type)
+            switch typeString {
+            case "youtube":
+                self.type = NewsType.youtube
+            case "blog":
+                self.type = NewsType.blog
+            case "rumor":
+                self.type = NewsType.rumor
+            case "news":
+                self.type = NewsType.news
+            default:
+                self.type = NewsType.misc
+            }
             self.urlString = try container.decode(String.self, forKey: .urlString)
             self.title = try container.decode(String.self, forKey: .title)
             self.body = try container.decode(String?.self, forKey: .body)
@@ -76,7 +88,7 @@ extension NewsResultDTO {
 extension NewsResultDTO.NewsDTO {
     func toDomain() -> News {
         return .init(id: id,
-                     type: NewsType.init(rawValue: type) ?? .misc,
+                     type: type,
                      urlString: urlString,
                      title: title,
                      body: body,
