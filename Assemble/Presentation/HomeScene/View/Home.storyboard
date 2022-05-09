@@ -38,7 +38,7 @@
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohu-xg-wbt" userLabel="News View" customClass="NewsView" customModule="Assemble" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="538" width="414" height="264"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="titleHeight">
                                                         <real key="value" value="80"/>

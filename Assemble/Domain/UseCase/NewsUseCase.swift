@@ -12,6 +12,7 @@ import RxSwift
 protocol NewsUseCase {
     var newsResult: PublishSubject<NewsResult> { get set }
     func fetchNews()
+    func openURL(with urlString: String)
 }
 
 final class DefaultNewsUseCase: NewsUseCase {
@@ -35,6 +36,19 @@ final class DefaultNewsUseCase: NewsUseCase {
                 self?.newsResult.onNext(news)
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    func openURL(with urlString: String) {
+        let youtubeId = urlString
+        let splitYTID = youtubeId.components(separatedBy: "/")
+        let ytID = splitYTID.last
+        var ytURL = URL(string:"youtube://\(ytID!)")
+        if UIApplication.shared.canOpenURL(ytURL!) {
+            UIApplication.shared.open(ytURL!)
+        } else {
+            ytURL = URL(string:"https://www.youtube.com/watch?v=\(ytID!)")
+            UIApplication.shared.open(ytURL!)
+        }
     }
 }
 

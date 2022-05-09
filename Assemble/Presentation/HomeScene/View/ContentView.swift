@@ -27,14 +27,14 @@ class ContentView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 17, weight: .bold)
+        label.font = .systemFont(ofSize: TypeSize.title_03.rawValue, weight: .bold)
         return label
     }()
     
     lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.font = .systemFont(ofSize: TypeSize.subhead.rawValue, weight: .regular)
         label.textColor = .systemGray
         return label
     }()
@@ -44,6 +44,7 @@ class ContentView: UIView {
             frame: .zero,
             collectionViewLayout: self.configureCollectionView()
         )
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = true

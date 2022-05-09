@@ -21,9 +21,10 @@ final class DefaultNewsRepository: NewsRepository {
     func fetchNews() -> Observable<NewsResult> {
         let url = awsConfiguration.baseURL + awsConfiguration.newsPath
         let testURL = MockServerConstants.baseURL + MockServerConstants.newsPath
+        let testURL2 = MockServer2Constants.baseURL + MockServer2Constants.newsPath
         
         return Observable.create { observer -> Disposable in
-            let request = AF.request(testURL, method: .get).responseJSON { response in
+            let request = AF.request(testURL2, method: .get).responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     do {
