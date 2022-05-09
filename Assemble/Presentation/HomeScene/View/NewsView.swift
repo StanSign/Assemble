@@ -55,6 +55,7 @@ private extension NewsView {
                 cell.imageView.kf.setImage(with: URL(string: news.thumbnail))
                 cell.typeLabel.text = news.type.rawValue
                 cell.titleLabel.text = news.title
+                cell.url.onNext(news.urlString)
                 if news.type == .youtube {
                     cell.videoIconView.isHidden = false
                 }
