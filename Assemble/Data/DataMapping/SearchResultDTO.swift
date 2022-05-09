@@ -38,17 +38,17 @@ extension SearchResultDTO {
             case type
         }
         let id: Int
-        let name: String
+        let name: String?
         let nameEn: String
-        let imageURL: String
+        let imageURL: String?
         let type: String
         
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.id = try container.decode(Int.self, forKey: .id)
-            self.name = try container.decode(String.self, forKey: .name)
+            self.name = try container.decode(String?.self, forKey: .name)
             self.nameEn = try container.decode(String.self, forKey: .nameEn)
-            self.imageURL = try container.decode(String.self, forKey: .imageURL)
+            self.imageURL = try container.decode(String?.self, forKey: .imageURL)
             self.type = try container.decode(String.self, forKey: .type)
         }
     }
@@ -68,9 +68,9 @@ extension SearchResultDTO {
 extension SearchResultDTO.ResultDTO {
     func toDomain() -> SearchResult {
         return .init(id: id,
-                     name: name,
+                     name: name ?? "",
                      nameEn: nameEn,
-                     imageURL: imageURL,
+                     imageURL: imageURL ?? "",
                      type: type
         )
     }
