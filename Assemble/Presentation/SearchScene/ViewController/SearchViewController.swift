@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxDataSources
 import RxGesture
+import Kingfisher
 
 class SearchViewController: UIViewController {
     
@@ -34,8 +35,15 @@ class SearchViewController: UIViewController {
     }
     
     private func configureUI() {
-        searchBarView.layer.cornerRadius = searchBarView.bounds.height / 2
-        searchBar.becomeFirstResponder()
+        self.searchBarView.layer.cornerRadius = searchBarView.bounds.height / 2
+        self.searchBar.becomeFirstResponder()
+        
+        self.tableView.rx.didEndDisplayingCell
+            .subscribe(onNext: { cell, indexPath in
+                let cell = cell as! SearchTableViewCell
+                cell.cellImage.kf.cancelDownloadTask()
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func bindViewModel() {
@@ -61,6 +69,15 @@ class SearchViewController: UIViewController {
                     cell.titleLabel.text = searchResult.nameEn
                 }
                 cell.typeLabel.text = searchResult.type
+                cell.cellImage.kf.indicatorType = .activity
+                if searchResult.imageURL != "" {
+                    let kfOption: KingfisherOptionsInfo = [
+                        .processor(DownsamplingImageProcessor(size: cell.bounds.size)),
+                        .cacheOriginalImage,
+                        .scaleFactor(UIScreen.main.scale)
+                    ]
+                    cell.cellImage.setImage(with: searchResult.imageURL, options: kfOption)
+                }
             }
             .disposed(by: self.disposeBag)
     }
