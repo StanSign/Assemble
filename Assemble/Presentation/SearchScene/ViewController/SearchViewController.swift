@@ -62,6 +62,10 @@ class SearchViewController: UIViewController {
         let output = self.viewModel?.transform(from: input, disposeBag: self.disposeBag)
         
         output?.searchResults
+            .filter({ !$0.isEmpty })
+            .do(onNext: { _ in
+                self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+            })
             .bind(to: self.tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { index, searchResult, cell in
                 if searchResult.name != "" {
                     cell.titleLabel.text = searchResult.name
@@ -79,6 +83,16 @@ class SearchViewController: UIViewController {
                     cell.cellImage.setImage(with: searchResult.imageURL, options: kfOption)
                 }
             }
+            .disposed(by: self.disposeBag)
+        
+        output?.queryEmpty
+            .subscribe(onNext: { isEmpty in
+                if isEmpty {
+                    self.tableView.isHidden = true
+                } else {
+                    self.tableView.isHidden = false
+                }
+            })
             .disposed(by: self.disposeBag)
     }
 }

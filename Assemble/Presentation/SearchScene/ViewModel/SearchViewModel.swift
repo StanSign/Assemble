@@ -32,11 +32,13 @@ final class SearchViewModel {
     
     struct Output {
         let searchResults = BehaviorRelay<[SearchResult]>(value: [])
+        let queryEmpty = BehaviorRelay<Bool>(value: true)
     }
     
     //MARK: - Transform
     
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
+        let output = Output()
         // input
 
         input.backButtonDidTapEvent
@@ -55,12 +57,16 @@ final class SearchViewModel {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { text in
+                if text == "" {
+                    output.queryEmpty.accept(true)
+                } else {
+                    output.queryEmpty.accept(false)
+                }
                 self.searchUseCase.fetchSearchResult(with: text)
             })
             .disposed(by: disposeBag)
         
         // output
-        let output = Output()
         
         self.searchUseCase.searchResultList
             .map({ $0.results })
