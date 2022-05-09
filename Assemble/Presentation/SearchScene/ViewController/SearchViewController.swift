@@ -55,7 +55,11 @@ class SearchViewController: UIViewController {
         
         output?.searchResults
             .bind(to: self.tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { index, searchResult, cell in
-                cell.titleLabel.text = searchResult.name
+                if searchResult.name != "" {
+                    cell.titleLabel.text = searchResult.name
+                } else {
+                    cell.titleLabel.text = searchResult.nameEn
+                }
                 cell.typeLabel.text = searchResult.type
             }
             .disposed(by: self.disposeBag)

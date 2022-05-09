@@ -65,8 +65,7 @@ final class SearchViewModel {
         self.searchUseCase.searchResultList
             .map({ $0.results })
             .map({ result in
-                let results = self.createResultData(with: result)
-                return results
+                return result
             })
             .bind(to: output.searchResults)
             .disposed(by: disposeBag)
@@ -76,9 +75,5 @@ final class SearchViewModel {
 }
 
 private extension SearchViewModel {
-    func createResultData(with resultList: [SearchResult]) -> [SearchResult] {
-        print("UseCase Result: \(resultList)")
-        
-        return resultList
-    }
+    
 }
