@@ -42,6 +42,7 @@ class SearchViewController: UIViewController {
             .subscribe(onNext: { cell, indexPath in
                 let cell = cell as! SearchTableViewCell
                 cell.cellImage.kf.cancelDownloadTask()
+                cell.disposeBag = DisposeBag()
             })
             .disposed(by: self.disposeBag)
     }
