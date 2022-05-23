@@ -12,6 +12,7 @@ import RxRelay
 
 final class SearchViewModel {
     weak var coordinator: SearchCoordinator?
+    var searchResult: [SearchResult]?
     private let searchUseCase: SearchUseCase
     private let disposeBag = DisposeBag()
     
@@ -71,12 +72,17 @@ final class SearchViewModel {
         self.searchUseCase.searchResultList
             .map({ $0.results })
             .map({ result in
+                self.searchResult = result
                 return result
             })
             .bind(to: output.searchResults)
             .disposed(by: disposeBag)
         
         return output
+    }
+    
+    func pushResult(of resultID: Int) {
+        self.coordinator?.showInfoFlow(resultID)
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchCoordinator: Coordinator {
-    
+    func showInfoFlow(_ id: Int)
 }
 
 final class DefaultSearchCoordinator: SearchCoordinator {
@@ -32,7 +32,20 @@ final class DefaultSearchCoordinator: SearchCoordinator {
         self.navigationController.pushViewController(searchViewController, animated: true)
     }
     
+    func showInfoFlow(_ id: Int) {
+        let infoCoordinator = DefaultInfoCoordinator(self.navigationController)
+        infoCoordinator.finishDelegate = self
+        self.childCoordinators.append(infoCoordinator)
+        infoCoordinator.start()
+    }
+    
     func finish() {
         self.finishDelegate?.coordinatorDidFinish(childCoordinator: self)
+    }
+}
+
+extension DefaultSearchCoordinator: CoordinatorFinishDelegate {
+    func coordinatorDidFinish(childCoordinator: Coordinator) {
+        //
     }
 }

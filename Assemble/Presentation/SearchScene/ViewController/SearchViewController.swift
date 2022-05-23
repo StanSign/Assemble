@@ -38,6 +38,7 @@ class SearchViewController: UIViewController {
         self.searchBarView.layer.cornerRadius = searchBarView.bounds.height / 2
         self.searchBar.becomeFirstResponder()
         
+        self.tableView.delegate = self
         self.tableView.rx.didEndDisplayingCell
             .subscribe(onNext: { cell, indexPath in
                 let cell = cell as! SearchTableViewCell
@@ -95,5 +96,24 @@ class SearchViewController: UIViewController {
                 }
             })
             .disposed(by: self.disposeBag)
+    }
+}
+
+//MARK: - Private Functions
+
+private extension SearchViewController {
+    func pushInfoViewWith(id: Int) {
+        self.viewModel?.pushResult(of: id)
+    }
+}
+
+//MARK: - TableView Delegate
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        let searchResult = self.viewModel?.searchResult?[indexPath.row]
+        guard let resultID = searchResult?.id else { return }
+        self.pushInfoViewWith(id: resultID)
     }
 }
