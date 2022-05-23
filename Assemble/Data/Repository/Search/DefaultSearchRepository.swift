@@ -43,4 +43,8 @@ final class DefaultSearchRepository: SearchRepository {
             }
         }
     }
+    
+    func fetchResultItems(from searchList: SearchResultList) -> [SearchResult] {
+        return searchList.results
+    }
 }

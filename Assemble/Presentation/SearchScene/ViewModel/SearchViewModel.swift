@@ -69,8 +69,7 @@ final class SearchViewModel {
         
         // output
         
-        self.searchUseCase.searchResultList
-            .map({ $0.results })
+        self.searchUseCase.searchResults
             .map({ result in
                 self.searchResult = result
                 return result
