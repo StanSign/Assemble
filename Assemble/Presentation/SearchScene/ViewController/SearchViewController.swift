@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
     }
     
     private func configureUI() {
-        self.searchBarView.layer.cornerRadius = searchBarView.bounds.height / 2
+        self.searchBarView.layer.cornerRadius = searchBarView.bounds.height / 4
         self.searchBar.becomeFirstResponder()
         
         self.tableView.delegate = self
@@ -77,10 +77,10 @@ class SearchViewController: UIViewController {
                 cell.typeLabel.text = searchResult.type
                 cell.cellImage.kf.indicatorType = .activity
                 if searchResult.imageURL != "" {
+                    let processor = DownsamplingImageProcessor(size: cell.bounds.size) |> RoundCornerImageProcessor(cornerRadius: 24)
                     let kfOption: KingfisherOptionsInfo = [
-                        .processor(DownsamplingImageProcessor(size: cell.bounds.size)),
-                        .cacheOriginalImage,
-                        .scaleFactor(UIScreen.main.scale)
+                        .processor(processor),
+                        .forceRefresh
                     ]
                     cell.cellImage.setImage(with: searchResult.imageURL, options: kfOption)
                 }
