@@ -11,5 +11,4 @@ import RxSwift
 
 protocol SearchRepository {
     func fetchSearchResult(with query: String) -> Observable<SearchResultList>
-    func fetchResultItems(from searchList: SearchResultList) -> [SearchResult]
 }
